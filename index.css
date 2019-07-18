@@ -37,6 +37,18 @@ header {
     background-image: linear-gradient(to bottom, #006262, #424242);
     display: flex;
 }
+p{
+  color: white;
+}
+h1{
+  color: white;
+}
+h2{
+  color: white;
+}
+li{
+  color: white;
+}
 
 #logoDiv {
     position: relative;
