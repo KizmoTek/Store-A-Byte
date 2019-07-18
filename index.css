@@ -1,0 +1,140 @@
+@keyframes topToBottom {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 90px;
+    }
+}
+
+@keyframes opacityTransition {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes blur {
+    0% {
+        filter: blur(0px);
+    }
+    100% {
+        filter: blur(12px);
+    }
+}
+
+body {
+    margin:0px;
+}
+
+header {
+    width:100%;
+    animation: 1s ease-out 0s 1 topToBottom;
+    animation-fill-mode: forwards;
+    background-image: linear-gradient(to bottom, #006262, #424242);
+    display: flex;
+}
+
+#logoDiv {
+    position: relative;
+    opacity: 0;
+    animation: 0.8s ease-out 0s 1 opacityTransition;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
+}
+
+#logo {
+    width:70px;
+    margin-top: 5px;
+    position: absolute;
+    right: 0px;
+    left: 10px;
+}
+
+#logoTextDiv {
+    width:450px;
+    margin:auto;
+    opacity: 0;
+    animation: 0.8s ease-out 0s 1 opacityTransition;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
+}
+
+#logoText {
+    margin:0px;
+    margin-top: 5px;
+    font-size: 60px;
+    text-align: center;
+    color:white;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+}
+
+#navigation {
+    position: relative;
+    opacity: 0;
+    animation: 0.8s ease-out 0s 1 opacityTransition;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
+}
+
+#navDiv {
+    position: absolute;
+    right: 5px;
+    top:60px;
+    display: flex;
+    flex-direction: row;
+}
+
+.navText {
+    color: white;
+    text-align: center;
+    margin:0px;
+    margin-right: 15px;
+    transition: color 0.5s;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+}
+
+.navText:hover {
+    color:#00b3ff;
+    cursor: pointer;
+}
+
+#profileDiv {
+    position: relative;
+    opacity: 0;
+    animation: 0.8s ease-out 0s 1 opacityTransition;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
+}
+
+#profile {
+    position: absolute;
+    width:50px;
+    height:50px;
+    background-color: lightgray;
+    border-radius: 100%;
+    right:15px;
+    top:5px;
+    transition: transform 0.5s;
+}
+
+#profile:hover {
+    transform:scale(1.1);
+    cursor: pointer;
+}
+
+#profile:active {
+    transform:scale(1);
+    cursor: pointer;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
