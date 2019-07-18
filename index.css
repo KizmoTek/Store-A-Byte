@@ -138,3 +138,25 @@ header {
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
+
+footer{
+    position:fixed;
+    bottom:0;
+    background-image: linear-gradient(to top, #006262, #424242);
+    width:100%;
+    height:50px;
+    color:white;
+    font-size:30px;
+    display:flex;
+    flex-direction: row;
+}
+
+A{
+    clolor:white;
+    text-decoration:none;
+    font-size:30px;
+}
+
+#copyright{
+    margin:0;
+}
