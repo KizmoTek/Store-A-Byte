@@ -156,10 +156,11 @@ footer{
     font-size:30px;
     display:flex;
     flex-direction: row;
+    margin-right:15px;
 }
 
 A{
-    clolor:white;
+    color:white;
     text-decoration:none;
     font-size:30px;
 }
