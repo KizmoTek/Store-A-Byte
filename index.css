@@ -117,7 +117,8 @@ header {
 #navBarPosition h2:hover {
     color: black;
     cursor: pointer;
-
+}
+    
 footer{
     position:fixed;
     bottom:0;
