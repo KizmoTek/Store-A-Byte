@@ -99,31 +99,54 @@ header {
     animation: 0.8s ease-out 0s 1 opacityTransition;
     animation-fill-mode: forwards;
     animation-delay: 0.8s;
+    margin-top: 5px;
 }
 
 #navBarPosition {
     position: absolute;
     display: flex;
-    flex-direction: row;
-    color: white;
+    flex-direction: column;
     right:5px;
 }
 
-#navBarPosition h2 {
-    margin-right: 10px;
+#navBarPosition a {
+    font-size: 20px;
     transition: color 0.5s;
+    text-decoration: none;
+    color: white;
 }
 
-#navBarPosition h2:hover {
-    color: black;
+#navBarPosition a:hover {
     cursor: pointer;
+}
+
+#navTopDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+#contactUsTopDiv a {
+ font-size: 12px;
+ text-align: center;
+ margin: 0;
+}
+
+#contactUsTopDiv a:hover {
+    text-decoration: underline;
+}
+
+#contactUsTopDiv {
+    margin:auto;
+    width:60px;
+}
 
 footer{
     position:fixed;
     bottom:0;
     background-color:grey;
+    border-top: darkgray 3px solid;
     width:100%;
-    height:85px;
+    height:45px;
     color:white;
     font-size:20px;
     display:flex;
@@ -133,34 +156,56 @@ footer{
 
 #socialMediaH1{
     font-size:20px;
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    text-align: center;
+    margin:auto;
 }
 
 #twitterLogo{
     width:33px;
     height:33px;
-    position:absolute;
-    bottom:50px;
-    right:40px;
+    margin-left: 10px;
+    transition: 0.5s transform;
+}
+
+#twitterLogo:hover {
+    transform: scale(1.2);
+}
+
+#twitterLogo:active {
+    transform: scale(1);
 }
 
 #discordLogo{
     width:33px;
     height:33px;
-    position: absolute;
-    bottom:50px;
-    right:0;
+    margin-left: 10px;
+    transition: 0.5s transform;
+}
+
+#discordLogo:hover {
+    transform: scale(1.2);
+}
+
+#discordLogo:active {
+    transform: scale(1);
 }
 
 #socialMediaH1Div{
     position:absolute; 
-    bottom:47px;
-    right:80px;
+    bottom:4px;
+    right:30px;
+    display: flex;
+    flex-direction: row;
+    width:340px;
+    margin:auto;
 }
 
 #mail{
     text-decoration:none;
+    color:white;
+    width:100px;
+    margin: auto 0 auto 10px;
+}
+
+#mail:hover {
+    text-decoration:underline;
 }
