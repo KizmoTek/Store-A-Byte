@@ -209,3 +209,27 @@ footer{
 #mail:hover {
     text-decoration:underline;
 }
+.about{
+    text-align:center;
+    border:3px solid grey;
+    width:325px;
+    height:200px;
+}
+.why{
+    text-align:center;
+    border:3px solid gray;
+    width: 325px;
+    height:200px;
+}
+.group{
+    transform:rotate(180deg);
+    width:300px;
+    object-fit:cover;
+    height:200px;
+}
+#aboutDiv{
+    display:flex; 
+    flex-direction:row; 
+    justify-content:space-around;
+    background-color:lightgray;
+}
