@@ -21,7 +21,37 @@
         filter: blur(0px);
     }
     100% {
-        filter: blur(12px);
+        filter: blur(4px);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotate3d {
+    0% {
+        transform: rotate(0deg) translateZ(-10px);
+    }
+    100% {
+        transform: rotate(180deg) translateZ(-10px);
+    }
+}
+
+@keyframes AnimationName { 
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+}
+
+@keyframes centerImage {
+    to {
+        transform: rotateX(0deg) rotateY(0deg);
     }
 }
 
@@ -140,9 +170,60 @@ header {
     width:60px;
 }
 
+#topImg {
+    width:500px;
+    margin:auto;
+    display: table;
+    opacity: 0;
+    animation: rotate 25s linear infinite, opacityTransition 2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+#topImg2 {
+    position: absolute;
+    width:500px;
+    filter: grayscale(1) invert(1);
+    left:0;
+    top:0;
+    opacity: 0;
+    animation: rotate3d 25s linear infinite, opacityTransition 2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+#imgHandler {
+    transform-style: preserve-3d;
+    position: relative;
+    width:500px;
+    margin:auto;
+}
+
+#topImgDiv {
+    width:100%;
+    background-color: darkblue;
+    padding-top: 20px;
+    background: linear-gradient(0deg, #00008b, #5656ff);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 16s ease infinite;
+    -moz-animation: AnimationName 16s ease infinite;
+    -o-animation: AnimationName 16s ease infinite;
+    animation: AnimationName 16s ease infinite;
+}
+
+#topImgTextDiv {
+    color:white;
+    text-align: center;
+    opacity: 0;
+    animation: opacityTransition 2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+#topImgTextMain {
+    margin-top: 0;
+}
+
 footer{
-    position:fixed;
-    bottom:0;
+    position: relative;
     background-color:grey;
     border-top: darkgray 3px solid;
     width:100%;
