@@ -26,13 +26,13 @@
         </div>
     </header>
     <div id="topImgDiv">
-        <div id="topImgTextDiv">
+        <div id="topImgTextDiv" class="noselect">
             <h1 id="topImgTextMain">Welcome to Store-A-Byte Cloud Storage!</h1>
             <h2 id="topImgTextSecondary">Our goal is to provide cheap, safe, and convenient data storage at the lowest price possible.</h2>
         </div>
-        <div id="imgHandler">
-            <img src="Images/backgroundTop.png" id="topImg2">
-            <img src="Images/backgroundTop.png" id="topImg">
+        <div id="imgHandler" draggable="false">
+            <img src="Images/backgroundTop.png" id="topImg2" draggable="false">
+            <img src="Images/backgroundTop.png" id="topImg" draggable="false">
         </div>
     </div>
 <div id="aboutDiv">
@@ -42,7 +42,7 @@
         <p>place holder text for describing the project</p>
     </div>
 </div>
-<img src="IMG_20190719_133101.jpg" class="group">
+<img src="IMG_20190719_133101.jpg" class="group" draggable="false">
 <div>
     <div class="why">
         <h1>Why Us</h1>
@@ -58,7 +58,25 @@
             <a href="https://discord.gg/WQnAbPx"><img src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" id="discordLogo"></a>
         </div>
       </footer>
-      <script src="index.js" type="text/javascript"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
+      <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+              apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
+              authDomain: "store-a-byte.firebaseapp.com",
+              databaseURL: "https://store-a-byte.firebaseio.com",
+              projectId: "store-a-byte",
+              storageBucket: "",
+              messagingSenderId: "909604223499",
+              appId: "1:909604223499:web:aed92c7863f43569"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+          </script>
+          <script src="index.js" type="text/javascript"></script>
+          
 </body>
 
 </html>
