@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="modal.css">
 <style>
   #signUp{
     display:none;
@@ -14,6 +15,7 @@
   #signIn{
     display:flex;
     flex-direction:column;
+    text-align:center;
   }
 </style>  
   
@@ -41,12 +43,12 @@
         
         <div class="modal-body" id="signIn">
             <form>
-              email: <input type="email" name="FirstName" value=""><br>
-              password: <input type="password" name="LastName" value=""><br>
-            <input type="submit" value="Sign In">
+             <label>email: <input type="email" name="FirstName" value=""></label> 
+              <label>password: <input type="password" name="LastName" value=""></label> 
+            <input type="submit" value="Sign In" align="">
           </form>
         </div>
-      
+
       <div class="modal-body" id="signUpModal">
         <form>
           email: <input type="text" name="FirstName" value=""><br>  
