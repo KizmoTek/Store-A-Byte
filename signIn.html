@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+  #signUp{
+    display:none;
+  }
+  #signIn{
+    display:flex;
+    flex-direction:column;
+  }
+</style>  
+  
+</head>
+<body>
+
+<div class="container">
+  <h2>sign in</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">sign in</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Sign in</h4>
+        </div>
+        
+        
+        <!-- SIGN IN INFO HERE -->
+        
+        <div class="modal-body" id="signIn">
+            <form>
+              email: <input type="email" name="FirstName" value=""><br>
+              password: <input type="password" name="LastName" value=""><br>
+            <input type="submit" value="Sign In">
+          </form>
+        </div>
+      
+      <div class="modal-body" id="signUpModal">
+        <form>
+          email: <input type="text" name="FirstName" value=""><br>  
+          password: <input type="password" name="FirstName" value=""><br>
+          re enter password: <input type="password" name="FirstName" value=""><br>
+          <input type="submit" value="Sign Up">
+        </form>
+      </div>
+      
+      
+        
+        <div class="modal-footer">
+          <button id="clicky">sign up</button>
+          </div>
+          
+          </div>
+          
+          </div>
+          
+          </div>
+          
+          </div>
+          
+          
+          <script>
+  
+  
+/* get modal to change when button is pressed
+    ERROR: function not running
+*/
+  var signUp = document.getElementById("signUpModal")
+ 
+  var signIn = document.getElementById("signIn")
+
+  var clicky = document.getElementById("clicky")
+  
+  signUp.style.display = "none"
+  
+  clicky.onclick = click;
+
+  function click(){
+    console.log("hi")
+    signUp.style.display = "block"
+    signIn.style.display = "none"
+  }
+  
+  
+</script>
+
+</body>
+</html>
