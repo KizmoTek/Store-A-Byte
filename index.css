@@ -314,3 +314,64 @@ footer{
     justify-content:space-around;
     background-color:lightgray;
 }
+
+#teamDiv{
+    margin-top:10px;
+    width:100%;
+    height:300px;
+    background-color: lightgrey;
+}
+
+#teamVid{
+    height:100px;
+    width:25%;
+    margin:left;
+}
+
+#teamContent{
+    position:relative;
+}
+
+#aikamDiv{
+    width:150px;
+    height:150px;
+    word-wrap:break-word;
+    margin:auto;
+}
+
+#aikamImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+#arjunDiv{
+    width:150px;
+    word-wrap:break-word;
+    position:absolute;
+    top:1%;
+    left:60%;
+}
+
+#arjunImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+#alexDiv{
+    width:150px;
+    word-wrap:break-word;
+    position:absolute;
+    top:1%;
+    left:75%;
+}
+
+#alexImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
