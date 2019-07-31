@@ -1,5 +1,6 @@
-button{
-    background-color:cyan;
+#clicky{
+    background-color:rgb(0, 119, 155);
+    color:white
 }
 
 .SignInInput{
@@ -24,6 +25,39 @@ label{
     text-align:center;
 }
 
-#myModal{
-    background-color:gray;
+.modal-body{
+    background-color:lightgray;
+    border-color: lightgrey;
+}
+
+.modal-header{
+    background-color:lightgray;
+    border-color: lightgrey;
+}
+
+.modal-footer{
+    background-color:lightgrey;
+    border-color: lightgrey;
+}
+
+.submit{
+    width: 100px;
+    clear: both; 
+    text-align:center;
+    border:1px solid,;
+    padding:1px;
+    border-radius:1px;
+    margin-top:10px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color:darkgray;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 5px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
