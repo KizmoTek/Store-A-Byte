@@ -1,4 +1,3 @@
-console.log("im here")
 var lastMouseX = 0,
 	lastMouseY = 0;
 var rotX = 0,
@@ -9,16 +8,15 @@ banner.addEventListener("mousemove", mouseMoved)
 banner.addEventListener("mouseleave", centerImage)
 var bannerIMG = document.getElementById("imgHandler")
 var IMG = document.getElementById("topImg")
+bannerIMG.style.transition = "all 0.4s linear"
 
 function mouseMoved(ev) {
     bannerIMG.style.animation = ""
+    
     lastMouseX = IMG.getBoundingClientRect().x + IMG.getBoundingClientRect().width / 2
     lastMouseY = IMG.getBoundingClientRect().y + IMG.getBoundingClientRect().height / 2
 	var deltaX = ev.clientX - lastMouseX;
 	var deltaY = ev.clientY - lastMouseY;
-    
-	/*lastMouseX = ev.pageX;
-	lastMouseY = ev.pageY;*/
 
 	rotY = deltaX / 16.66;
     rotX = deltaY / 5.5;
@@ -40,5 +38,40 @@ function mouseMoved(ev) {
 }
 
 function centerImage() {
-    bannerIMG.style.animation = "centerImage 2s ease"
+    bannerIMG.style.animation = "centerImage 2s ease forwards"
 }
+
+var provider = new firebase.auth.GoogleAuthProvider();
+var database = firebase.database().ref();
+var photourl
+const auth = firebase.auth();
+const loginButton = document.getElementById('profileTopIMG')
+const signOutButton = document.getElementById('signOut')
+const username = document.getElementById('username')
+const profilePic = document.getElementById('profile-pic')
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      userVar = user
+      hide(loginButton)
+      show(signOutButton)
+      show(username)
+      show(profilePic)
+      photourl = user.photoURL    
+      profilePic.src = photourl
+      username.textContent = user.displayName
+    } else {
+      userVar = null
+      //showInline(loginButton)  
+      //hide(signOutButton)
+      //hide(username)
+      //hide(profilePic)
+    }
+  })
+
+loginButton.addEventListener('click', (e) => {
+    firebase.auth().signInWithRedirect(provider)
+}) /*
+signOutButton.addEventListener('click', (e) => {
+    firebase.auth().signOut()
+})*/
