@@ -48,8 +48,7 @@ localStorage.signedIn
 const auth = firebase.auth();
 const loginButton = document.getElementById('profileTopIMG')
 const signOutButton = document.getElementById('signOut')
-const username = document.getElementById('username')
-const profilePic = document.getElementById('profile-pic')
+const profilePic = document.getElementById('profileTopIMG')
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -57,14 +56,6 @@ firebase.auth().onAuthStateChanged(function (user) {
       console.log(userVar)
       photourl = user.photoURL    
       profilePic.src = photourl
-        username.textContent = user.displayName
-        if (localStorage.signedIn == 0) {
-            localStorage.signedIn = 1;
-        } else if (localStorage.signedIn == 1) {
-            localStorage.signedIn = 0;
-        } else {
-            localStorage.signedIn = 0;
-        }
     } else {
       userVar = null
       profilePic.src = "Images/DefaultProfilePicture.png"
