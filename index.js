@@ -91,3 +91,19 @@ loginButton.addEventListener('click', (e) => {
 signOutButton.addEventListener('click', (e) => {
     firebase.auth().signOut()
 })*/
+
+var signUp = document.getElementById("signUpModal")
+ 
+var signIn = document.getElementById("signIn")
+
+var clicky = document.getElementById("clicky")
+
+signUp.style.display = "none"
+
+clicky.onclick = click;
+
+function click(){
+  console.log("hi")
+  signUp.style.display = "block"
+  signIn.style.display = "none"
+}

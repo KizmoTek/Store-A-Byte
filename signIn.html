@@ -43,25 +43,30 @@
         
         <div class="modal-body" id="signIn">
             <form>
-             <label>email: <input type="email" name="FirstName" value=""></label> 
-              <label>password: <input type="password" name="LastName" value=""></label> 
-            <input type="submit" value="Sign In" align="">
+              <label>email:</label> 
+              <label> <input type="email" name="FirstName" value="" class="signInInput"></label> 
+              <label>password:</label> 
+              <label><input type="password" name="LastName" value="" class="signInInput"></label> 
+              <input type="submit" value="Sign In" class="submit">
           </form>
         </div>
 
       <div class="modal-body" id="signUpModal">
         <form>
-          email: <input type="text" name="FirstName" value=""><br>  
-          password: <input type="password" name="FirstName" value=""><br>
-          re enter password: <input type="password" name="FirstName" value=""><br>
-          <input type="submit" value="Sign Up">
+            <label> email:</label> 
+            <label><input type="text" name="FirstName" value="" class="signInInput"></label>  
+            <label>password:</lable> 
+            <label><input type="password" name="FirstName" value="" class="signInInput"></label>
+            <label>re enter password:</label> 
+            <label><input type="password" name="FirstName" value="" class="signInInput"></label>
+            <input type="submit" value="Sign Up" class="submit">
         </form>
       </div>
       
       
         
         <div class="modal-footer">
-          <button id="clicky">sign up</button>
+          <input id="clicky" value="Sign Up" type="button"></input>
           </div>
           
           </div>
@@ -91,9 +96,20 @@
 
   function click(){
     console.log("hi")
-    signUp.style.display = "block"
-    signIn.style.display = "none"
+    
+    if (clicky.value == "Sign In") {
+      clicky.value = "Sign Up";
+      signUp.style.display = "none";
+      signIn.style.display = "block";
+    }
+    
+    else{
+      clicky.value = "Sign In";
+      signIn.style.display = "none";
+      signUp.style.display = "block";
+    }
   }
+  
   
   
 </script>
