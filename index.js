@@ -44,13 +44,19 @@ function centerImage() {
 var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database().ref();
 var photourl
+localStorage.signedIn
 const auth = firebase.auth();
 const loginButton = document.getElementById('profileTopIMG')
 const signOutButton = document.getElementById('signOut')
 const username = document.getElementById('username')
 const profilePic = document.getElementById('profile-pic')
 
+if (localStorage.signedIn == "undefined") {
+    localStorage.signedIn = 0;
+}
+
 firebase.auth().onAuthStateChanged(function(user) {
+   console.log(localStorage.signedIn)
     if (user) {
       userVar = user
       hide(loginButton)
@@ -59,7 +65,14 @@ firebase.auth().onAuthStateChanged(function(user) {
       show(profilePic)
       photourl = user.photoURL    
       profilePic.src = photourl
-      username.textContent = user.displayName
+        username.textContent = user.displayName
+        if (localStorage.signedIn == 0) {
+            localStorage.signedIn = 1;
+        } else if (localStorage.signedIn == 1) {
+            localStorage.signedIn = 0;
+        } else {
+            localStorage.signedIn = 0;
+        }
     } else {
       userVar = null
       //showInline(loginButton)  
@@ -75,3 +88,19 @@ loginButton.addEventListener('click', (e) => {
 signOutButton.addEventListener('click', (e) => {
     firebase.auth().signOut()
 })*/
+
+var signUp = document.getElementById("signUpModal")
+ 
+var signIn = document.getElementById("signIn")
+
+var clicky = document.getElementById("clicky")
+
+signUp.style.display = "none"
+
+clicky.onclick = click;
+
+function click(){
+  console.log("hi")
+  signUp.style.display = "block"
+  signIn.style.display = "none"
+}

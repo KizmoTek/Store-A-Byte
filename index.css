@@ -313,6 +313,7 @@ footer{
     flex-direction:row; 
     justify-content:space-around;
     background-color:lightgray;
+<<<<<<< HEAD
 }
 
 #teamDiv{
@@ -374,4 +375,6 @@ footer{
     height:50px;
     margin:auto;
     transform:rotate(180deg);
+=======
+>>>>>>> d0060575cfb72b4a8dfc61902e1d13108cc49e63
 }

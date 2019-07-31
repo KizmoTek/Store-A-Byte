@@ -1,0 +1,63 @@
+#clicky{
+    background-color:rgb(0, 119, 155);
+    color:white
+}
+
+.SignInInput{
+    border:1px solid #ccc;
+    padding:10px;
+    border-radius:4px;
+    box-shadow:inset 0 1px 3px #ddd;
+}
+
+#signIn{
+    width: 100%;
+    clear: both;
+}
+
+label{
+    display:block;
+}
+
+#signUpModal{
+    width: 100%;
+    clear: both;
+    text-align:center;
+}
+
+.modal-body{
+    background-color:lightgray;
+    border-color: lightgrey;
+}
+
+.modal-header{
+    background-color:lightgray;
+    border-color: lightgrey;
+}
+
+.modal-footer{
+    background-color:lightgrey;
+    border-color: lightgrey;
+}
+
+.submit{
+    width: 100px;
+    clear: both; 
+    text-align:center;
+    border:1px solid,;
+    padding:1px;
+    border-radius:1px;
+    margin-top:10px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color:darkgray;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 5px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
