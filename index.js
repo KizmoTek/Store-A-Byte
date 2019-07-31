@@ -44,26 +44,19 @@ function centerImage() {
 var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database().ref();
 var photourl
-var signedIn
+localStorage.signedIn
 const auth = firebase.auth();
 const loginButton = document.getElementById('profileTopIMG')
 const signOutButton = document.getElementById('signOut')
 const username = document.getElementById('username')
 const profilePic = document.getElementById('profile-pic')
 
-if (signedIn == "undefined") {
-    signedIn = 0;
+if (localStorage.signedIn == "undefined") {
+    localStorage.signedIn = 0;
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
-    if (signedIn == 0) {
-        signedIn = 1;
-    } else if (signedIn == 1) {
-        signeIn = 0;
-    } else {
-        signedIn = 0;
-    }
-    console.log(signedIn)
+   
     if (user) {
       userVar = user
       hide(loginButton)
@@ -73,7 +66,13 @@ firebase.auth().onAuthStateChanged(function(user) {
       photourl = user.photoURL    
       profilePic.src = photourl
         username.textContent = user.displayName
-        
+        if (localStorage.signedIn == 0) {
+            localStorage.signedIn = 1;
+        } else if (localStorage.signedIn == 1) {
+            localStorage.signedIn = 0;
+        } else {
+            localStorage.signedIn = 0;
+        }
     } else {
       userVar = null
       //showInline(loginButton)  
