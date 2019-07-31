@@ -55,7 +55,10 @@ if (localStorage.signedIn == "undefined") {
     localStorage.signedIn = 0;
 }
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
+    if (localStorage.signedIn == "undefined") {
+        localStorage.signedIn = 0;
+    }
    console.log(localStorage.signedIn)
     if (user) {
       userVar = user
