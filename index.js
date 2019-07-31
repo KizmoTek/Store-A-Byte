@@ -44,11 +44,16 @@ function centerImage() {
 var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database().ref();
 var photourl
+var signedIn
 const auth = firebase.auth();
 const loginButton = document.getElementById('profileTopIMG')
 const signOutButton = document.getElementById('signOut')
 const username = document.getElementById('username')
 const profilePic = document.getElementById('profile-pic')
+
+if (signedIn == "undefined") {
+    signedIn = 0;
+}
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -59,7 +64,15 @@ firebase.auth().onAuthStateChanged(function(user) {
       show(profilePic)
       photourl = user.photoURL    
       profilePic.src = photourl
-      username.textContent = user.displayName
+        username.textContent = user.displayName
+        if (signedIn == 0) {
+            signedIn = 1;
+        } else if (signedIn == 1) {
+            signeIn = 0;
+        } else {
+            signedIn = 0;
+        }
+        console.log(signedIn)
     } else {
       userVar = null
       //showInline(loginButton)  
