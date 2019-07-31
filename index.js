@@ -56,6 +56,14 @@ if (signedIn == "undefined") {
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
+    if (signedIn == 0) {
+        signedIn = 1;
+    } else if (signedIn == 1) {
+        signeIn = 0;
+    } else {
+        signedIn = 0;
+    }
+    console.log(signedIn)
     if (user) {
       userVar = user
       hide(loginButton)
@@ -65,14 +73,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       photourl = user.photoURL    
       profilePic.src = photourl
         username.textContent = user.displayName
-        if (signedIn == 0) {
-            signedIn = 1;
-        } else if (signedIn == 1) {
-            signeIn = 0;
-        } else {
-            signedIn = 0;
-        }
-        console.log(signedIn)
+        
     } else {
       userVar = null
       //showInline(loginButton)  
