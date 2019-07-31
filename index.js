@@ -56,14 +56,7 @@ if (localStorage.signedIn == "undefined") {
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
-    if (localStorage.signedIn == 0) {
-        localStorage.signedIn = 1;
-    } else if (localStorage.signedIn == 1) {
-        localStorage.signedIn = 0;
-    } else {
-        localStorage.signedIn = 0;
-    }
-    console.log(localStorage.signedIn)
+   
     if (user) {
       userVar = user
       hide(loginButton)
@@ -73,7 +66,13 @@ firebase.auth().onAuthStateChanged(function(user) {
       photourl = user.photoURL    
       profilePic.src = photourl
         username.textContent = user.displayName
-        
+        if (localStorage.signedIn == 0) {
+            localStorage.signedIn = 1;
+        } else if (localStorage.signedIn == 1) {
+            localStorage.signedIn = 0;
+        } else {
+            localStorage.signedIn = 0;
+        }
     } else {
       userVar = null
       //showInline(loginButton)  
