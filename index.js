@@ -51,21 +51,10 @@ const signOutButton = document.getElementById('signOut')
 const username = document.getElementById('username')
 const profilePic = document.getElementById('profile-pic')
 
-if (localStorage.signedIn == "undefined") {
-    localStorage.signedIn = 0;
-}
-
 firebase.auth().onAuthStateChanged(function (user) {
-    if (localStorage.signedIn == "undefined") {
-        localStorage.signedIn = 0;
-    }
-   console.log(localStorage.signedIn)
     if (user) {
       userVar = user
-      hide(loginButton)
-      show(signOutButton)
-      show(username)
-      show(profilePic)
+      console.log(userVar)
       photourl = user.photoURL    
       profilePic.src = photourl
         username.textContent = user.displayName
@@ -78,10 +67,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         }
     } else {
       userVar = null
-      //showInline(loginButton)  
-      //hide(signOutButton)
-      //hide(username)
-      //hide(profilePic)
+      profilePic.src = "Images/DefaultProfilePicture.png"
     }
   })
 
@@ -98,7 +84,7 @@ var signIn = document.getElementById("signIn")
 
 var clicky = document.getElementById("clicky")
 
-signUp.style.display = "none"
+//signUp.style.display = "none"
 
 clicky.onclick = click;
 
