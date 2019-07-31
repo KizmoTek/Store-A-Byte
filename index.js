@@ -56,7 +56,7 @@ if (localStorage.signedIn == "undefined") {
 }
 
 firebase.auth().onAuthStateChanged(function(user) {
-   
+   console.log(localStorage.signedIn)
     if (user) {
       userVar = user
       hide(loginButton)
