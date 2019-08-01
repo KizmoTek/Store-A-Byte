@@ -50,6 +50,16 @@ const loginButton = document.getElementById('profileTopIMG')
 const signOutButton = document.getElementById('signOut')
 const profilePic = document.getElementById('profileTopIMG')
 
+
+if (localStorage.signedIn == "undefined") {
+    localStorage.signedIn = 0;
+}
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (localStorage.signedIn == "undefined") {
+        localStorage.signedIn = 0;
+    }
+   console.log(localStorage.signedIn)
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       userVar = user
