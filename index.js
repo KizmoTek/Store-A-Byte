@@ -72,6 +72,8 @@ window.onload = () => {
     })
     signOutButton.addEventListener('click', (e) => {
         firebase.auth().signOut()
+        profilePic.style.removeProperty("background-color")
+        profilePic.style.removeProperty("border-radius")
     })
 /*
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
