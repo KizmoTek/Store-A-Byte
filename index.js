@@ -47,7 +47,7 @@ window.onload = () => {
     var photourl
     const auth = firebase.auth();
     const loginButton = document.getElementsByClassName("google")
-    const signOutButton = document.getElementById('signOut')
+    const signOutButton = document.getElementById('logoutButton')
     const profilePic = document.getElementById('profileTopIMG')
     var userVar
 
@@ -58,20 +58,26 @@ window.onload = () => {
         profilePic.src = photourl
         profilePic.style.backgroundColor = "transparent"
         profilePic.style.borderRadius = "0px"
-        //profilePic.dataset.target = ""
-        
         } else {
         userVar = null
+        signOutButton.style.display = "none"
         profilePic.src = "Images/DefaultProfilePicture.png"
         }
     })
 
     loginButton[0].addEventListener('click', (e) => {
         firebase.auth().signInWithRedirect(provider)
-    }) /*
+    })
     signOutButton.addEventListener('click', (e) => {
         firebase.auth().signOut()
-    })*/
+    })
+/*
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage + "\nError Code: " + errorCode)
+      });
+      */
 
 
 
