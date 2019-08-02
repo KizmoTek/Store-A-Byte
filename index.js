@@ -60,6 +60,8 @@ window.onload = () => {
         profilePic.style.borderRadius = "0px"
         } else {
         userVar = null
+        profilePic.style.removeProperty("background-color")
+        profilePic.style.removeProperty("border-radius")
         signOutButton.style.display = "none"
         profilePic.src = "Images/DefaultProfilePicture.png"
         }
