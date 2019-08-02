@@ -57,7 +57,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       profilePic.src = photourl
       profilePic.style.backgroundColor = "transparent"
       profilePic.style.borderRadius = "0px"
-      profilePic.dataset.target = ""
+      //profilePic.dataset.target = ""
       
     } else {
       userVar = null
