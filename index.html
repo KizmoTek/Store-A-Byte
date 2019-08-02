@@ -3,26 +3,78 @@
 <html>
   <head>
       <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
   <body>
       <header class="noselect">
           <div id="profileTopDiv">
-              <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG">
+            <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#myModal" data-toggle="modal">
+            <div id="SignIncontainer">
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                      <div class="modal-dialog">
+                      
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="centerTopModalButtons">
+                              <input id="SignInClick" value="Sign In" type="button">
+                              <input id="SignUpClick" value="Sign Up" type="button">
+                            </div>
+                          </div>
+                          
+                          
+                          <!-- SIGN IN INFO HERE -->
+                          
+                          <div class="modal-body" id="signIn">
+                              <form>
+                                <label class="signInLabel">Email Address:</label> 
+                                <label class="signInLabel"> <input type="email" name="FirstName" value="" class="signInInput"></label> 
+                                <label class="signInLabel">Password:</label> 
+                                <label class="signInLabel"><input type="password" name="LastName" value="" class="signInInput"></label> 
+                                <input type="submit" value="Sign In" class="submit">
+                                <label class="signInLabel">
+                                    <p class="signInOr">Or</p>
+                                    <img src="Images/google.png" class="google">
+                                </label>
+                            </form>
+                          </div>
+                  
+                          <div class="modal-body" id="signUpModal">
+                            <form>
+                                <label class="signInLabel">Email Address:</label> 
+                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput"></label>  
+                                <label class="signInLabel">Password:</label> 
+                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput"></label>
+                                <label class="signInLabel">Re-enter Password:</label> 
+                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput"></label>
+                                <input type="submit" value="Sign Up" class="submit">
+                                <label class="signInLabel">
+                              </label>
+                              </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
           </div>
+          <div id="navBarDiv">
+                <div id="navBarPosition">
+                    <div id="navTopDiv">
+                        <a href="#" style="margin-right: 10px;">About</a>
+                        <a href="#" style="margin-right: 0px;">Pricing</a>
+                    </div>
+                    <div id="contactUsTopDiv">
+                        <a href="#">Contact Us</a>
+                    </div>
+                </div>
+            </div>
           <div id="logoTopDiv">
               <img src="Images/Logo.png" draggable="false" id="logoTopIMG">
               <h1 id="logoTopText">Store-A-Byte</h1>
-          </div>
-          <div id="navBarDiv">
-              <div id="navBarPosition">
-                  <div id="navTopDiv">
-                      <a href="#" style="margin-right: 10px;">About</a>
-                      <a href="#" style="margin-right: 0px;">Pricing</a>
-                  </div>
-                  <div id="contactUsTopDiv">
-                      <a href="#">Contact Us</a>
-                  </div>
-              </div>
           </div>
       </header>
       <div id="topImgDiv">
@@ -76,7 +128,6 @@
           firebase.initializeApp(firebaseConfig);
       </script>
       <script src="index.js" type="text/javascript"></script>
-      <script src="wasabi.js" type="text/javascript"></script>
   </body>
 
 </html>

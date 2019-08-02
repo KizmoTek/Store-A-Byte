@@ -46,7 +46,7 @@ var database = firebase.database().ref();
 var photourl
 localStorage.signedIn
 const auth = firebase.auth();
-const loginButton = document.getElementById('profileTopIMG')
+const loginButton = document.getElementsByClassName("google")
 const signOutButton = document.getElementById('signOut')
 const profilePic = document.getElementById('profileTopIMG')
 
@@ -72,25 +72,48 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
   })
 
-loginButton.addEventListener('click', (e) => {
+loginButton[0].addEventListener('click', (e) => {
+    firebase.auth().signInWithRedirect(provider)
+})
+loginButton[1].addEventListener('click', (e) => {
     firebase.auth().signInWithRedirect(provider)
 }) /*
 signOutButton.addEventListener('click', (e) => {
     firebase.auth().signOut()
 })*/
+})
 
-var signUp = document.getElementById("signUpModal")
+
+
+var signInModal = document.getElementById("SignIncontainer")
+
+var signUpClick = document.getElementById("SignUpClick")
  
-var signIn = document.getElementById("signIn")
+var signInClick = document.getElementById("SignInClick")
 
-var clicky = document.getElementById("clicky")
+var signInBox = document.getElementById("signIn")
 
-//signUp.style.display = "none"
+var signUpBox = document.getElementById("signUpModal")
 
-clicky.onclick = click;
+var openSignInModal = document.getElementById('profileTopIMG')
 
-function click(){
-  console.log("hi")
-  signUp.style.display = "block"
-  signIn.style.display = "none"
-}
+
+
+signUpClick.style.backgroundColor="grey";
+signUpBox.style.display = "none";
+signInBox.style.display = "block";
+
+
+signUpClick.addEventListener('click', (e) => {
+  signUpClick.style.backgroundColor="#0b6eba";
+  signInClick.style.backgroundColor="grey";
+  signUpBox.style.display = "block";
+  signInBox.style.display = "none";
+})
+
+signInClick.addEventListener('click', (e) => {
+  signUpClick.style.backgroundColor="grey";
+  signInClick.style.backgroundColor="#0b6eba";
+  signUpBox.style.display = "none";
+  signInBox.style.display = "block";
+})
