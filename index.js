@@ -44,63 +44,68 @@ function centerImage() {
 var provider = new firebase.auth.GoogleAuthProvider();
 var database = firebase.database().ref();
 var photourl
-localStorage.signedIn
 const auth = firebase.auth();
-const loginButton = document.getElementById('profileTopIMG')
+const loginButton = document.getElementsByClassName("google")
 const signOutButton = document.getElementById('signOut')
-const username = document.getElementById('username')
-const profilePic = document.getElementById('profile-pic')
+const profilePic = document.getElementById('profileTopIMG')
+var userVar
 
-if (localStorage.signedIn == "undefined") {
-    localStorage.signedIn = 0;
-}
-
-firebase.auth().onAuthStateChanged(function(user) {
-   console.log(localStorage.signedIn)
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       userVar = user
-      hide(loginButton)
-      show(signOutButton)
-      show(username)
-      show(profilePic)
       photourl = user.photoURL    
       profilePic.src = photourl
-        username.textContent = user.displayName
-        if (localStorage.signedIn == 0) {
-            localStorage.signedIn = 1;
-        } else if (localStorage.signedIn == 1) {
-            localStorage.signedIn = 0;
-        } else {
-            localStorage.signedIn = 0;
-        }
+      profilePic.style.backgroundColor = "transparent"
+      profilePic.style.borderRadius = "0px"
+      profilePic.dataset.target = ""
+      
     } else {
       userVar = null
-      //showInline(loginButton)  
-      //hide(signOutButton)
-      //hide(username)
-      //hide(profilePic)
+      profilePic.src = "Images/DefaultProfilePicture.png"
     }
   })
 
-loginButton.addEventListener('click', (e) => {
+loginButton[0].addEventListener('click', (e) => {
+    firebase.auth().signInWithRedirect(provider)
+})
+loginButton[1].addEventListener('click', (e) => {
     firebase.auth().signInWithRedirect(provider)
 }) /*
 signOutButton.addEventListener('click', (e) => {
     firebase.auth().signOut()
 })*/
 
-var signUp = document.getElementById("signUpModal")
+
+
+var signInModal = document.getElementById("SignIncontainer")
+
+var signUpClick = document.getElementById("SignUpClick")
  
-var signIn = document.getElementById("signIn")
+var signInClick = document.getElementById("SignInClick")
 
-var clicky = document.getElementById("clicky")
+var signInBox = document.getElementById("signIn")
 
-signUp.style.display = "none"
+var signUpBox = document.getElementById("signUpModal")
 
-clicky.onclick = click;
+var openSignInModal = document.getElementById('profileTopIMG')
 
-function click(){
-  console.log("hi")
-  signUp.style.display = "block"
-  signIn.style.display = "none"
-}
+
+
+signUpClick.style.backgroundColor="grey";
+signUpBox.style.display = "none";
+signInBox.style.display = "block";
+
+
+signUpClick.addEventListener('click', (e) => {
+  signUpClick.style.backgroundColor="#0b6eba";
+  signInClick.style.backgroundColor="grey";
+  signUpBox.style.display = "block";
+  signInBox.style.display = "none";
+})
+
+signInClick.addEventListener('click', (e) => {
+  signUpClick.style.backgroundColor="grey";
+  signInClick.style.backgroundColor="#0b6eba";
+  signUpBox.style.display = "none";
+  signInBox.style.display = "block";
+})
