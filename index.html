@@ -3,6 +3,42 @@
 <html>
   <head>
       <link rel="stylesheet" href="index.css">
+      <script src="index.js" type="text/javascript"></script>
+      <script src="jquery-3.4.1.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+      <script>
+            // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
+            authDomain: "store-a-byte.firebaseapp.com",
+            databaseURL: "https://store-a-byte.firebaseio.com",
+            projectId: "store-a-byte",
+            storageBucket: "gs://store-a-byte.appspot.com/",
+            messagingSenderId: "909604223499",
+            appId: "1:909604223499:web:aed92c7863f43569"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        $(function() {
+            var form = $('form');
+            form.submit( function(event){
+                console.log("hi");
+                event.preventDefault()
+                var timeStamp =  Number(new Date());
+                var storageRef = firebase.storage().ref(timeStamp.toString());
+                var $ = jQuery;
+                var file_data = $('#browseBtn').prop('files')[0];
+                storageRef.put(file_data);
+                
+            });
+        });
+
+        
+
+          </script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -72,6 +108,85 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+        </div>
+    </header>
+    <div id="topImgDiv">
+        <div id="topImgTextDiv" class="noselect">
+            <h1 id="topImgTextMain">Welcome to Store-A-Byte Cloud Storage!</h1>
+            <h2 id="topImgTextSecondary">Our goal is to provide cheap, safe, and convenient data storage at the lowest price possible.</h2>
+        </div>
+        <div id="imgHandler" draggable="false">
+            <img src="Images/backgroundTop.png" id="topImg2" draggable="false">
+            <img src="Images/backgroundTop.png" id="topImg" draggable="false">
+        </div>
+    </div>
+<div id="aboutDiv">
+<div>
+    <div class="about">
+        <h1>About</h1>
+        <p>Store-A-Byte is a website that manages your data storage</p>
+    </div>
+</div>
+<img src="Images/GroupPhoto.jpg" class="group" draggable="false">
+<div>
+    <div class="why">
+        <h1>Why Us</h1>
+        <p>We are super profesional and handle your storage for a cheap price.</p>
+    </div>
+</div>
+</div>
+
+<div id="teamDiv">
+    <div id="teamVid">
+        <img src="video_placeholder.jpg">
+    </div>
+    <div id="teamContent">
+        <div id="aikamDiv">
+            <img src="aikam.jpg" id="aikamImg">
+            <h5>Html/CSS Front End Design</h5>
+            <button style="width:150px">More Info</button>
+        </div>
+        <div id="arjunDiv">
+            <img src="arjun.jpg" id="arjunImg">
+            <h5>Html/CSS Front End Design</h5>
+            <button style="width:150px">More Info</button>
+        </div>
+        <div id="alexDiv">
+            <img src="alex.jpg" id="alexImg">
+            <h5>Html/CSS Front End Design</h5>
+            <button style="width:150px">More Info</button>
+        </div>
+        <div id="michaelDiv">
+            <img src="michael.jpg" id="michaelImg">
+            <h5>Html/CSS Front End/ Back End Design</h5>
+            <button style="width:150px">More Info</button>
+        </div>
+    </div>
+</div>
+     <footer>
+        <a href="#" target="_top" id="mail">Contact Us</a>
+        <div id="socialMediaH1Div">
+            <h1 id="socialMediaH1">Follow us on social media</h1>
+            <a href="https://twitter.com/StoreAByte"><img src="Images/twitter-logo-final.png" id="twitterLogo"></a>
+            <a href="https://discord.gg/WQnAbPx"><img src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" id="discordLogo"></a>
+        </div>
+     </footer>
+             <form action="">
+                    <input type="file" id="browseBtn" name="avatar" accept="image/png, image/jpeg">
+
+                    <label for=”icon”>Zip File</label>
+                        <input type=”file” accept=".zip, image/*, video/*" id=”uploadZip” name=”icon”>
+                    
+                        <button type=”submit” id="submitFile">Upload Zip</button>
+                    
+            </form>
+              
+            
+
+          
+</body>
+=======
           <div id="logoTopDiv">
               <img src="Images/Logo.png" draggable="false" id="logoTopIMG">
               <h1 id="logoTopText">Store-A-Byte</h1>
@@ -129,5 +244,6 @@
       </script>
       <script src="index.js" type="text/javascript"></script>
   </body>
+>>>>>>> 0595f9c154a4374f2543399a224a0975e4603e1f
 
 </html>

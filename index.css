@@ -204,6 +204,7 @@ header {
     position: relative;
     width:500px;
     margin:auto;
+    
 }
 
 #topImgDiv {
@@ -212,7 +213,7 @@ header {
     padding-top: 20px;
     background: linear-gradient(0deg, #00008b, #5656ff);
     background-size: 400% 400%;
-
+    border-bottom:5px solid grey;
     -webkit-animation: AnimationName 16s ease infinite;
     -moz-animation: AnimationName 16s ease infinite;
     -o-animation: AnimationName 16s ease infinite;
@@ -322,6 +323,86 @@ footer{
     flex-direction:row; 
     justify-content:space-around;
     background-color:lightgray;
+<<<<<<< HEAD
+    padding-top:10px;
+}
+
+#teamDiv{
+    padding-top:10px;
+    width:100%;
+    height:550px;
+    background-color: lightgrey;
+}
+
+#teamVid{
+    height:100px;
+    width:25%;
+    margin:left;
+}
+
+#teamContent{
+    position:relative;
+}
+
+#aikamDiv{
+    width:150px;
+    height:150px;
+    word-wrap:break-word;
+    margin:auto;
+}
+
+#aikamImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+#arjunDiv{
+    width:150px;
+    word-wrap:break-word;
+    position:absolute;
+    top:1%;
+    left:60%;
+}
+
+#arjunImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+#alexDiv{
+    width:150px;
+    word-wrap:break-word;
+    position:absolute;
+    top:1%;
+    left:75%;
+}
+
+#alexImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+#michaelDiv{
+    width:150px;
+    word-wrap:break-word;
+    position:absolute;
+    top:1%;
+    left:90%;
+}
+
+#michaelImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+=======
 }
 
 
@@ -449,3 +530,4 @@ footer{
   width:80px;
   margin-right:20px;
 }
+>>>>>>> 0595f9c154a4374f2543399a224a0975e4603e1f
