@@ -323,7 +323,6 @@ footer{
     flex-direction:row; 
     justify-content:space-around;
     background-color:lightgray;
-<<<<<<< HEAD
     padding-top:10px;
 }
 
@@ -402,7 +401,6 @@ footer{
     margin:auto;
     transform:rotate(180deg);
 }
-=======
 }
 
 
@@ -530,4 +528,3 @@ footer{
   width:80px;
   margin-right:20px;
 }
->>>>>>> 0595f9c154a4374f2543399a224a0975e4603e1f
