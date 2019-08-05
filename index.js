@@ -43,6 +43,9 @@ window.onload = () => {
     }
 
     var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    provider.addScope('https://www.googleapis.com/auth/plus.me');
     var database = firebase.database().ref();
     var photourl
     const auth = firebase.auth();
