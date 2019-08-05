@@ -75,14 +75,50 @@ window.onload = () => {
         profilePic.style.removeProperty("background-color")
         profilePic.style.removeProperty("border-radius")
     })
-/*
+
+    //Login with Email and Password
+    const signInEmail = document.getElementById("signInEmail")
+    const signInPassword = document.getElementById("signInPassword")
+    const loginButtonEmail = document.getElementById("signInButton")
+
+    loginButtonEmail.addEventListener('click', (e) => {
+        firebase.auth().signInWithEmailAndPassword(signInEmail, signInPassword)
+    })
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage + "\nError Code: " + errorCode)
+    });
+      
+    //Sign Up with Email and Password
+    const signUpEmail = document.getElementById("signUpEmail")
+    const signUpPassword = document.getElementsByClassName("signUpPassword")
+    const signUpButtonEmail = document.getElementById("signUpButton")
+
+    signUpButtonEmail.addEventListener('click', (e) => {
+        if(signUpPassword[0] === signUpPassword[1] && emailIsValid(signUpEmail) == true) {
+            firebase.auth().signInWithEmailAndPassword(signUpEmail, signUpPassword[0])
+        } else {
+            if(signUpPassword[0] != signUpPassword[1]) {
+                alert("Password's do not match.")
+            }
+
+            if(emailIsValid(signUpEmail) != true) {
+                alert("Please enter a valid email.")
+            }
+        }
+    })
+
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorMessage + "\nError Code: " + errorCode)
-      });
-      */
-
+    });
+    
+    function emailIsValid (email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
 
 
     var signInModal = document.getElementById("SignIncontainer")
