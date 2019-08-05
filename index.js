@@ -85,18 +85,18 @@ window.onload = () => {
     const loginButtonEmail = document.getElementById("signInButton")
 
     loginButtonEmail.addEventListener('click', (e) => {
-        if (signInPassword != "" && emailIsValid(signInEmail) == true) {
-            firebase.auth().signInWithEmailAndPassword(signInEmail, signInPassword).catch(function(error) {
+        if (signInPassword.value != "" && emailIsValid(signInEmail.value) == true) {
+            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
             });
         } else {
-            if(signInPassword != "") {
+            if(signInPassword.value != "") {
                 alert("Password's do not match.")
             }
 
-            if(emailIsValid(signInEmail) != true) {
+            if(emailIsValid(signInEmail.value) != true) {
                 alert("Please enter a valid email.")
             }
         }
@@ -109,19 +109,19 @@ window.onload = () => {
     const signUpButtonEmail = document.getElementById("signUpButton")
 
     signUpButtonEmail.addEventListener('click', (e) => {
-        if(signUpPassword[0] == signUpPassword[1] && emailIsValid(signUpEmail) == true) {
+        if(signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {
             console.log("running")
-            firebase.auth().createUserWithEmailAndPassword(signUpEmail, signUpPassword[0]).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
             });
         } else {
-            if(signUpPassword[0] != signUpPassword[1]) {
+            if(signUpPassword[0].value != signUpPassword[1].value) {
                 alert("Password's do not match.")
             }
 
-            if(emailIsValid(signUpEmail) != true) {
+            if(emailIsValid(signUpEmail.value) != true) {
                 alert("Please enter a valid email.")
             }
         }
