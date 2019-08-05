@@ -1,0 +1,542 @@
+@keyframes topToBottom {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 55px;
+    }
+}
+
+@keyframes opacityTransition {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes blur {
+    0% {
+        filter: blur(0px);
+    }
+    100% {
+        filter: blur(4px);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotate3d {
+    0% {
+        transform: rotate(0deg) translateZ(-10px);
+    }
+    100% {
+        transform: rotate(180deg) translateZ(-10px);
+    }
+}
+
+@keyframes AnimationName { 
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+}
+
+@keyframes centerImage {
+    to {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+
+body {
+    margin:0px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+header {
+    background-color: gray;
+    border-bottom: darkgray 5px solid;
+    width: 100%;
+    animation: 1s ease-out 0s 1 topToBottom;
+    animation-fill-mode: forwards;
+    display: flex;
+}
+
+#logoTopDiv {
+    display: flex;
+    flex-direction: row;
+    margin:auto;
+    width: 300px;
+    opacity: 0;
+    animation: 0.8s ease-out 0s 1 opacityTransition;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
+}
+
+#logoTopIMG {
+    width: 40px;
+}
+
+#logoTopText {
+    color:white;
+    font-size: 40px;
+    margin:auto;
+}
+
+#profileTopDiv {
+    position: relative;
+    height: 0px;
+}
+
+#profileTopIMG {
+    position: absolute;
+    width: 45px;
+    left:5px;
+    top:3px;
+    background-color: black;
+    border-radius: 100%;
+    opacity: 0;
+    animation: 0.8s ease-out 0s 1 opacityTransition;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
+    transform: scale(1);
+    transition: transform 0.5s;
+}
+
+#profileTopIMG:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#navBarDiv {
+    position: relative;
+    opacity: 0;
+    animation: 0.8s ease-out 0s 1 opacityTransition;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
+    margin-top: 0px;
+}
+
+#navBarPosition {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right:5px;
+}
+
+#navBarPosition a {
+    font-size: 20px;
+    transition: color 0.5s;
+    text-decoration: none;
+    color: white;
+}
+
+#navBarPosition a:hover {
+    cursor: pointer;
+}
+
+#navTopDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+#contactUsTopDiv a {
+ font-size: 12px;
+ text-align: center;
+ margin: 0;
+}
+
+#contactUsTopDiv a:hover {
+    text-decoration: underline;
+}
+
+#contactUsTopDiv {
+    margin:auto;
+    width:60px;
+}
+
+#topImg {
+    width:500px;
+    margin:auto;
+    display: table;
+    opacity: 0;
+    animation: rotate 25s linear infinite, opacityTransition 2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+#topImg2 {
+    position: absolute;
+    width:500px;
+    filter: grayscale(1) invert(1);
+    left:0;
+    top:0;
+    opacity: 0;
+    animation: rotate3d 25s linear infinite, opacityTransition 2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+#imgHandler {
+    transform-style: preserve-3d;
+    position: relative;
+    width:500px;
+    margin:auto;
+    
+}
+
+#topImgDiv {
+    width:100%;
+    background-color: darkblue;
+    padding-top: 20px;
+    background: linear-gradient(0deg, #00008b, #5656ff);
+    background-size: 400% 400%;
+    border-bottom:5px solid grey;
+    -webkit-animation: AnimationName 16s ease infinite;
+    -moz-animation: AnimationName 16s ease infinite;
+    -o-animation: AnimationName 16s ease infinite;
+    animation: AnimationName 16s ease infinite;
+}
+
+#topImgTextDiv {
+    color:white;
+    text-align: center;
+    opacity: 0;
+    animation: opacityTransition 2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+#topImgTextMain {
+    margin-top: 0;
+}
+
+footer{
+    position: relative;
+    background-color:grey;
+    border-top: darkgray 3px solid;
+    width:100%;
+    height:45px;
+    color:white;
+    font-size:20px;
+    display:flex;
+    flex-direction: row;
+    margin-right:15px;
+}
+
+#socialMediaH1{
+    font-size:20px;
+    margin:auto;
+}
+
+#twitterLogo{
+    width:33px;
+    height:33px;
+    margin-left: 10px;
+    transition: 0.5s transform;
+}
+
+#twitterLogo:hover {
+    transform: scale(1.2);
+}
+
+#twitterLogo:active {
+    transform: scale(1);
+}
+
+#discordLogo{
+    width:33px;
+    height:33px;
+    margin-left: 10px;
+    transition: 0.5s transform;
+}
+
+#discordLogo:hover {
+    transform: scale(1.2);
+}
+
+#discordLogo:active {
+    transform: scale(1);
+}
+
+#socialMediaH1Div{
+    position:absolute; 
+    bottom:4px;
+    right:30px;
+    display: flex;
+    flex-direction: row;
+    width:340px;
+    margin:auto;
+}
+
+#mail{
+    text-decoration:none;
+    color:white;
+    width:100px;
+    margin: auto 0 auto 10px;
+}
+
+#mail:hover {
+    text-decoration:underline;
+}
+.about{
+    text-align:center;
+    border:3px solid grey;
+    width:325px;
+    height:200px;
+}
+.why{
+    text-align:center;
+    border:3px solid gray;
+    width: 325px;
+    height:200px;
+}
+.group{
+    transform:rotate(180deg);
+    width:300px;
+    object-fit:cover;
+    height:200px;
+}
+#aboutDiv{
+    display:flex; 
+    flex-direction:row; 
+    justify-content:space-around;
+    background-color:lightgray;
+    padding-top:10px;
+}
+
+#teamDiv{
+    padding-top:10px;
+    width:100%;
+    height:550px;
+    background-color: lightgrey;
+}
+
+#teamVid{
+    height:100px;
+    width:25%;
+    margin:left;
+}
+
+#teamContent{
+    position:relative;
+}
+
+#aikamDiv{
+    width:150px;
+    height:150px;
+    word-wrap:break-word;
+    margin:auto;
+}
+
+#aikamImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+#arjunDiv{
+    width:150px;
+    word-wrap:break-word;
+    position:absolute;
+    top:1%;
+    left:60%;
+}
+
+#arjunImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+#alexDiv{
+    width:150px;
+    word-wrap:break-word;
+    position:absolute;
+    top:1%;
+    left:75%;
+}
+
+#alexImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+#michaelDiv{
+    width:150px;
+    word-wrap:break-word;
+    position:absolute;
+    top:1%;
+    left:90%;
+}
+
+#michaelImg{
+    width:75px;
+    height:50px;
+    margin:auto;
+    transform:rotate(180deg);
+}
+
+
+
+
+#logoutButton {
+    margin-left: 60px;
+    margin-top: 8px;
+    color: white;
+    background-color:#ba0b0b;
+    padding: 6px;
+    border: none;
+    width:75px;
+    border-radius: 5px;
+    opacity: 0;
+    animation: opacityTransition 2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+#signInClick{
+    background-color:rgb(0, 119, 155);
+    color:white;
+    position:absolute;
+    top:30px;
+    right:224px;
+    margin-top:10px;
+}
+
+.SignInInput{
+    border:1px solid #ccc;
+    padding:10px;
+    border-radius:4px;
+    box-shadow:inset 0 1px 3px #ddd;
+    margin-top:10px;
+    margin:5px;
+}
+
+#signIn{
+    width: 100%;
+    clear: both;
+}
+
+.signInLabel{
+    display:block;
+}
+
+#signUpModal{
+    width: 100%;
+    clear: both;
+    text-align:center;
+    height: 280px;
+}
+
+.modal-body{
+    background-color:lightgrey;
+    border-color: lightgrey;
+}
+
+.modal-header{
+    background-color:lightgrey;
+    border-color: lightgrey;
+}
+
+.submit{
+    width: 100px;
+    clear: both; 
+    text-align:center;
+    border:1px solid,;
+    padding:1px;
+    border-radius:1px;
+    margin-top:1%;
+    display: inline-block;
+    border-radius: 4px;
+    background-color:#0b6eba;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 28px;
+    padding: 5px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.google{
+    margin-top:5px;
+    clear: both; 
+    text-align:center;
+    border:1px solid,;
+    display: inline-block;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    font-size: 28px;
+    width: 210px;
+    transition: all 0.5s;
+    cursor: pointer; 
+}
+
+.signInOr{
+  text-align:center;
+  margin:0;
+  margin-top:7px;
+}
+
+#signUp{
+    display:none;
+}
+#signIn{
+    display:flex;
+    flex-direction:column;
+    text-align:center; 
+    height: 280px;
+}
+
+#centerTopModalButtons {
+  width:185px;
+  margin:auto;
+}
+
+#SignUpClick {
+  color: white;
+  background-color:#0b6eba;
+  padding: 10px;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+  width:80px;
+}
+
+#SignInClick {
+  color: white;
+  background-color:#0b6eba;
+  padding: 10px;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+  width:80px;
+  margin-right:20px;
+}
