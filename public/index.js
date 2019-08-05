@@ -51,11 +51,13 @@ window.onload = () => {
     const auth = firebase.auth();
     const loginButton = document.getElementsByClassName("google")
     const signOutButton = document.getElementById('logoutButton')
+    signOutButton.style.display = "none"
     const profilePic = document.getElementById('profileTopIMG')
     var userVar
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+        signOutButton.style.removeProperty("display")
         userVar = user
         photourl = user.photoURL    
         profilePic.src = photourl
@@ -77,6 +79,12 @@ window.onload = () => {
         firebase.auth().signOut()
         profilePic.style.removeProperty("background-color")
         profilePic.style.removeProperty("border-radius")
+    })
+
+    profilePic.addEventListener('click', (e) => {
+        if (userVar) {
+            window.location.href = "upload.html";
+        }
     })
 
     //Login with Email and Password
@@ -141,8 +149,6 @@ window.onload = () => {
     var signInBox = document.getElementById("signIn")
 
     var signUpBox = document.getElementById("signUpModal")
-
-    var openSignInModal = document.getElementById('profileTopIMG')
 
 
 
