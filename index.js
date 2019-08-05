@@ -85,7 +85,7 @@ window.onload = () => {
         firebase.auth().signInWithEmailAndPassword(signInEmail, signInPassword)
     })
 
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(signInEmail, signInPassword).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorMessage + "\nError Code: " + errorCode)
@@ -110,7 +110,7 @@ window.onload = () => {
         }
     })
 
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().createUserWithEmailAndPassword(signUpEmail, signUpPassword[0]).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorMessage + "\nError Code: " + errorCode)
