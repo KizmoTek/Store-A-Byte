@@ -109,7 +109,8 @@ window.onload = () => {
     const signUpButtonEmail = document.getElementById("signUpButton")
 
     signUpButtonEmail.addEventListener('click', (e) => {
-        if(signUpPassword[0] === signUpPassword[1] && emailIsValid(signUpEmail) == true) {
+        if(signUpPassword[0] == signUpPassword[1] && emailIsValid(signUpEmail) == true) {
+            console.log("running")
             firebase.auth().createUserWithEmailAndPassword(signUpEmail, signUpPassword[0]).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -126,7 +127,7 @@ window.onload = () => {
         }
     })
     
-    function emailIsValid (email) {
+    function emailIsValid(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     }
 
