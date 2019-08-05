@@ -82,14 +82,23 @@ window.onload = () => {
     const loginButtonEmail = document.getElementById("signInButton")
 
     loginButtonEmail.addEventListener('click', (e) => {
-        firebase.auth().signInWithEmailAndPassword(signInEmail, signInPassword)
-    })
+        if (signInPassword != "" && emailIsValid(signInEmail) == true) {
+            firebase.auth().signInWithEmailAndPassword(signInEmail, signInPassword).catch(function(error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage + "\nError Code: " + errorCode)
+            });
+        } else {
+            if(signInPassword != "") {
+                alert("Password's do not match.")
+            }
 
-    firebase.auth().signInWithEmailAndPassword(signInEmail, signInPassword).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage + "\nError Code: " + errorCode)
-    });
+            if(emailIsValid(signInEmail) != true) {
+                alert("Please enter a valid email.")
+            }
+        }
+    })
+    
       
     //Sign Up with Email and Password
     const signUpEmail = document.getElementById("signUpEmail")
@@ -98,7 +107,11 @@ window.onload = () => {
 
     signUpButtonEmail.addEventListener('click', (e) => {
         if(signUpPassword[0] === signUpPassword[1] && emailIsValid(signUpEmail) == true) {
-            firebase.auth().signInWithEmailAndPassword(signUpEmail, signUpPassword[0])
+            firebase.auth().createUserWithEmailAndPassword(signUpEmail, signUpPassword[0]).catch(function(error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage + "\nError Code: " + errorCode)
+            });
         } else {
             if(signUpPassword[0] != signUpPassword[1]) {
                 alert("Password's do not match.")
@@ -109,12 +122,6 @@ window.onload = () => {
             }
         }
     })
-
-    firebase.auth().createUserWithEmailAndPassword(signUpEmail, signUpPassword[0]).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage + "\nError Code: " + errorCode)
-    });
     
     function emailIsValid (email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
