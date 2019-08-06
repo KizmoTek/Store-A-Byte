@@ -9,37 +9,37 @@
       <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
       <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
-        <script>
+      <script>
             // Your web app's Firebase configuration
 
+            
+        var firebaseConfig = {
+            apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
+            authDomain: "store-a-byte.firebaseapp.com",
+            databaseURL: "https://store-a-byte.firebaseio.com",
+            projectId: "store-a-byte",
+            storageBucket: "gs://store-a-byte.appspot.com/",
+            messagingSenderId: "909604223499",
+            appId: "1:909604223499:web:aed92c7863f43569"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        $(function() {
+            var form = $('form');
+            form.submit( function(event){
+                console.log("hi");
+                event.preventDefault()
+                var timeStamp =  Number(new Date());
+                var storageRef = firebase.storage().ref(timeStamp.toString());
+                var $ = jQuery;
+                var file_data = $('#browseBtn').prop('files')[0];
+                storageRef.put(file_data);
                 
-            var firebaseConfig = {
-                apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
-                authDomain: "store-a-byte.firebaseapp.com",
-                databaseURL: "https://store-a-byte.firebaseio.com",
-                projectId: "store-a-byte",
-                storageBucket: "gs://store-a-byte.appspot.com/",
-                messagingSenderId: "909604223499",
-                appId: "1:909604223499:web:aed92c7863f43569"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-            $(function() {
-                var form = $('form');
-                form.submit( function(event){
-                    console.log("hi");
-                    event.preventDefault()
-                    var timeStamp =  Number(new Date());
-                    var storageRef = firebase.storage().ref(timeStamp.toString());
-                    var $ = jQuery;
-                    var file_data = $('#browseBtn').prop('files')[0];
-                    storageRef.put(file_data);
-                    
-                });
             });
+        });
         
 
-        </script>
+          </script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
