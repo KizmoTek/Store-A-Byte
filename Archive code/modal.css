@@ -2,9 +2,8 @@
     background-color:rgb(0, 119, 155);
     color:white;
     position:absolute;
-    top:30px;
+    top:40px;
     right:224px;
-    margin-top:10px;
 }
 
 .SignInInput{
@@ -53,7 +52,7 @@ label{
     border:1px solid,;
     padding:1px;
     border-radius:1px;
-    margin-top:1%;
+    margin-top:10px;
     display: inline-block;
     border-radius: 4px;
     background-color:darkgray;
@@ -65,6 +64,7 @@ label{
     width: 200px;
     transition: all 0.5s;
     cursor: pointer;
+    margin: 5px;
 }
 
 .first{
@@ -78,7 +78,7 @@ label{
     text-align:center;
     border:1px solid,;
     border-radius:1px;
-    margin-top:3%;
+    margin-top:12px;
     display: inline-block;
     border-radius: 4px;
     border: none;
@@ -93,6 +93,4 @@ label{
 position:absolute;
 top:183px;
 left:287px;
-margin:auto;
-padding-top:0%;
 }

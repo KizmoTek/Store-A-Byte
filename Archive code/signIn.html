@@ -15,14 +15,14 @@
   #signIn{
     display:flex;
     flex-direction:column;
-    text-align:center; 
+    text-align:center;
   }
 </style>  
   
 </head>
 <body>
 
-<div class="SignIncontainer">
+<div class="container">
   <h2>sign in</h2>
   <!-- Trigger the modal with a button -->
   <button type="button" class="first" data-toggle="modal" data-target="#myModal">sign in</button>
@@ -56,6 +56,7 @@
               </label>
           </form>
         </div>
+
       <div class="modal-body" id="signUpModal">
         <form>
             <label> email:</label> 
@@ -66,20 +67,29 @@
             <label><input type="password" name="FirstName" value="" class="signInInput"></label>
             <input type="submit" value="Sign Up" class="submit">
             <label>
-            <p id="centering">Or</p>
+                <p>Or</p>
             <a href="https://www.google.com/webhp?hl=en&sa=X&ved=0ahUKEwjpze_3heDjAhWU_J4KHSTbDjAQPAgD" >
               <img src="Images/google.png" class="google">
             </a>
           </label>
           </form>
-      </div>        
+      </div>
+      
+      
+        
         <div class="modal-footer">
           <input id="clicky" value="Sign Up" type="button"></input>
           </div>
+          
           </div>
+          
           </div>
+          
           </div>
+          
           </div>
+
+          
           <script>
   
   
@@ -110,8 +120,11 @@
       signIn.style.display = "none";
       signUp.style.display = "block";
     }
-  } 
-   </script>
+  }
+  
+  
+  
+</script>
 
 </body>
 </html>
