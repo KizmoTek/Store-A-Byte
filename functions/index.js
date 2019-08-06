@@ -18,7 +18,7 @@ const gcconfig = {
 
 const gcs = new Storage(gcconfig);
 
-exports.fileUploaded = functions.storage.object().onFinalize(event => {
+/*exports.fileUploaded = functions.storage.object().onFinalize(event => {
 
   const object = event.data; // the object that was just uploaded
   const bucket = gcs.bucket(object.bucket);
@@ -42,4 +42,4 @@ exports.fileUploaded = functions.storage.object().onFinalize(event => {
 
   });
 
-});
+});*/
