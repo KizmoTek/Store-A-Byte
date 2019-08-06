@@ -1,4 +1,4 @@
-#flex-container {
+#pricingDiv {
     flex-wrap: nowrap;
     background-color: DodgerBlue;  
     width:100%;
@@ -8,18 +8,6 @@
     display: flex;
     flex-direction: column;
   }
-  /*
-  #flex-container  div {
-    background-color:dodgerblue;
-    border:100%,dodgerblue;
-    width: 300px;
-    margin: 10px;
-    text-align: center;
-    line-height: 75px;
-    font-size: 30px;
-    display:flex;
-    flex-direction: column;
-  }*/
 
   input:focus,
 select:focus,
