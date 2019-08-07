@@ -170,4 +170,26 @@ window.onload = () => {
     signUpBox.style.display = "none";
     signInBox.style.display = "block";
     })
+
+
+
+    document.getElementById("aboutAnchorLink").addEventListener("click", function(){
+        var about = document.getElementById('about');
+        about.scrollIntoView({ 
+            block: 'center',
+            behavior: 'smooth'
+        })
+    })
+
+    document.getElementById("pricingAnchorLink").addEventListener("click", function(){
+        var pricing = document.getElementById('pricingDiv');
+        pricing.scrollIntoView({ 
+            block: 'center',
+            behavior: 'smooth'
+        })
+    })
 }
+
+
+
+    
