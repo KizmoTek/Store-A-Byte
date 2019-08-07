@@ -10,6 +10,7 @@
       <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
       <script src="firebase.js"></script>
+      <script src="heatmap.js"></script>
         <script>
 
                 
@@ -95,8 +96,8 @@
           <div id="navBarDiv">
             <div id="navBarPosition">
                 <div id="navTopDiv">
-                    <a href="#" style="margin-right: 10px;">About</a>
-                    <a href="#" style="margin-right: 0px;">Pricing</a>
+                    <a href="#about" style="margin-right: 10px;">About</a>
+                    <a href="#pricing" style="margin-right: 0px;">Pricing</a>
                 </div>
                 <div id="contactUsTopDiv">
                     <a href="#">Contact Us</a>
@@ -123,7 +124,7 @@
 <div id="aboutDiv">
 <div>
     <div class="about">
-        <h1>About</h1>
+        <h1 id="about">About</h1>
         <p>Store-A-Byte is a website that manages your data storage</p>
     </div>
 </div>
@@ -134,6 +135,36 @@
         <p>We are super profesional and handle your storage for a cheap price.</p>
     </div>
 </div>
+</div>
+
+<div id="pricingDiv">
+    <h1 id="price-per-month">Price Per Month</h1>
+    <div id="pricing">
+        <div>
+            <h4 class="storage-text">1 TB</h4>
+            <button class="price-buttons">$4.99</button>
+        </div>
+
+        <div>
+            <h4 class="storage-text">5 TB</h4>
+            <button class="price-buttons">$24.99</button>
+        </div>
+
+        <div>
+            <h4 class="storage-text">Custom Capacity</h4>
+            <button class="price-buttons">Custom</button>
+        </div>
+
+        <div>
+            <h4 class="storage-text">10 TB</h4>
+            <button class="price-buttons">$49.99</button>
+        </div>
+
+        <div>
+            <h4 class="storage-text">25 TB</h4>
+            <button class="price-buttons">$124.99</button>
+        </div>
+    </div>
 </div>
 
 <div id="teamDiv">
