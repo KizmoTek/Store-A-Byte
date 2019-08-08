@@ -22,7 +22,7 @@
 }
 
 body {
-    padding: none;
+    padding: 0;
     margin: 0;
 }
 
@@ -37,19 +37,19 @@ html {
     background-color: var(--bg-color);
     color: var(--font-color);
     /*other styles*/
-    .....
+    
 }
 
 h1 {
     color: var(--font-color);
     /*other styles*/
-    .....
+    
 }
 
 a {
     color: var(--primary-color);
     /*other styles*/
-    .....
+    
 }
 
 /* The switch - the box around the slider */
@@ -118,14 +118,15 @@ input:checked + .slider:before {
 .divider {
     display: flex;
     margin: auto;
-    padding: auto;
+    padding: 0;
     flex-direction: row;
     position: relative;
 }
 
 .center {
     margin: auto;
-    padding: auto width:20%;
+    padding: 0;
+    width:20%;
 }
 
 #absolute {
