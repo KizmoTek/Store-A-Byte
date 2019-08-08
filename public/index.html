@@ -9,37 +9,31 @@
       <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
       <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
-      <script>
+      <script src="firebase.js"></script>
+      <script src="heatmap.js"></script>
+        <script>
             // Your web app's Firebase configuration
 
-            
-        var firebaseConfig = {
-            apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
-            authDomain: "store-a-byte.firebaseapp.com",
-            databaseURL: "https://store-a-byte.firebaseio.com",
-            projectId: "store-a-byte",
-            storageBucket: "gs://store-a-byte.appspot.com/",
-            messagingSenderId: "909604223499",
-            appId: "1:909604223499:web:aed92c7863f43569"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        $(function() {
-            var form = $('form');
-            form.submit( function(event){
-                console.log("hi");
-                event.preventDefault()
-                var timeStamp =  Number(new Date());
-                var storageRef = firebase.storage().ref(timeStamp.toString());
-                var $ = jQuery;
-                var file_data = $('#browseBtn').prop('files')[0];
-                storageRef.put(file_data);
                 
+            
+
+
+            $(function() {
+                var form = $('form');
+                form.submit( function(event){
+                    console.log("hi");
+                    event.preventDefault()
+                    var timeStamp =  Number(new Date());
+                    var storageRef = firebase.storage().ref(timeStamp.toString());
+                    var $ = jQuery;
+                    var file_data = $('#browseBtn').prop('files')[0];
+                    storageRef.put(file_data);
+                    
+                });
             });
-        });
         
 
-          </script>
+        </script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -48,6 +42,7 @@
       <header class="noselect">
           <div id="profileTopDiv">
             <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#signInModal" data-toggle="modal">
+            <button id="logoutButton">Logout</button>
             <div id="SignIncontainer">
                     <!-- Modal -->
                     <div class="modal fade" id="signInModal" role="dialog">
@@ -69,10 +64,10 @@
                           <div class="modal-body" id="signIn">
                               <form>
                                 <label class="signInLabel">Email Address:</label> 
-                                <label class="signInLabel"> <input type="email" name="FirstName" value="" class="signInInput"></label> 
+                                <label class="signInLabel"> <input type="email" name="FirstName" value="" class="signInInput" id="signInEmail"></label> 
                                 <label class="signInLabel">Password:</label> 
-                                <label class="signInLabel"><input type="password" name="LastName" value="" class="signInInput"></label> 
-                                <input type="submit" value="Sign In" class="submit">
+                                <label class="signInLabel"><input type="password" name="LastName" value="" class="signInInput" id="signInPassword"></label> 
+                                <input type="submit" value="Sign In" class="submit" id="signInButton">
                                 <label class="signInLabel">
                                     <p class="signInOr">Or</p>
                                     <img src="Images/google.png" class="google">
@@ -83,12 +78,12 @@
                           <div class="modal-body" id="signUpModal">
                             <form>
                                 <label class="signInLabel">Email Address:</label> 
-                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput"></label>  
+                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpEmail"></label>  
                                 <label class="signInLabel">Password:</label> 
-                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput"></label>
+                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword"></label>
                                 <label class="signInLabel">Re-enter Password:</label> 
-                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput"></label>
-                                <input type="submit" value="Sign Up" class="submit">
+                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword"></label>
+                                <input type="submit" value="Sign Up" class="submit" id="signUpButton">
                                 <label class="signInLabel">
                               </label>
                               </form>
@@ -101,8 +96,8 @@
           <div id="navBarDiv">
             <div id="navBarPosition">
                 <div id="navTopDiv">
-                    <a href="#" style="margin-right: 10px;">About</a>
-                    <a href="#" style="margin-right: 0px;">Pricing</a>
+                    <a id="aboutAnchorLink" style="margin-right: 10px;">About</a>
+                    <a id="pricingAnchorLink" style="margin-right: 0px;">Pricing</a>
                 </div>
                 <div id="contactUsTopDiv">
                     <a href="#">Contact Us</a>
@@ -133,13 +128,43 @@
         <p>Store-A-Byte is a website that manages your data storage</p>
     </div>
 </div>
-<img src="Images/GroupPhoto.jpg" class="group" draggable="false">
+<img src="Images/GroupPhoto.jpg" class="group" id="about" draggable="false">
 <div>
     <div class="why">
         <h1>Why Us</h1>
         <p>We are super profesional and handle your storage for a cheap price.</p>
     </div>
 </div>
+</div>
+
+<div id="pricingDiv">
+    <h1 id="price-per-month">Price Per Month</h1>
+    <div id="pricing">
+        <div>
+            <h4 class="storage-text">1 TB</h4>
+            <button class="price-buttons">$4.99</button>
+        </div>
+
+        <div>
+            <h4 class="storage-text">5 TB</h4>
+            <button class="price-buttons">$24.99</button>
+        </div>
+
+        <div>
+            <h4 class="storage-text">Custom Capacity</h4>
+            <button class="price-buttons">Custom</button>
+        </div>
+
+        <div>
+            <h4 class="storage-text">10 TB</h4>
+            <button class="price-buttons">$49.99</button>
+        </div>
+
+        <div>
+            <h4 class="storage-text">25 TB</h4>
+            <button class="price-buttons">$124.99</button>
+        </div>
+    </div>
 </div>
 
 <div id="teamDiv">

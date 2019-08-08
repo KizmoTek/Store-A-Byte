@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload Your Files</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="upload.css">
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="firebase.js"></script>
+    <script>
+        /*var firebaseConfig = {
+            apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
+            authDomain: "store-a-byte.firebaseapp.com",
+            databaseURL: "https://store-a-byte.firebaseio.com",
+            projectId: "store-a-byte",
+            storageBucket: "gs://store-a-byte.appspot.com/",
+            messagingSenderId: "909604223499",
+            appId: "1:909604223499:web:aed92c7863f43569"
+        };
+        firebase.initializeApp(firebaseConfig);*/
+
+        /*try {
+            let firebase = firebase.app("store-a-byte");
+
+        } catch (error) {
+            var firebaseConfig = {
+                apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
+                authDomain: "store-a-byte.firebaseapp.com",
+                databaseURL: "https://store-a-byte.firebaseio.com",
+                projectId: "store-a-byte",
+                storageBucket: "gs://store-a-byte.appspot.com/",
+                messagingSenderId: "909604223499",
+                appId: "1:909604223499:web:aed92c7863f43569"
+            };
+            firebase.initializeApp(firebaseConfig);
+        }*/
+
+        
+        var timeStamp =  Number(new Date());
+        var defaultStorage = firebase.storage().ref(timeStamp.toString());
+            
+        $(document).ready(function () { 
+            $('#firebaseShowFilesTest').on('click', function(event) {
+                console.log("button clicked");
+                event.preventDefault()
+
+                console.log( getFileMetadata(defaultStorage, "1565112033245.jpg") );
+                /*var storageRef = firebase.storage().ref(timeStamp.toString());
+                // Create a reference to the file we want to download
+                var starsRef = storageRef.child('images/stars.jpg');
+
+                // Get the download URL
+                starsRef.getDownloadURL().then(function(url) {
+                // Insert url into an <img> tag to "download"
+                }).catch(function(error) {
+
+                // A full list of error codes is available at
+                // https://firebase.google.com/docs/storage/web/handle-errors
+                switch (error.code) {
+                    case 'storage/object-not-found':
+                    // File doesn't exist
+                    break;
+
+                    case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+
+                    case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+
+                    case 'storage/unknown':
+                    // Unknown error occurred, inspect the server response
+                    break;
+                }
+                });*/
+            });
+        });
+        function getFileMetadata(storageRef, path) {
+            // Create a reference to the file whose metadata we want to retrieve
+            var fileRef = storageRef.child(path);
+
+            // Get metadata properties
+            fileRef.getMetadata().then(function(metadata) {
+                return metadata;
+            }).catch(function(error) {
+            // Uh-oh, an error occurred!
+            });
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+    <button id="firebaseShowFilesTest">SHOW FILES TEST</button>
+    <div class="divider">
+
+
+        <h1 class="heading center">Store-A-Byte</h1>
+        <div id="absolute">
+
+
+            <h1>Dark Theme</h1>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <hr>
+
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+
+
+    <hr>
+    <button>
+        oppen Files/Folders
+    </button>
+    <footer>
+        <button id="TheFolder">Folder #1</button>
+    </footer>
+    <p id="demo"></p>
+    <button id="myBtn" value="" onclick="myFunction()">Try it</button>
+</body>
+</html>
