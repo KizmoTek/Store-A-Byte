@@ -8,7 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="jquery-3.4.1.js"></script>
-  <script src="modal test.js"></script>
   <script>
         $(function(){
           $('form').submit(function(e) { 
@@ -24,7 +23,7 @@
         body {font-family: Arial, Helvetica, sans-serif;}
         * {box-sizing: border-box;}
         
-        input[type=text], select, textarea {
+        #issue, #descriptionContact, #cEmail {
           width: 100%;
           padding: 12px;
           border: 1px solid #ccc;
@@ -35,19 +34,6 @@
           resize: vertical;
         }
         
-        input[type=submit] {
-          background-color: #4CAF50;
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-        
-        input[type=submit]:hover {
-          background-color: #45a049;
-        }
-        
         .container {
           border-radius: 5px;
           background-color:white;
@@ -55,13 +41,13 @@
         }
         
         #mail{
-        font-display:none;
+          font-display:none;
         }
         </style>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-      <div class="container">
+  <div class="container">
   <h2>Modal Example</h2>
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">Open Modal</button>
@@ -90,7 +76,7 @@
         </div>
         <div class="modal-footer">
                 <label for="description">Describe the issue</label>
-                <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea> 
+                <textarea id="description" name="description" placeholder="Write something.." style="height:200px" id="descriptionContact"></textarea> 
                 </form>
         </div>
       </div>

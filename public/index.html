@@ -92,16 +92,42 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="modal fade" id="contactModal" role="dialog">
+                        <div class="modal-dialog">
+                        
+                            
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <label for="cEmail">Your email</label>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <input type="text" id="cEmail" name="customerEmail" placeholder="Your email..">
+                            </div>
+                            <div class="modal-body">
+                                <label for="issue">What is your issue?</label>
+                                <select id="issue" name="issue">
+                                  <option value="loginAuthentification">Login authentification</option>
+                                  <option value="slowSpeed">Slow upload/download speed</option>
+                                  <option value="review">Files not appearing</option>
+                                  <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                    <label for="description" style="margin-right: 440px">Describe the issue</label>
+                                    <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea> 
+                                    </form>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
           </div>
           <div id="navBarDiv">
-            <div id="navBarPosition">
-                <div id="navTopDiv">
-                    <a id="aboutAnchorLink" style="margin-right: 10px;">About</a>
-                    <a id="pricingAnchorLink" style="margin-right: 0px;">Pricing</a>
-                </div>
-                <div id="contactUsTopDiv">
-                    <button target="_top" id="mail">Contact Us</button>
-                </div>
+            <div id="navTopDiv">
+                <a id="aboutAnchorLink" style="margin-right: 10px;">About</a>
+                <a id="pricingAnchorLink" style="margin-right: 0px;">Pricing</a>
+                <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
             </div>
           </div>
           <div id="logoTopDiv">
@@ -225,7 +251,7 @@
     </div>
 </div>
      <footer>
-        <a href="#" target="_top" id="mail">Contact Us</a>
+        <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
         <div id="socialMediaH1Div">
             <h1 id="socialMediaH1">Follow us on social media</h1>
             <a href="https://twitter.com/StoreAByte"><img src="Images/twitter-logo-final.png" id="twitterLogo"></a>
