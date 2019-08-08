@@ -69,16 +69,42 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="modal fade" id="contactModal" role="dialog">
+                        <div class="modal-dialog">
+                        
+                            
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <label for="cEmail">Your email</label>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <input type="text" id="cEmail" name="customerEmail" placeholder="Your email..">
+                            </div>
+                            <div class="modal-body">
+                                <label for="issue">What is your issue?</label>
+                                <select id="issue" name="issue">
+                                  <option value="loginAuthentification">Login authentification</option>
+                                  <option value="slowSpeed">Slow upload/download speed</option>
+                                  <option value="review">Files not appearing</option>
+                                  <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                    <label for="description" style="margin-right: 440px">Describe the issue</label>
+                                    <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea> 
+                                    </form>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
           </div>
           <div id="navBarDiv">
-            <div id="navBarPosition">
-                <div id="navTopDiv">
-                    <a href="#about" style="margin-right: 10px;">About</a>
-                    <a href="#pricing" style="margin-right: 0px;">Pricing</a>
-                </div>
-                <div id="contactUsTopDiv">
-                    <a href="#">Contact Us</a>
-                </div>
+            <div id="navTopDiv">
+                <a id="aboutAnchorLink" style="margin-right: 10px;">About</a>
+                <a id="pricingAnchorLink" style="margin-right: 0px;">Pricing</a>
+                <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
             </div>
           </div>
           <div id="logoTopDiv">
@@ -101,11 +127,11 @@
 <div id="aboutDiv">
 <div>
     <div class="about">
-        <h1 id="about">About</h1>
+        <h1>About</h1>
         <p>Store-A-Byte is a website that manages your data storage</p>
     </div>
 </div>
-<img src="Images/GroupPhoto.jpg" class="group" draggable="false">
+<img src="Images/GroupPhoto.jpg" class="group" id="about" draggable="false">
 <div>
     <div class="why">
         <h1>Why Us</h1>
@@ -145,34 +171,64 @@
 </div>
 
 <div id="teamDiv">
-    <div id="teamVid">
-        <img src="Images/video_placeholder.jpg">
-    </div>
+    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" id="teamVid"></iframe>
     <div id="teamContent">
-        <div id="aikamDiv">
-            <img src="Images/aikam.jpg" id="aikamImg">
-            <h5>Html/CSS Front End Design</h5>
-            <button style="width:150px">More Info</button>
+        <div id="teamTopRow">
+            <div class="teamDiv">
+                <img src="Images/michael.jpg" class="teamImg">
+                <h5 style="text-align: center;">Michael Galstyan</h5>
+                <h5 style="text-align: center;">Founder</h5>
+                <button>More Info</button>
+            </div>
+            <div class="teamDiv">
+                <img src="Images/kevin.jpg" class="teamImg">
+                <h5 style="text-align: center;">Kevin Oghalai</h5>
+                <h5 style="text-align: center;">Research</h5>
+                <button>More Info</button>
+            </div>
+            <div class="teamDiv">
+                <img src="Images/alex.jpg" class="teamImg">
+                <h5 style="text-align: center;">Alex Klein</h5>
+                <h5 style="text-align: center;">Web Developer</h5>
+                <button>More Info</button>
+            </div>
+            <div class="teamDiv">
+                <img src="Images/sean.jpg" class="teamImg">
+                <h5 style="text-align: center;">Sean Browne</h5>
+                <h5 style="text-align: center;">Backend Developer</h5>
+                <button>More Info</button>
+            </div>
         </div>
-        <div id="arjunDiv">
-            <img src="Images/arjun.jpg" id="arjunImg">
-            <h5>Html/CSS Front End Design</h5>
-            <button style="width:150px">More Info</button>
-        </div>
-        <div id="alexDiv">
-            <img src="Images/alex.jpg" id="alexImg">
-            <h5>Html/CSS Front End Design</h5>
-            <button style="width:150px">More Info</button>
-        </div>
-        <div id="michaelDiv">
-            <img src="Images/michael.jpg" id="michaelImg">
-            <h5>Html/CSS Front End/ Back End Design</h5>
-            <button style="width:150px">More Info</button>
-        </div>
+        <div id="teamTopRow">
+                <div class="teamDiv">
+                    <img src="Images/kevin.jpg" class="teamImg">
+                    <h5 style="text-align: center;">Cir Jeffrey</h5>
+                    <h5 style="text-align: center;">Supervisor</h5>
+                    <button>More Info</button>
+                </div>
+                <div class="teamDiv">
+                    <img src="Images/aikam.jpg" class="teamImg">
+                    <h5 style="text-align: center;">Aikam Singh</h5>
+                    <h5 style="text-align: center;">Backend Developer</h5>
+                    <button>More Info</button>
+                </div>
+                <div class="teamDiv">
+                    <img src="Images/arjun.jpg" class="teamImg">
+                    <h5 style="text-align: center;">Arjun Singh</h5>
+                    <h5 style="text-align: center;">Web Developer</h5>
+                    <button>More Info</button>
+                </div>
+                <div class="teamDiv">
+                    <img src="Images/thomas.jpg" id="thomasImg">
+                    <h5 style="text-align: center;">Thomas Oghalai</h5>
+                    <h5 style="text-align: center;">Web Developer</h5>
+                    <button>More Info</button>
+                </div>
+            </div>
     </div>
 </div>
      <footer>
-        <a href="#" target="_top" id="mail">Contact Us</a>
+        <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
         <div id="socialMediaH1Div">
             <h1 id="socialMediaH1">Follow us on social media</h1>
             <a href="https://twitter.com/StoreAByte"><img src="Images/twitter-logo-final.png" id="twitterLogo"></a>
