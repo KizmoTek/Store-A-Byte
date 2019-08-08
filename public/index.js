@@ -1,3 +1,6 @@
+
+var firebaseAuth = firebase.auth();
+
 window.onload = () => {
     var lastMouseX = 0,
         lastMouseY = 0;
@@ -46,34 +49,50 @@ window.onload = () => {
     provider.addScope('profile');
     provider.addScope('email');
     provider.addScope('https://www.googleapis.com/auth/plus.me');
-    var database = firebase.database().ref();
-    var photourl
-    const auth = firebase.auth();
+    var photourl;
     const loginButton = document.getElementsByClassName("google")
     const signOutButton = document.getElementById('logoutButton')
     signOutButton.style.display = "none"
     const profilePic = document.getElementById('profileTopIMG')
     var userVar
 
+    
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-        signOutButton.style.removeProperty("display")
-        userVar = user
-        photourl = user.photoURL    
-        profilePic.src = photourl
-        profilePic.style.backgroundColor = "transparent"
-        profilePic.style.borderRadius = "0px"
+            signOutButton.style.removeProperty("display")
+            userVar = user
+            photourl = user.photoURL    
+            profilePic.src = photourl
+            profilePic.style.backgroundColor = "transparent"
+            profilePic.style.borderRadius = "0px"
         } else {
-        userVar = null
-        profilePic.style.removeProperty("background-color")
-        profilePic.style.removeProperty("border-radius")
-        signOutButton.style.display = "none"
-        profilePic.src = "Images/DefaultProfilePicture.png"
+            userVar = null
+            profilePic.style.removeProperty("background-color")
+            profilePic.style.removeProperty("border-radius")
+            signOutButton.style.display = "none"
+            profilePic.src = "Images/DefaultProfilePicture.png"
         }
     })
 
     loginButton[0].addEventListener('click', (e) => {
-        firebase.auth().signInWithRedirect(provider)
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(function() {
+            // Existing and future Auth states are now persisted in the current
+            // session only. Closing the window would clear any existing state even
+            // if a user forgets to sign out.
+            // ...
+            // New sign-in will be persisted with session persistence.
+            return firebase.auth().signInWithRedirect(provider)
+        })
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage + "\nError Code: " + errorCode)
+        });
+
+        
     })
     signOutButton.addEventListener('click', (e) => {
         firebase.auth().signOut()
@@ -94,7 +113,17 @@ window.onload = () => {
 
     loginButtonEmail.addEventListener('click', (e) => {
         if (signInPassword.value != "" && emailIsValid(signInEmail.value) == true) {
-            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value).catch(function(error) {
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .then(function() {
+                // Existing and future Auth states are now persisted in the current
+                // session only. Closing the window would clear any existing state even
+                // if a user forgets to sign out.
+                // ...
+                // New sign-in will be persisted with session persistence.
+                return firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value)
+            })
+            .catch(function(error) {
+                // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
