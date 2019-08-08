@@ -301,7 +301,7 @@ footer{
 }
 
 #mail:hover {
-    text-decoration:underline;
+    text-decoration:none;
 }
 .about{
     text-align:center;
