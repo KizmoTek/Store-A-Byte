@@ -62,7 +62,7 @@
                             storageRef = defaultStorage.ref('/users/'+user.uid+'/')
                             storageRef.child(file_data.name).getDownloadURL().then(function(url){
                                 //push data to a database under users/uid/file_url/file
-                                writeUserData(user.uid, url, removeExtension(file_data.name), file_data.lastModifiedDate, file_data.size);
+                                writeUserData(user.uid, url, removeExtension(file_data.name), file_data.name, file_data.lastModifiedDate, file_data.size);
                             });
                         });
 
@@ -78,17 +78,44 @@
         
         
 
-        
+        var userDataOnPageLoad = false;
+
+        //list of files
+        var filesList = [];
+        var filesListCount = 0;
+
         $(document).ready(function () { 
             var localUserData;
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     localUserData = user;
 
+                    //grab data once when the page loads
+                    if(!userDataOnPageLoad) {
+                        firebase.database().ref('/users/' + user.uid +'/').once('value').then(function(snapshot) {
+                            snapshot.forEach(function(childSnapshot) {
+                                //key of snapshot is an element in users/uid/
+                                var key = childSnapshot.key;
+                                //data under each key
+                                var childData = childSnapshot.val();
+
+                                filesList.push(childData);
+                                filesListCount++;
+                            });
+                            //only check the entire database on the inital load
+                            //could be resource intensive if there are lots of entries
+                            userDataOnPageLoad = true;
+                        }).catch(function(error){ console.log(error) });
+                    }
+
                     //retrieve files when database is updated
+                    //IMPORTANT uses firebase database not firestore
                     var filesRef = database.ref('users/' + localUserData.uid);
                         filesRef.on('value', function(snapshot) {
-                        console.log(snapshot.val());
+
+
+                        var file_name = snapshot.child('/name').key;
+                        console.log(file_name);
                     
                     });
                 }else {
@@ -115,8 +142,9 @@
             else return filename.substr(0, lastDotPosition);
         }
 
-        function writeUserData(userId, fileURL, fileName, fileDateModified, fileSize) {
-            database.ref('users/' + userId+'/'+fileName).set({
+        function writeUserData(userId, fileURL, entryName, fileName, fileDateModified, fileSize) {
+            database.ref('users/' + userId+'/'+entryName).set({
+                file_name: fileName,
                 file_url: fileURL,
                 modified_date: fileDateModified,
                 file_size: fileSize
