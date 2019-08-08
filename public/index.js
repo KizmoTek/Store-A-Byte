@@ -109,8 +109,7 @@ window.onload = () => {
             }
         }
     })
-    
-      
+
     //Sign Up with Email and Password
     const signUpEmail = document.getElementById("signUpEmail")
     const signUpPassword = document.getElementsByClassName("signUpPassword")
