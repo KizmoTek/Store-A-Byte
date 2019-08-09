@@ -626,3 +626,14 @@ button:focus {
 .modal-footer {
     background-color: lightgrey
 }
+
+#review-title {
+    text-align:center;
+    margin-top:0;
+}
+
+#reviews {
+    display:flex;
+    justify-content:space-around;
+}
+    
