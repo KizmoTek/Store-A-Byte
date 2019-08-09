@@ -60,7 +60,7 @@
         }
         
         var totalStorageUsed = 0;
-        var maxStorageInGb = 10;
+        var maxStorageInGb = 1;
 
 
         function updateStorageBar() {
@@ -69,7 +69,7 @@
             function frame() {
                 var storageInGb = totalStorageUsed / 1000 / 1000;
                 storageInGb.toFixed(2);
-                var calcWidth = Number(Math.floor( (storageInGb / maxStorageInGb) * 100));
+                var calcWidth = Number(Math.floor( (storageInGb / maxStorageInGb)* 10));
                 console.log(storageInGb / maxStorageInGb)
                 elem.style.width = calcWidth.toString() + "%";
                 elem.innerHTML = storageInGb + "MB"
