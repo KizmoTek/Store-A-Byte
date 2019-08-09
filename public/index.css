@@ -601,5 +601,10 @@ button:focus {
 
 #review-title {
     text-align:center;
-    color:blue;
+ 
+}
+
+#reviews{
+display:flex;
+justify-content:space-around;
 }
