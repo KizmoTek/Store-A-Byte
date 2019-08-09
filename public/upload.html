@@ -33,7 +33,6 @@
                         var filePath = '/users/'+user.uid+'/'+file_data.name;
                         var storageRef = defaultStorage.ref(filePath);
                         storageRef.put(file_data).then(function() {
-                            console.log("after image uploading");
                             //get download url
                             storageRef = defaultStorage.ref('/users/'+user.uid+'/')
                             storageRef.child(file_data.name).getDownloadURL().then(function(url){
@@ -70,7 +69,6 @@
                 var storageInGb = totalStorageUsed / 1000 / 1000;
                 storageInGb.toFixed(2);
                 var calcWidth = Number(Math.floor( (storageInGb / maxStorageInGb)* 10));
-                console.log(storageInGb / maxStorageInGb)
                 elem.style.width = calcWidth.toString() + "%";
                 elem.innerHTML = storageInGb + "MB"
             }
@@ -105,13 +103,10 @@
                                 var childData = childSnapshot.val();
                                 
 
-                                console.log(filesList)
                                 for(var i=0; i < filesListCount; i++) {
                                     if(childData.file_name == filesList[i].dataSnapshot.file_name &&
                                     childData.file_size == filesList[i].dataSnapshot.file_size) return; 
                                 }
-
-                                console.log('test')
                                 var row = createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
                                 
 
