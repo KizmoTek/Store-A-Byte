@@ -97,9 +97,13 @@
                         firebase.database().ref('/users/' + user.uid +'/').once('value').then(function(snapshot) {
                             snapshot.forEach(function(childSnapshot) {
                                 //key of snapshot is an element in users/uid/
-                                var key = childSnapshot.key;
+                               // var key = childSnapshot.key;
                                 //data under each key
                                 var childData = childSnapshot.val();
+                                
+                                createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
+                                
+                                
 
                                 filesList.push(childData);
                                 filesListCount++;
@@ -112,14 +116,20 @@
 
                     //retrieve files when database is updated
                     //IMPORTANT uses firebase database not firestore
-                    var filesRef = database.ref('users/' + localUserData.uid);
-                        filesRef.on('value', function(snapshot) {
+                    var filesRef = database.ref('users/' + user.uid +'/');
+                    filesRef.on('value', function(snapshot) {
 
+                        var childData = childSnapshot.val();
 
-                        var file_name = snapshot.child('/name').key;
-                        console.log(file_name);
+                        createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
+                                
+                                
+
+                        filesList.push(childData);
+                        filesListCount++;
+                       // var file_name = snapshot.val().file_name;
                     
-                    });
+                    }).catch(function(error){ console.log(error) });
                 }else {
                     console.log("user not logged in");
                 }
@@ -142,6 +152,19 @@
             var lastDotPosition = filename.lastIndexOf(".");
             if (lastDotPosition === -1) return filename;
             else return filename.substr(0, lastDotPosition);
+        }
+
+
+        function createFileEntry(id, name, size, url, date) {
+            var table = document.getElementById("fileTable")
+            var newFileRow = table.insertRow(id)
+            newFileRow.id = table.id + (id);
+            newFileRow.insertCell(0).innerHTML = "<span>"+name+"</span>";
+            newFileRow.insertCell(1).innerHTML = "<span>"+size+" bytes</span>";
+            newFileRow.insertCell(2).innerHTML = "<span>"+url+"</span>";
+            newFileRow.insertCell(3).innerHTML = "<span>"+date+"</span>";
+
+            table.append(newFileRow);
         }
 
         function writeUserData(userId, fileURL, entryName, fileName, fileDateModified, fileSize) {
@@ -202,7 +225,21 @@
             
     </form>
 
+
+    <table style="width:100%" id="fileTable" class="">
+        <tr id="fileTableHeader">
+            <th>File Name</th>
+            <th colspan="2">Size</th>
+            <th colspan="2">URL</th>
+            <th colspan="2">Date Modified</th>
+        </tr>
+        
+        
+    </table>
+    
+
     <button data-target="#uploadModal" data-toggle="modal">Modal</button>
+
     <div class="divider">
 
 

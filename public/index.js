@@ -76,16 +76,7 @@ window.onload = () => {
     })
 
     loginButton[0].addEventListener('click', (e) => {
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-        .then(function() {
-            // Existing and future Auth states are now persisted in the current
-            // session only. Closing the window would clear any existing state even
-            // if a user forgets to sign out.
-            // ...
-            // New sign-in will be persisted with session persistence.
-            return firebase.auth().signInWithRedirect(provider)
-        })
-        .catch(function(error) {
+        firebase.auth().signInWithRedirect(provider).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -113,21 +104,7 @@ window.onload = () => {
 
     loginButtonEmail.addEventListener('click', (e) => {
         if (signInPassword.value != "" && emailIsValid(signInEmail.value) == true) {
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-            .then(function() {
-                // Existing and future Auth states are now persisted in the current
-                // session only. Closing the window would clear any existing state even
-                // if a user forgets to sign out.
-                // ...
-                // New sign-in will be persisted with session persistence.
-                return firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value)
-            })
-            .catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorMessage + "\nError Code: " + errorCode)
-            });
+            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value)
         } else {
             if(signInPassword.value != "") {
                 alert("Password's do not match.")
