@@ -161,7 +161,7 @@
             newFileRow.id = table.id + (id);
             newFileRow.insertCell(0).innerHTML = "<span>"+name+"</span>";
             newFileRow.insertCell(1).innerHTML = "<span>"+size+" bytes</span>";
-            newFileRow.insertCell(2).innerHTML = "<span>"+url+"</span>";
+            document.getElementById("previewImage").src = url;
             newFileRow.insertCell(3).innerHTML = "<span>"+date+"</span>";
 
             table.append(newFileRow);
@@ -211,9 +211,14 @@
                 <div class="modal-dialog">
                   <!-- Modal content-->
                   <div class="modal-content">
-                      <table>
-                        <li>test</li>
-                      </table>
+                        <table style="width:100%" id="fileTable" class="">
+                                <tr id="fileTableHeader">
+                                    <th>File Name</th>
+                                    <th colspan="2">Size</th>
+                                    <th colspan="2"><img src="" id="previewImage" style="width:50px;"></th>
+                                    <th colspan="2">Date Modified</th>
+                                </tr>
+                            </table>
                   </div>
                 </div>
               </div>
@@ -226,16 +231,7 @@
     </form>
 
 
-    <table style="width:100%" id="fileTable" class="">
-        <tr id="fileTableHeader">
-            <th>File Name</th>
-            <th colspan="2">Size</th>
-            <th colspan="2">URL</th>
-            <th colspan="2">Date Modified</th>
-        </tr>
-        
-        
-    </table>
+    
     
 
     <button data-target="#uploadModal" data-toggle="modal">Modal</button>
