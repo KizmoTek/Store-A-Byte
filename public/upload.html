@@ -144,7 +144,7 @@
             newFileRow.id = table.id + (id);
             newFileRow.insertCell(0).innerHTML = "<span>"+name+"</span>";
             newFileRow.insertCell(1).innerHTML = "<span>"+size+" bytes</span>";
-            document.getElementById("previewImage").src = url;
+            newFileRow.insertCell(1).innerHTML = "<img src="+url+" style='width:50px;'>";
             newFileRow.insertCell(3).innerHTML = "<span>"+date+"</span>";
 
             table.append(newFileRow);
@@ -200,7 +200,7 @@
     
     
 
-    <button data-target="#uploadModal" data-toggle="modal">Modal</button>
+    <button data-target="#uploadModal" data-toggle="modal">View Files</button>
 
     <div class="divider">
 
@@ -231,6 +231,5 @@
         <button id="TheFolder">Folder #1</button>
     </footer>
     <p id="demo"></p>
-    <button id="myBtn" value="" onclick="myFunction()">Try it</button>
 </body>
 </html>
