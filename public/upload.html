@@ -13,6 +13,8 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
     <script src="jquery-3.4.1.js"></script>
     <script src="firebase.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script>
         /*var firebaseConfig = {
             apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
@@ -182,6 +184,16 @@
 
 </head>
 <body>
+        <div class="modal fade" id="uploadModal" role="dialog">
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                      <table>
+                        <li>test</li>
+                      </table>
+                  </div>
+                </div>
+              </div>
     <form action="">
             <input type="file" id="browseBtn" name="avatar" accept="*, image/png, image/jpeg">
             
@@ -190,7 +202,7 @@
             
     </form>
 
-    
+    <button data-target="#uploadModal" data-toggle="modal">Modal</button>
     <div class="divider">
 
 
