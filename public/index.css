@@ -602,3 +602,8 @@ button:focus {
 #pricing div{
   margin:auto;
 }
+
+
+.review_title {
+    text-align:center;
+}
