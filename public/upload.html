@@ -52,7 +52,8 @@
         
         //custom object to hold data snapshot and table row
         class fileObject {
-            fileObject(snap, tRow) {
+            
+            constructor(snap, tRow) {
                 this.dataSnapshot = snap;
                 this.tableRow = tRow;
             }
@@ -66,22 +67,26 @@
             var elem = document.getElementById("myBar");
             var id = setInterval(frame, 1000);
             function frame() {
-                var storageInGb = totalStorageUsed / 1000 / 1000 / 1024;
-                var calcWidth = Math.floor((storageInGb / maxStorageInGb) * 100);
+                var storageInGb = totalStorageUsed / 1000 / 1000;
+                storageInGb.toFixed(2);
+                var calcWidth = Number(Math.floor( (storageInGb / maxStorageInGb) * 100));
                 console.log(storageInGb / maxStorageInGb)
                 elem.style.width = calcWidth.toString() + "%";
-                elem.innerHTML = storageInGb + "gb"
+                elem.innerHTML = storageInGb + "MB"
             }
         }
+
+
+        //list of files
+        var filesList = [];
+        //count
+        var filesListCount = 0;
 
         $(document).ready(function () { 
             var userDataOnPageLoad = false;
             
 
-            //list of files
-            var filesList = [];
-            //count
-            var filesListCount = 0;
+            
             //store user account in local variable
             var localUserData;
             firebase.auth().onAuthStateChanged(function (user) {
@@ -99,10 +104,14 @@
                                 //data under each key
                                 var childData = childSnapshot.val();
                                 
+
+                                console.log(filesList)
                                 for(var i=0; i < filesListCount; i++) {
                                     if(childData.file_name == filesList[i].dataSnapshot.file_name &&
                                     childData.file_size == filesList[i].dataSnapshot.file_size) return; 
                                 }
+
+                                console.log('test')
                                 var row = createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
                                 
 
@@ -136,7 +145,7 @@
                         //custom object with refs to the snapshot and table row
                         var file = new fileObject(childData,row);
                         //push to list
-                        filesList.push(row);
+                        filesList.push(file);
                         filesListCount++;
                                 
                         });
