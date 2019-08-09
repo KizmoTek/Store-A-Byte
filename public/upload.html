@@ -58,8 +58,10 @@
             }
         }
         
+        var totalStorageUsed = 0;
         $(document).ready(function () { 
             var userDataOnPageLoad = false;
+            
 
             //list of files
             var filesList = [];
@@ -146,6 +148,8 @@
             newFileRow.insertCell(1).innerHTML = "<span>"+size+" bytes</span>";
             newFileRow.insertCell(2).innerHTML = "<span>"+url+"</span>";
             newFileRow.insertCell(3).innerHTML = "<span>"+date+"</span>";
+
+            totalStorageUsed += childData.file_size;
 
             table.append(newFileRow);
             return newFileRow;
