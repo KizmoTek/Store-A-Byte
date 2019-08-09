@@ -16,32 +16,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script>
-        /*var firebaseConfig = {
-            apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
-            authDomain: "store-a-byte.firebaseapp.com",
-            databaseURL: "https://store-a-byte.firebaseio.com",
-            projectId: "store-a-byte",
-            storageBucket: "gs://store-a-byte.appspot.com/",
-            messagingSenderId: "909604223499",
-            appId: "1:909604223499:web:aed92c7863f43569"
-        };
-        firebase.initializeApp(firebaseConfig);*/
-
-        /*try {
-            let firebase = firebase.app("store-a-byte");
-
-        } catch (error) {
-            var firebaseConfig = {
-                apiKey: "AIzaSyAzI4irPRxcI8zNCdz980szVpHV_uvLVi0",
-                authDomain: "store-a-byte.firebaseapp.com",
-                databaseURL: "https://store-a-byte.firebaseio.com",
-                projectId: "store-a-byte",
-                storageBucket: "gs://store-a-byte.appspot.com/",
-                messagingSenderId: "909604223499",
-                appId: "1:909604223499:web:aed92c7863f43569"
-            };
-            firebase.initializeApp(firebaseConfig);
-        }*/
         
         //upload files
         $(function() {
@@ -67,8 +41,6 @@
                                 writeUserDataToDatabase(user.uid, url, removeExtension(file_data.name), file_data.name, file_data.lastModifiedDate, file_data.size);
                             });
                         });
-
-
                     }
                     else {
                         alert("user not logged in");
@@ -86,9 +58,6 @@
             }
         }
         
-
-        
-
         $(document).ready(function () { 
             var userDataOnPageLoad = false;
 
@@ -123,7 +92,6 @@
                                 //custom object with refs to the snapshot and table row
                                 var file = new fileObject(childData,row);
                                 
-                                console.log("test")
                                 filesList.push(file);
                                 filesListCount++;
                             });
@@ -160,15 +128,6 @@
                     console.log("user not logged in");
                 }
             });
-
-            
-
-
-            $('#firebaseShowFilesTest').on('click', function(event) {
-                event.preventDefault()
-
-                
-            });
         });
 
 
@@ -198,24 +157,6 @@
                 file_url: fileURL,
                 modified_date: fileDateModified,
                 file_size: fileSize
-            });
-        }
-
-        function listAllFiles(storage, userID) {
-            // Create a reference under which you want to list
-            var listRef = storage.ref().child('/users/'+userID+'/');
-            console.log("listref: " + listRef);
-            // Find all the prefixes and items.
-            listRef.listAll().then(function(res) {
-            res.prefixes.forEach(function(folderRef) {
-                // All the prefixes under listRef.
-                // You may call listAll() recursively on them.
-            });
-            res.items.forEach(function(itemRef) {
-                console.log(itemRef);
-            });
-            }).catch(function(error) {
-            // Uh-oh, an error occurred!
             });
         }
 
