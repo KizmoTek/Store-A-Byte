@@ -52,13 +52,28 @@
         
         //custom object to hold data snapshot and table row
         class fileObject {
-            fileObject(dataSnapshot, tableRow) {
-                this.dataSnapshot = dataSnapshot;
-                this.tableRow = tableRow;
+            fileObject(snap, tRow) {
+                this.dataSnapshot = snap;
+                this.tableRow = tRow;
             }
         }
         
         var totalStorageUsed = 0;
+        var maxStorageInGb = 10;
+
+
+        function updateStorageBar() {
+            var elem = document.getElementById("myBar");
+            var id = setInterval(frame, 1000);
+            function frame() {
+                var storageInGb = totalStorageUsed / 1000 / 1000 / 1024;
+                var calcWidth = Math.floor((storageInGb / maxStorageInGb) * 100);
+                console.log(storageInGb / maxStorageInGb)
+                elem.style.width = calcWidth.toString() + "%";
+                elem.innerHTML = storageInGb + "gb"
+            }
+        }
+
         $(document).ready(function () { 
             var userDataOnPageLoad = false;
             
@@ -85,8 +100,8 @@
                                 var childData = childSnapshot.val();
                                 
                                 for(var i=0; i < filesListCount; i++) {
-                                    if(childData.file_name == filesList[i].file_name &&
-                                    childData.file_size == filesList[i].file_size) return; 
+                                    if(childData.file_name == filesList[i].dataSnapshot.file_name &&
+                                    childData.file_size == filesList[i].dataSnapshot.file_size) return; 
                                 }
                                 var row = createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
                                 
@@ -111,8 +126,8 @@
                         //make sure we don't already have the same entry
                         var childData = childSnapshot.val();
                         for(var i=0; i < filesListCount; i++) {
-                            if(childData.file_name == filesList[i].file_name &&
-                            childData.file_size == filesList[i].file_size) return; 
+                            if(childData.file_name == filesList[i].dataSnapshot.file_name &&
+                            childData.file_size == filesList[i].dataSnapshot.file_size) return; 
                         }
 
                         //add entry to table
@@ -146,10 +161,11 @@
             newFileRow.id = table.id + (id);
             newFileRow.insertCell(0).innerHTML = "<span>"+name+"</span>";
             newFileRow.insertCell(1).innerHTML = "<span>"+size+" bytes</span>";
-            newFileRow.insertCell(1).innerHTML = "<img src="+url+" style='width:50px;'>";
+            newFileRow.insertCell(2).innerHTML = "<img src="+url+" style='width:50px;'>";
             newFileRow.insertCell(3).innerHTML = "<span>"+date+"</span>";
 
-            totalStorageUsed += childData.file_size;
+            totalStorageUsed += size;
+            updateStorageBar();
 
             table.append(newFileRow);
             return newFileRow;
