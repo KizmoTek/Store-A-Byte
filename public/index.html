@@ -41,9 +41,9 @@
                           <div class="modal-body" id="signIn">
                               <form>
                                 <label class="signInLabel">Email Address:</label> 
-                                <label class="signInLabel"> <input type="email" name="FirstName" value="" class="signInInput" id="signInEmail"></label> 
+                                <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" method="post"></label> 
                                 <label class="signInLabel">Password:</label> 
-                                <label class="signInLabel"><input type="password" name="LastName" value="" class="signInInput" id="signInPassword"></label> 
+                                <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" method="post"></label> 
                                 <input type="submit" value="Sign In" class="submit" id="signInButton">
                                 <label class="signInLabel">
                                     <p class="signInOr">Or</p>
@@ -55,11 +55,11 @@
                           <div class="modal-body" id="signUpModal">
                             <form>
                                 <label class="signInLabel">Email Address:</label> 
-                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpEmail"></label>  
+                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post"></label>  
                                 <label class="signInLabel">Password:</label> 
-                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword"></label>
+                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post"></label>
                                 <label class="signInLabel">Re-enter Password:</label> 
-                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword"></label>
+                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post"></label>
                                 <input type="submit" value="Sign Up" class="submit" id="signUpButton">
                                 <label class="signInLabel">
                               </label>
@@ -93,6 +93,7 @@
                             <div class="modal-footer">
                                     <label for="description" style="margin-right: 440px">Describe the issue</label>
                                     <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea> 
+                                    <button type="button" class="submit" data-dismiss="modal" style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
                                     </form>
                             </div>
                           </div>
@@ -117,7 +118,7 @@
     <div id="topImgDiv">
         <div id="topImgTextDiv" class="noselect">
             <h1 id="topImgTextMain">Welcome to Store-A-Byte Cloud Storage!</h1>
-            <h2 id="topImgTextSecondary">Our goal is to provide cheap, safe, and convenient data storage at the lowest price possible.</h2>
+            <h2 id="topImgTextSecondary" style="font-size: 26px">Our goal is to provide inexpensive, safe, and convenient data storage by using SiaCoins decentralized cloud network.</h2>
         </div>
         <div id="imgHandler" draggable="false">
             <img src="Images/backgroundTop.png" id="topImg2" draggable="false">
@@ -127,15 +128,15 @@
 <div id="aboutDiv">
 <div>
     <div class="about">
-        <h1>About</h1>
-        <p>Store-A-Byte is a website that manages your data storage</p>
+        <h1 style="margin-top: 1px;">About</h1>
+        <p style="margin-left: 5px; margin-right: 5px;">Store-A-Byte is a website that manages your data storage using SiaCoins network! The file is first uploaded to FireBase then transferred over to SiaCoins network, this reduces upload time significantly. Frequently accessed files are cached on FireBase in order to allow quick previews of files/images.</p>
     </div>
 </div>
 <img src="Images/GroupPhoto.jpg" class="group" id="about" draggable="false">
 <div>
     <div class="why">
-        <h1>Why Us</h1>
-        <p>We are super profesional and handle your storage for a cheap price.</p>
+        <h1 style="margin-top: 1px;">Why Us</h1>
+        <p style="margin-left: 5px; margin-right: 5px;">We offer a competitive price with privacy and redundancy the highest of priorities for us. There are multiple storage plans to best meet your needs.</p>
     </div>
 </div>
 </div>
