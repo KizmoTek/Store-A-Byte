@@ -62,7 +62,7 @@
                             storageRef = defaultStorage.ref('/users/'+user.uid+'/')
                             storageRef.child(file_data.name).getDownloadURL().then(function(url){
                                 //push data to a database under users/uid/file_url/file
-                                writeUserData(user.uid, url, removeExtension(file_data.name), file_data.name, file_data.lastModifiedDate, file_data.size);
+                                writeUserDataToDatabase(user.uid, url, removeExtension(file_data.name), file_data.name, file_data.lastModifiedDate, file_data.size);
                             });
                         });
 
@@ -76,15 +76,25 @@
             });
         });
         
+        //custom object to hold data snapshot and table row
+        class fileObject {
+            fileObject(dataSnapshot, tableRow) {
+                this.dataSnapshot = dataSnapshot;
+                this.tableRow = tableRow;
+            }
+        }
         
 
-        var userDataOnPageLoad = false;
-
-        //list of files
-        var filesList = [];
-        var filesListCount = 0;
+        
 
         $(document).ready(function () { 
+            var userDataOnPageLoad = false;
+
+            //list of files
+            var filesList = [];
+            //count
+            var filesListCount = 0;
+            //store user account in local variable
             var localUserData;
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
@@ -92,18 +102,27 @@
 
                     //grab data once when the page loads
                     if(!userDataOnPageLoad) {
-                        firebase.database().ref('/users/' + user.uid +'/').once('value').then(function(snapshot) {
+                        var query = firebase.database().ref('/users/' + user.uid).orderByKey();
+                        query.once('value').then(function(snapshot) {
+
                             snapshot.forEach(function(childSnapshot) {
                                 //key of snapshot is an element in users/uid/
                                // var key = childSnapshot.key;
                                 //data under each key
                                 var childData = childSnapshot.val();
                                 
-                                createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
-                                
+                                for(var i=0; i < filesListCount; i++) {
+                                    if(childData.file_name == filesList[i].file_name &&
+                                    childData.file_size == filesList[i].file_size) return; 
+                                }
+                                var row = createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
                                 
 
-                                filesList.push(childData);
+                                //custom object with refs to the snapshot and table row
+                                var file = new fileObject(childData,row);
+                                
+                                console.log("test")
+                                filesList.push(file);
                                 filesListCount++;
                             });
                             //only check the entire database on the inital load
@@ -114,20 +133,27 @@
 
                     //retrieve files when database is updated
                     //IMPORTANT uses firebase database not firestore
-                    var filesRef = database.ref('users/' + user.uid +'/');
+                    var filesRef = database.ref('users/' + user.uid +'/').orderByKey();
                     filesRef.on('value', function(snapshot) {
-
+                        snapshot.forEach(function(childSnapshot) {
+                        //make sure we don't already have the same entry
                         var childData = childSnapshot.val();
+                        for(var i=0; i < filesListCount; i++) {
+                            if(childData.file_name == filesList[i].file_name &&
+                            childData.file_size == filesList[i].file_size) return; 
+                        }
 
-                        createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
-                                
-                                
+                        //add entry to table
+                        var row = createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
 
-                        filesList.push(childData);
+                        //custom object with refs to the snapshot and table row
+                        var file = new fileObject(childData,row);
+                        //push to list
+                        filesList.push(row);
                         filesListCount++;
-                       // var file_name = snapshot.val().file_name;
-                    
-                    }).catch(function(error){ console.log(error) });
+                                
+                        });
+                    });
                 }else {
                     console.log("user not logged in");
                 }
@@ -140,8 +166,6 @@
                 event.preventDefault()
 
                 
-
-                console.log( getFileMetadataWithURL(defaultStorage, "gs://store-a-byte.appspot.com/1565197771120") );
             });
         });
 
@@ -163,9 +187,10 @@
             newFileRow.insertCell(3).innerHTML = "<span>"+date+"</span>";
 
             table.append(newFileRow);
+            return newFileRow;
         }
 
-        function writeUserData(userId, fileURL, entryName, fileName, fileDateModified, fileSize) {
+        function writeUserDataToDatabase(userId, fileURL, entryName, fileName, fileDateModified, fileSize) {
             database.ref('users/' + userId+'/'+entryName).set({
                 file_name: fileName,
                 file_url: fileURL,
