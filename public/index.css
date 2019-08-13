@@ -316,6 +316,10 @@ footer{
     object-fit:cover;
     height:200px;
 }
+.video-container{
+    display: flex;
+    flex-direction: column;
+}
 
 #aboutDiv{
     display:flex; 
