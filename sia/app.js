@@ -24,40 +24,33 @@ sia.connect('localhost:9980')
     try {  
       //check status of blockchain
       const consensus = siad.call('/consensus').then((result) => {
-        try {
-          try {  
-            const wallet = siad.call({
-              url: '/wallet/init/seed',
-              method: 'POST',
-              qs: {
-                 seed: "algebra lids irate ozone kangaroo island voice puddle ladder suffice koala among teardrop loyal mugged alchemy utmost unrest soggy tequila amply vector phrases gyrate aerial language wept dual adult",
-              }
-            })
-            .then(() => { 
-
-            })
-            .catch((e) => { console.error(e) });
-          } catch (e) { console.error(e); }
-          
-          //THIS IS VERY BAD BUT JUST FOR DEV PURPOSES
-          //THE API PASS KEY SHOULD NOT BE PLACED HERE DIRECTLY BUT READ FROM A SECURE DATABASE
-          siad.call({
-            url: '/wallet/unlock',
+        try {  
+          const wallet = daemon.call({
+            url: '/wallet/init',
             method: 'POST',
-            qs: {
-              encryptionpassword: "algebra lids irate ozone kangaroo island voice puddle ladder suffice koala among teardrop loyal mugged alchemy utmost unrest soggy tequila amply vector phrases gyrate aerial language wept dual adult",
-            }
-          }).then(() => {
-            console.log('seems to have worked');
-          }).catch((e) => { console.error(e)});
-          
+          })
         } catch (e) {
-          console.error(`Wallet Initilization Error: ${e}`);
+          // do something with error e
         }
-
+        
         //check that the blockchain has fully downloaded
         if(result.synced) {
-          
+          try {
+            //THIS IS VERY BAD BUT JUST FOR DEV PURPOSES
+            //THE API PASS KEY SHOULD NOT BE PLACED HERE DIRECTLY BUT READ FROM A SECURE DATABASE
+            siad.call({
+              url: '/wallet/unlock',
+              method: 'POST',
+              qs: {
+                encryptionpassword: "algebra lids irate ozone kangaroo island voice puddle ladder suffice koala among teardrop loyal mugged alchemy utmost unrest soggy tequila amply vector phrases gyrate aerial language wept dual adult",
+              }
+            }).then(() => {
+              console.log('seems to have worked');
+            }).catch((e) => { console.error(e)});
+            
+          } catch (e) {
+            console.error(`Wallet Initilization Error: ${e}`);
+          }
         } 
       });
 
