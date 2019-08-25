@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="jquery-3.4.1.js"></script>
+  <script>
+        $(function(){
+          $('form').submit(function(e) { 
+            e.preventDefault();
+            var cEmail = $('#cEmail').val();
+            var theIssue = $('#issue').val();
+            var theDescription = $('#description').val();
+          });
+        })
+      </script>
+
+<style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+        #issue, #descriptionContact, #cEmail {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
+        
+        .container {
+          border-radius: 5px;
+          background-color:white;
+          padding: 20px;
+        }
+        
+        #mail{
+          font-display:none;
+        }
+        </style>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="container">
+  <h2>Modal Example</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contactModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="contactModal" role="dialog">
+    <div class="modal-dialog">
+    
+        
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <label for="cEmail">Your email</label>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <input type="text" id="cEmail" name="customerEmail" placeholder="Your email..">
+        </div>
+        <div class="modal-body">
+            <label for="issue">What is your issue?</label>
+            <select id="issue" name="issue">
+              <option value="placeholder"></option>
+              <option value="loginAuthentification">Login authentification</option>
+              <option value="slowSpeed">Slow upload/download speed</option>
+              <option value="review">Review of our website</option>
+              <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+                <label for="description">Describe the issue</label>
+                <textarea id="description" name="description" placeholder="Write something.." style="height:200px" id="descriptionContact"></textarea> 
+                </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+</body>
+</html>
