@@ -60,13 +60,17 @@ window.onload = () => {
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+            console.log("user")
             signOutButton.style.removeProperty("display")
             userVar = user
-            photourl = user.photoURL    
-            profilePic.src = photourl
-            profilePic.style.backgroundColor = "transparent"
-            profilePic.style.borderRadius = "0px"
+            photourl = user.photoURL
+            if (photourl != null) {
+                profilePic.src = photourl
+                profilePic.style.backgroundColor = "transparent"
+                profilePic.style.borderRadius = "0px"
+            }
         } else {
+            console.log("no user")
             userVar = null
             profilePic.style.removeProperty("background-color")
             profilePic.style.removeProperty("border-radius")
@@ -93,7 +97,7 @@ window.onload = () => {
 
     profilePic.addEventListener('click', (e) => {
         if (userVar) {
-            window.location.href = "upload.html";
+            //window.location.href = "upload.html";
         }
     })
 
@@ -124,7 +128,7 @@ window.onload = () => {
     signUpButtonEmail.addEventListener('click', (e) => {
         if(signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {
             console.log("running")
-                firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
@@ -133,7 +137,6 @@ window.onload = () => {
             if(signUpPassword[0].value != signUpPassword[1].value) {
                 alert("Password's do not match.")
             }
-
             if(emailIsValid(signUpEmail.value) != true) {
                 alert("Please enter a valid email.")
             }
@@ -193,12 +196,13 @@ window.onload = () => {
             behavior: 'smooth'
         })
     })
-    function myFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
-}
 }
 
+function showPopup() {
+    document.getElementById("infoPopUpText").style.opacity = "1"
+}
 
-
+function closePopup() {
+    document.getElementById("infoPopUpText").style.opacity = "0"
+}
     

@@ -322,15 +322,18 @@ footer{
     flex-direction: column;
 }
 
-.popup {
+#infoPopUpDiv {
   position: relative;
   display: inline-block;
   cursor: pointer;
+  width: 300px;
+  text-align: center;
+  margin: auto;
 }
 
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
+#infoPopUpDiv #infoPopUpText {
+  opacity: 0;
+  width: 450px;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -338,26 +341,36 @@ footer{
   padding: 8px 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  left: 50%;
+  bottom: 140%;
+  left: 0;
+  right: 0;
   margin-left: -80px;
+  transition: opacity 1s;
 }
 
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
+#infoPopUpText:hover {
+    cursor: default;
 }
 
-@-webkit-keyframes fadeIn {
-  from {opacity: 0;} 
-  to {opacity: 1;}
+#infoPopUpText p:hover {
+    cursor: text;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
+#infoPopUpDiv button {
+    background-color: purple;
+    border: none;
+    color: white;
+    margin: auto;
+    width: 140px;
+    padding: 5px;
+    border-radius: 10px;
+    transition: transform 0.1s;
 }
+
+#infoPopUpDiv button:active{
+    transform: scale(0.9);
+}
+
 #aboutDiv{
     display:flex; 
     flex-direction:row; 
@@ -677,4 +690,34 @@ button:focus {
     display:flex;
     justify-content:space-around;
 }
-    
+
+#accountDropdown {
+    width: 55px;
+    height: 55px;
+}
+
+#accountDropdownList {
+    position: absolute;
+    top: 50px;
+    display: none;
+    z-index: 10;
+    background-color: gray;
+    transition: height 10s;
+}
+
+#accountDropdownList div{
+    font-size: 16px;
+    padding:5px;
+    color:white;
+    transition: background-color 0.4s;
+}
+
+#accountDropdownList div:hover {
+    cursor: pointer;
+    background-color:#0b6eba;
+}
+
+#accountDropdown:hover #accountDropdownList {
+    display: block;
+    height: 67px;
+}
