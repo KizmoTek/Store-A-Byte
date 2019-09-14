@@ -454,18 +454,19 @@ footer{
 
 
 
-#logoutButton {
+#MyStorageButton {
     margin-left: 60px;
     margin-top: 8px;
     color: white;
-    background-color:#ba0b0b;
+    background-color:#0b6eba;
     padding: 6px;
     border: none;
-    width:75px;
+    width:100px;
     border-radius: 5px;
+    position: absolute;
+    top: 0;
     opacity: 0;
-    animation: opacityTransition 0.8s ease-out forwards;
-    animation-delay: 0.8s;
+    transition: opacity 0.8s ease-out;
 }
 
 #signInClick{
@@ -700,9 +701,11 @@ button:focus {
     position: absolute;
     top: 50px;
     display: none;
+    opacity: 0;
     z-index: 10;
     background-color: gray;
     transition: height 10s;
+    transition: opacity 0.4s;
 }
 
 #accountDropdownList div{
@@ -712,12 +715,18 @@ button:focus {
     transition: background-color 0.4s;
 }
 
-#accountDropdownList div:hover {
+#accountButton:hover {
     cursor: pointer;
     background-color:#0b6eba;
+}
+
+#logoutButton:hover {
+    cursor: pointer;
+    background-color:#ba0b0b;
 }
 
 #accountDropdown:hover #accountDropdownList {
     display: block;
     height: 67px;
+    opacity: 1;
 }

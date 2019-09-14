@@ -7,7 +7,7 @@ window.onload = () => {
     var rotX = 0,
         rotY = 0;
 
-    var banner = document.getElementById("topImgDiv")
+    var banner = document.getElementsByTagName("BODY")[0]
     banner.addEventListener("mousemove", mouseMoved)
     banner.addEventListener("mouseleave", centerImage)
     var bannerIMG = document.getElementById("imgHandler")
@@ -52,8 +52,8 @@ window.onload = () => {
     var photourl;
     const loginButton = document.getElementsByClassName("google")
     const signOutButton = document.getElementById('logoutButton')
-    signOutButton.style.display = "none"
     const profilePic = document.getElementById('profileTopIMG')
+    const myStorage = document.getElementById('MyStorageButton')
     var userVar
 
     
@@ -61,7 +61,10 @@ window.onload = () => {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log("user")
-            signOutButton.style.removeProperty("display")
+            myStorage.style.opacity = "1"
+            myStorage.style.display = "block"
+            profilePic.removeAttribute("data-target");
+            profilePic.removeAttribute("data-toggle");
             userVar = user
             photourl = user.photoURL
             if (photourl != null) {
@@ -71,10 +74,13 @@ window.onload = () => {
             }
         } else {
             console.log("no user")
+            myStorage.style.opacity = "0"
+            myStorage.style.display = "none"
             userVar = null
+            profilePic.setAttribute("data-target", "#signInModal");
+            profilePic.setAttribute("data-toggle", "modal");
             profilePic.style.removeProperty("background-color")
             profilePic.style.removeProperty("border-radius")
-            signOutButton.style.display = "none"
             profilePic.src = "Images/DefaultProfilePicture.png"
         }
     })
@@ -95,9 +101,10 @@ window.onload = () => {
         profilePic.style.removeProperty("border-radius")
     })
 
-    profilePic.addEventListener('click', (e) => {
+    
+    myStorage.addEventListener('click', (e) => {
         if (userVar) {
-            //window.location.href = "upload.html";
+            window.location.href = "upload.html";
         }
     })
 
