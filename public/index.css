@@ -310,14 +310,8 @@ footer{
     height:200px;
 }
 
-.group{
-    transform:rotate(180deg);
-    width:300px;
-    object-fit:cover;
-    height:200px;
-}
-
 .video-container{
+    margin-right: 100px;
     display: flex;
     flex-direction: column;
 }
@@ -724,9 +718,9 @@ button:focus {
     cursor: pointer;
     background-color:#ba0b0b;
 }
-
+/*
 #accountDropdown:hover #accountDropdownList {
     display: block;
     height: 67px;
     opacity: 1;
-}
+} */

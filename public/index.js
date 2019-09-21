@@ -59,6 +59,7 @@ window.onload = () => {
     
 
     firebase.auth().onAuthStateChanged(function (user) {
+        console.log(user)
         if (user) {
             console.log("user")
             myStorage.style.opacity = "1"
@@ -72,6 +73,8 @@ window.onload = () => {
                 profilePic.style.backgroundColor = "transparent"
                 profilePic.style.borderRadius = "0px"
             }
+        } else if(user == '') {
+            console.log("loading")
         } else {
             console.log("no user")
             myStorage.style.opacity = "0"
@@ -83,6 +86,23 @@ window.onload = () => {
             profilePic.style.removeProperty("border-radius")
             profilePic.src = "Images/DefaultProfilePicture.png"
         }
+    })
+
+    const accountDropdown = document.getElementById('accountDropdown')
+    const accountDropdownList = document.getElementById('accountDropdownList')
+
+    accountDropdown.addEventListener('mouseover', (e) => {
+        if(userVar) {
+            accountDropdownList.style.display = 'block'
+            accountDropdownList.style.height = '67px'
+            accountDropdownList.style.opacity = '1'
+        }
+    })
+
+    accountDropdown.addEventListener('mouseout', (e) => {
+        accountDropdownList.style.removeProperty('display')
+        accountDropdownList.style.removeProperty('height')
+        accountDropdownList.style.removeProperty('opacity')
     })
 
     loginButton[0].addEventListener('click', (e) => {
@@ -189,7 +209,7 @@ window.onload = () => {
 
 
     document.getElementById("aboutAnchorLink").addEventListener("click", function(){
-        var about = document.getElementById('about');
+        var about = document.getElementById('aboutDiv');
         about.scrollIntoView({ 
             block: 'center',
             behavior: 'smooth'
