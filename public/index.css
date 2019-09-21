@@ -310,27 +310,24 @@ footer{
     height:200px;
 }
 
-.group{
-    transform:rotate(180deg);
-    width:300px;
-    object-fit:cover;
-    height:200px;
-}
-
 .video-container{
+    margin-right: 100px;
     display: flex;
     flex-direction: column;
 }
 
-.popup {
+#infoPopUpDiv {
   position: relative;
   display: inline-block;
   cursor: pointer;
+  width: 300px;
+  text-align: center;
+  margin: auto;
 }
 
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
+#infoPopUpDiv #infoPopUpText {
+  opacity: 0;
+  width: 450px;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -338,26 +335,36 @@ footer{
   padding: 8px 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  left: 50%;
+  bottom: 140%;
+  left: 0;
+  right: 0;
   margin-left: -80px;
+  transition: opacity 1s;
 }
 
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
+#infoPopUpText:hover {
+    cursor: default;
 }
 
-@-webkit-keyframes fadeIn {
-  from {opacity: 0;} 
-  to {opacity: 1;}
+#infoPopUpText p:hover {
+    cursor: text;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
+#infoPopUpDiv button {
+    background-color: purple;
+    border: none;
+    color: white;
+    margin: auto;
+    width: 140px;
+    padding: 5px;
+    border-radius: 10px;
+    transition: transform 0.1s;
 }
+
+#infoPopUpDiv button:active{
+    transform: scale(0.9);
+}
+
 #aboutDiv{
     display:flex; 
     flex-direction:row; 
@@ -441,18 +448,19 @@ footer{
 
 
 
-#logoutButton {
+#MyStorageButton {
     margin-left: 60px;
     margin-top: 8px;
     color: white;
-    background-color:#ba0b0b;
+    background-color:#0b6eba;
     padding: 6px;
     border: none;
-    width:75px;
+    width:100px;
     border-radius: 5px;
+    position: absolute;
+    top: 0;
     opacity: 0;
-    animation: opacityTransition 0.8s ease-out forwards;
-    animation-delay: 0.8s;
+    transition: opacity 0.8s ease-out;
 }
 
 #signInClick{
@@ -677,4 +685,42 @@ button:focus {
     display:flex;
     justify-content:space-around;
 }
-    
+
+#accountDropdown {
+    width: 55px;
+    height: 55px;
+}
+
+#accountDropdownList {
+    position: absolute;
+    top: 50px;
+    display: none;
+    opacity: 0;
+    z-index: 10;
+    background-color: gray;
+    transition: height 10s;
+    transition: opacity 0.4s;
+}
+
+#accountDropdownList div{
+    font-size: 16px;
+    padding:5px;
+    color:white;
+    transition: background-color 0.4s;
+}
+
+#accountButton:hover {
+    cursor: pointer;
+    background-color:#0b6eba;
+}
+
+#logoutButton:hover {
+    cursor: pointer;
+    background-color:#ba0b0b;
+}
+/*
+#accountDropdown:hover #accountDropdownList {
+    display: block;
+    height: 67px;
+    opacity: 1;
+} */

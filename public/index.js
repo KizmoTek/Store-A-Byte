@@ -7,7 +7,7 @@ window.onload = () => {
     var rotX = 0,
         rotY = 0;
 
-    var banner = document.getElementById("topImgDiv")
+    var banner = document.getElementsByTagName("BODY")[0]
     banner.addEventListener("mousemove", mouseMoved)
     banner.addEventListener("mouseleave", centerImage)
     var bannerIMG = document.getElementById("imgHandler")
@@ -52,27 +52,57 @@ window.onload = () => {
     var photourl;
     const loginButton = document.getElementsByClassName("google")
     const signOutButton = document.getElementById('logoutButton')
-    signOutButton.style.display = "none"
     const profilePic = document.getElementById('profileTopIMG')
+    const myStorage = document.getElementById('MyStorageButton')
     var userVar
 
     
 
     firebase.auth().onAuthStateChanged(function (user) {
+        console.log(user)
         if (user) {
-            signOutButton.style.removeProperty("display")
+            console.log("user")
+            myStorage.style.opacity = "1"
+            myStorage.style.display = "block"
+            profilePic.removeAttribute("data-target");
+            profilePic.removeAttribute("data-toggle");
             userVar = user
-            photourl = user.photoURL    
-            profilePic.src = photourl
-            profilePic.style.backgroundColor = "transparent"
-            profilePic.style.borderRadius = "0px"
+            photourl = user.photoURL
+            if (photourl != null) {
+                profilePic.src = photourl
+                profilePic.style.backgroundColor = "transparent"
+                profilePic.style.borderRadius = "0px"
+            }
+        } else if(user == '') {
+            console.log("loading")
         } else {
+            console.log("no user")
+            myStorage.style.opacity = "0"
+            myStorage.style.display = "none"
             userVar = null
+            profilePic.setAttribute("data-target", "#signInModal");
+            profilePic.setAttribute("data-toggle", "modal");
             profilePic.style.removeProperty("background-color")
             profilePic.style.removeProperty("border-radius")
-            signOutButton.style.display = "none"
             profilePic.src = "Images/DefaultProfilePicture.png"
         }
+    })
+
+    const accountDropdown = document.getElementById('accountDropdown')
+    const accountDropdownList = document.getElementById('accountDropdownList')
+
+    accountDropdown.addEventListener('mouseover', (e) => {
+        if(userVar) {
+            accountDropdownList.style.display = 'block'
+            accountDropdownList.style.height = '67px'
+            accountDropdownList.style.opacity = '1'
+        }
+    })
+
+    accountDropdown.addEventListener('mouseout', (e) => {
+        accountDropdownList.style.removeProperty('display')
+        accountDropdownList.style.removeProperty('height')
+        accountDropdownList.style.removeProperty('opacity')
     })
 
     loginButton[0].addEventListener('click', (e) => {
@@ -91,7 +121,8 @@ window.onload = () => {
         profilePic.style.removeProperty("border-radius")
     })
 
-    profilePic.addEventListener('click', (e) => {
+    
+    myStorage.addEventListener('click', (e) => {
         if (userVar) {
             window.location.href = "upload.html";
         }
@@ -124,7 +155,7 @@ window.onload = () => {
     signUpButtonEmail.addEventListener('click', (e) => {
         if(signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {
             console.log("running")
-                firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
@@ -133,7 +164,6 @@ window.onload = () => {
             if(signUpPassword[0].value != signUpPassword[1].value) {
                 alert("Password's do not match.")
             }
-
             if(emailIsValid(signUpEmail.value) != true) {
                 alert("Please enter a valid email.")
             }
@@ -179,7 +209,7 @@ window.onload = () => {
 
 
     document.getElementById("aboutAnchorLink").addEventListener("click", function(){
-        var about = document.getElementById('about');
+        var about = document.getElementById('aboutDiv');
         about.scrollIntoView({ 
             block: 'center',
             behavior: 'smooth'
@@ -193,12 +223,13 @@ window.onload = () => {
             behavior: 'smooth'
         })
     })
-    function myFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
-}
 }
 
+function showPopup() {
+    document.getElementById("infoPopUpText").style.opacity = "1"
+}
 
-
+function closePopup() {
+    document.getElementById("infoPopUpText").style.opacity = "0"
+}
     
