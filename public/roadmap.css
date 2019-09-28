@@ -1,0 +1,14 @@
+#roadmapList {
+    width:1000px;
+    margin:auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.green {
+    color:green;
+}
+
+.yellow {
+    color:#fffb61;
+}
