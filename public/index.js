@@ -1,4 +1,5 @@
-window.onload = () => {
+
+
     var lastMouseX = 0,
         lastMouseY = 0;
     var rotX = 0,
@@ -51,7 +52,6 @@ window.onload = () => {
             behavior: 'smooth'
         })
     })
-}
 
 function showPopup() {
     document.getElementById("infoPopUpText").style.opacity = "1"
