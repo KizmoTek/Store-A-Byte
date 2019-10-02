@@ -43,7 +43,7 @@
     }
 }
 
-@keyframes AnimationName { 
+@keyframes backgroundColorMove { 
     0%{background-position:50% 0%}
     50%{background-position:51% 100%}
     100%{background-position:50% 0%}
@@ -109,6 +109,18 @@ header {
     color:white;
     font-size: 40px;
     margin:auto;
+    text-decoration: none;
+    
+}
+
+#logoTopText a {
+    color:white;
+    text-decoration: none;
+}
+
+#logoTopText a:hover {
+    color:white;
+    text-decoration: none;
 }
 
 #profileTopDiv {
@@ -213,10 +225,10 @@ header {
     padding-top: 20px;
     background: linear-gradient(0deg, #00008b, #5656ff);
     background-size: 400% 400%;
-    -webkit-animation: AnimationName 16s ease infinite;
-    -moz-animation: AnimationName 16s ease infinite;
-    -o-animation: AnimationName 16s ease infinite;
-    animation: AnimationName 16s ease infinite;
+    -webkit-animation: backgroundColorMove 16s ease infinite;
+    -moz-animation: backgroundColorMove 16s ease infinite;
+    -o-animation: backgroundColorMove 16s ease infinite;
+    animation: backgroundColorMove 16s ease infinite;
 }
 
 #topImgTextDiv {
@@ -597,10 +609,10 @@ footer{
     flex-direction: column;
     background: linear-gradient(0deg, #00008b, #5656ff);
     background-size: 400% 400%;
-    -webkit-animation: AnimationName 16s ease infinite;
-    -moz-animation: AnimationName 16s ease infinite;
-    -o-animation: AnimationName 16s ease infinite;
-    animation: AnimationName 16s ease infinite;
+    -webkit-animation: backgroundColorMove 16s ease infinite;
+    -moz-animation: backgroundColorMove 16s ease infinite;
+    -o-animation: backgroundColorMove 16s ease infinite;
+    animation: backgroundColorMove 16s ease infinite;
   }
 
   input:focus,
