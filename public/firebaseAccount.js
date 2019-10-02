@@ -1,6 +1,7 @@
 var firebaseAuth = firebase.auth();
 
 window.onload = () => {
+
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
@@ -9,17 +10,18 @@ window.onload = () => {
     const loginButton = document.getElementsByClassName("google")
     const signOutButton = document.getElementById('logoutButton')
     const profilePic = document.getElementById('profileTopIMG')
+    const contactButton = document.getElementById('mail')
     const myStorage = document.getElementById('MyStorageButton')
     var userVar
 
     firebase.auth().onAuthStateChanged(function (user) {
-        console.log(user)
         if (user) {
-            console.log("user")
             myStorage.style.opacity = "1"
             myStorage.style.display = "block"
             profilePic.removeAttribute("data-target");
             profilePic.removeAttribute("data-toggle");
+            contactButton.setAttribute("data-target", "#contactModal");
+            contactButton.setAttribute("data-toggle", "modal");
             userVar = user
             photourl = user.photoURL
             if (photourl != null) {
@@ -36,9 +38,20 @@ window.onload = () => {
             userVar = null
             profilePic.setAttribute("data-target", "#signInModal");
             profilePic.setAttribute("data-toggle", "modal");
+            contactButton.removeAttribute("data-target");
+            contactButton.removeAttribute("data-toggle");
             profilePic.style.removeProperty("background-color")
             profilePic.style.removeProperty("border-radius")
             profilePic.src = "Images/DefaultProfilePicture.png"
+        }
+    })
+
+    contactButton.addEventListener('click', (e) => {
+        if (!userVar) {
+            Swal.fire({
+                type: 'error',
+                title: 'Please sign in.'
+              })
         }
     })
 
@@ -129,7 +142,7 @@ window.onload = () => {
     }
 
 
-    var signInModal = document.getElementById("SignIncontainer")
+
 
     var signUpClick = document.getElementById("SignUpClick")
     
@@ -147,16 +160,16 @@ window.onload = () => {
 
 
     signUpClick.addEventListener('click', (e) => {
-    signUpClick.style.backgroundColor="#0b6eba";
-    signInClick.style.backgroundColor="grey";
-    signUpBox.style.display = "block";
-    signInBox.style.display = "none";
+        signUpClick.style.backgroundColor="#0b6eba";
+        signInClick.style.backgroundColor="grey";
+        signUpBox.style.display = "block";
+        signInBox.style.display = "none";
     })
 
     signInClick.addEventListener('click', (e) => {
-    signUpClick.style.backgroundColor="grey";
-    signInClick.style.backgroundColor="#0b6eba";
-    signUpBox.style.display = "none";
-    signInBox.style.display = "block";
+        signUpClick.style.backgroundColor="grey";
+        signInClick.style.backgroundColor="#0b6eba";
+        signUpBox.style.display = "none";
+        signInBox.style.display = "block";
     })
 }
