@@ -12,10 +12,19 @@ window.onload = () => {
     const profilePic = document.getElementById('profileTopIMG')
     const contactButton = document.getElementById('mail')
     const myStorage = document.getElementById('MyStorageButton')
+    const signInModal = document.getElementById('signInModal')
     var userVar
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+            signInModal.classList.remove("in");
+            signInModal.style.removeProperty("padding-right")
+            if (document.getElementsByClassName('modal-backdrop')[0]) {
+                document.getElementsByClassName('modal-backdrop')[0].classList.remove("in");
+                document.body.removeChild(document.getElementsByClassName('modal-backdrop')[0]);
+            }
+            document.body.classList.remove("modal-open")
+            document.body.style.removeProperty("padding-right")
             myStorage.style.opacity = "1"
             myStorage.style.display = "block"
             profilePic.removeAttribute("data-target");
@@ -29,9 +38,7 @@ window.onload = () => {
                 profilePic.style.backgroundColor = "transparent"
                 profilePic.style.borderRadius = "0px"
             }
-        } else if(user == '') {
-            console.log("loading")
-        } else {
+         } else {
             console.log("no user")
             myStorage.style.opacity = "0"
             myStorage.style.display = "none"
@@ -50,7 +57,7 @@ window.onload = () => {
         if (!userVar) {
             Swal.fire({
                 type: 'error',
-                title: 'Please sign in.'
+                title: 'Please sign in first.'
               })
         }
     })
@@ -118,6 +125,17 @@ window.onload = () => {
     const signUpEmail = document.getElementById("signUpEmail")
     const signUpPassword = document.getElementsByClassName("signUpPassword")
     const signUpButtonEmail = document.getElementById("signUpButton")
+
+    signUpPassword[1].addEventListener('input', checkPasswordMatch)
+
+    function checkPasswordMatch(e) {
+        if(signUpPassword[1].value != signUpPassword[0].value) {
+            signUpPassword[1].style.borderColor = "red"
+        } else {
+            signUpPassword[1].style.borderColor = "green"
+            signUpPassword[1].style.borderColor = "green"
+        }
+    }
 
     signUpButtonEmail.addEventListener('click', (e) => {
         if(signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {

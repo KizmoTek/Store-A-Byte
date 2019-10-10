@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="account.css">
     <script src="jquery-3.4.1.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
@@ -31,7 +32,7 @@
             <div id="SignIncontainer">
                     <!-- Modal -->
                     <div class="modal fade" id="signInModal" role="dialog">
-                      <div class="modal-dialog">
+                      <div class="modal-dialog" style="width:700px;">
                       
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -49,9 +50,9 @@
                           <div class="modal-body" id="signIn">
                               <form>
                                 <label class="signInLabel">Email Address:</label> 
-                                <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" method="post"></label> 
+                                <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" autocomplete="username" method="post"></label> 
                                 <label class="signInLabel">Password:</label> 
-                                <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" method="post"></label> 
+                                <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" autocomplete="current-password" method="post"></label> 
                                 <input type="button" value="Sign In" class="submit" id="signInButton">
                                 <label class="signInLabel">
                                     <p class="signInOr">Or</p>
@@ -62,15 +63,38 @@
                   
                           <div class="modal-body" id="signUpModal">
                             <form>
-                                <label class="signInLabel">Email Address:</label> 
-                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post"></label>  
-                                <label class="signInLabel">Password:</label> 
-                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post"></label>
-                                <label class="signInLabel">Re-enter Password:</label> 
-                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post"></label>
+                                <div class="signUpDiv">
+                                    <div>
+                                        <label class="signInLabel" for="signUpFirstName">First Name:</label> 
+                                        <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
+                                    </div>
+                                    <div>
+                                        <label class="signInLabel" for="signUpLastName">Last Name:</label> 
+                                        <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
+                                    </div>
+                                </div>
+                                <div class="signUpDiv">
+                                    <div>
+                                        <label class="signInLabel" for="signUpUsername">Username:</label> 
+                                        <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
+                                    </div>
+                                    <div>
+                                        <label class="signInLabel" for="signUpEmail">Email Address:</label> 
+                                        <label class="signInLabel"><input type="email" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
+                                    </div>
+                                </div>
+                                <div class="signUpDiv">
+                                    <div>
+                                        <label class="signInLabel" for="signUpPassword">Password:</label> 
+                                        <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                    </div>
+                                    <div>
+                                        <label class="signInLabel" for="signUpPassword">Re-enter Password:</label> 
+                                        <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                    </div>
+                                </div>
                                 <input type="button" value="Sign Up" class="submit" id="signUpButton">
-                                <label class="signInLabel">
-                              </label>
+                                <label class="signInLabel"></label>
                               </form>
                           </div>
                         </div>
