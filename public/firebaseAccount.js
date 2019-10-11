@@ -122,24 +122,41 @@ window.onload = () => {
 
     loginButtonEmail.addEventListener('click', (e) => {
         if (signInPassword.value != "" && emailIsValid(signInEmail.value) == true) {
-            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value)
-            Swal.fire({
-                title: 'Signing in',
-                html: 'Please wait',
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-                onBeforeOpen: () => {
-                    Swal.showLoading()
+            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value).then(function() {
+                Swal.fire({
+                    title: 'Signing in',
+                    html: 'Please wait',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                    }
+                })
+                justLoaded = true
+            }).catch(function(error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage + "\nError Code: " + errorCode)
+                if (errorCode == "auth/wrong-password" || errorCode == "auth/user-not-found") {
+                    Swal.fire({
+                        type: 'error',
+                        title: "Email or Password is incorrect."
+                    })
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: errorMessage
+                    })
                 }
-            })
-            justLoaded = true
+                
+            });
+            
         } else {
-            if(signInPassword.value != "") {
-                alert("Password's do not match.")
-            }
-
             if(emailIsValid(signInEmail.value) != true) {
-                alert("Please enter a valid email.")
+                Swal.fire({
+                    type: 'error',
+                    title: "Please enter a valid email."
+                })
             }
         }
     })
@@ -162,21 +179,28 @@ window.onload = () => {
 
     signUpButtonEmail.addEventListener('click', (e) => {
         if(signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {
-            checkEmailExists(signUpEmail.value)
+            sendVerificationEmail()
             firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
-                
+                Swal.fire({
+                    type: 'error',
+                    title: errorMessage
+                })
             });
-            
-            sendVerificationEmail()
         } else {
             if(signUpPassword[0].value != signUpPassword[1].value) {
-                alert("Password's do not match.")
+                Swal.fire({
+                    type: 'error',
+                    title: "Passwords do not match."
+                })
             }
             if(emailIsValid(signUpEmail.value) != true) {
-                alert("Please enter a valid email.")
+                Swal.fire({
+                    type: 'error',
+                    title: "Please enter a valid email."
+                })
             }
         }
     })
@@ -219,18 +243,20 @@ window.onload = () => {
 }
 
 function sendVerificationEmail() {
-    Swal.fire({
-        type: 'success',
-        title: 'Verfication email has been sent!'
-    })
-    userVar.sendEmailVerification().then(function() {
-        // Email sent.
-      }).catch(function(error) {
-        // An error happened.
-      });
-}
-
-function checkEmailExists(email) {
-    console.log(firebase.auth().fetchSignInMethodsForEmail(email))
-    
+    if (userVar) {
+        userVar.sendEmailVerification().then(function() {
+            Swal.fire({
+                type: 'success',
+                title: 'Verfication email has been sent!'
+            })
+        }).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage + "\nError Code: " + errorCode)
+            Swal.fire({
+                type: 'error',
+                title: errorMessage
+            })
+        });
     }
+}
