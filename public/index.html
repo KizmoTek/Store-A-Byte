@@ -2,17 +2,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <link rel="stylesheet" href="index.css">
-      <script src="jquery-3.4.1.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
-      <script src="firebase.js" type="text/javascript"></script>
-      
-      
-      <script src="firebaseAccount.js" type="text/javascript"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="account.css">
+    <script src="jquery-3.4.1.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+    <script src="firebase.js" type="text/javascript"></script>
+    <script src="firebaseAccount.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
@@ -30,7 +32,7 @@
             <div id="SignIncontainer">
                     <!-- Modal -->
                     <div class="modal fade" id="signInModal" role="dialog">
-                      <div class="modal-dialog">
+                      <div class="modal-dialog" style="width:700px;">
                       
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -48,9 +50,9 @@
                           <div class="modal-body" id="signIn">
                               <form>
                                 <label class="signInLabel">Email Address:</label> 
-                                <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" method="post"></label> 
+                                <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" autocomplete="username" method="post"></label> 
                                 <label class="signInLabel">Password:</label> 
-                                <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" method="post"></label> 
+                                <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" autocomplete="current-password" method="post"></label> 
                                 <input type="button" value="Sign In" class="submit" id="signInButton">
                                 <label class="signInLabel">
                                     <p class="signInOr">Or</p>
@@ -61,15 +63,38 @@
                   
                           <div class="modal-body" id="signUpModal">
                             <form>
-                                <label class="signInLabel">Email Address:</label> 
-                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post"></label>  
-                                <label class="signInLabel">Password:</label> 
-                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post"></label>
-                                <label class="signInLabel">Re-enter Password:</label> 
-                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post"></label>
+                                <div class="signUpDiv">
+                                    <div>
+                                        <label class="signInLabel" for="signUpFirstName">First Name:</label> 
+                                        <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
+                                    </div>
+                                    <div>
+                                        <label class="signInLabel" for="signUpLastName">Last Name:</label> 
+                                        <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
+                                    </div>
+                                </div>
+                                <div class="signUpDiv">
+                                    <div>
+                                        <label class="signInLabel" for="signUpUsername">Username:</label> 
+                                        <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
+                                    </div>
+                                    <div>
+                                        <label class="signInLabel" for="signUpEmail">Email Address:</label> 
+                                        <label class="signInLabel"><input type="email" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
+                                    </div>
+                                </div>
+                                <div class="signUpDiv">
+                                    <div>
+                                        <label class="signInLabel" for="signUpPassword">Password:</label> 
+                                        <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                    </div>
+                                    <div>
+                                        <label class="signInLabel" for="signUpPassword">Re-enter Password:</label> 
+                                        <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                    </div>
+                                </div>
                                 <input type="button" value="Sign Up" class="submit" id="signUpButton">
-                                <label class="signInLabel">
-                              </label>
+                                <label class="signInLabel"></label>
                               </form>
                           </div>
                         </div>
@@ -83,12 +108,9 @@
                             
                           <!-- Modal content-->
                           <div class="modal-content">
-                            <div class="modal-header">
-                                <label for="cEmail">Your email</label>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <input type="text" id="cEmail" name="customerEmail" placeholder="Your email..">
-                            </div>
+                            
                             <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <label for="issue">What is your issue?</label>
                                 <select id="issue" name="issue">
                                   <option value="loginAuthentification">Login authentification</option>
@@ -99,7 +121,7 @@
                             </div>
                             <div class="modal-footer">
                                     <label for="description" style="margin-right: 440px">Describe the issue</label>
-                                    <textarea id="description" name="description" placeholder="Write something.." style="height:200px"></textarea> 
+                                    <textarea id="description" name="description" placeholder="Write something..." style="height:200px"></textarea> 
                                     <button type="button" class="submit" data-dismiss="modal" style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
                                     </form>
                             </div>
@@ -263,7 +285,6 @@
     </div>
 </div>
      <footer>
-        <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
         <div id="socialMediaH1Div">
             <h1 id="socialMediaH1">Follow us on social media</h1>
             <a href="https://twitter.com/StoreAByte"><img src="Images/twitter-logo-final.png" id="twitterLogo"></a>

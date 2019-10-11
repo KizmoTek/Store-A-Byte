@@ -1,6 +1,9 @@
 var firebaseAuth = firebase.auth();
+var userVar
 
 window.onload = () => {
+    var justLoaded = false
+
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
@@ -9,17 +12,30 @@ window.onload = () => {
     const loginButton = document.getElementsByClassName("google")
     const signOutButton = document.getElementById('logoutButton')
     const profilePic = document.getElementById('profileTopIMG')
+    const contactButton = document.getElementById('mail')
     const myStorage = document.getElementById('MyStorageButton')
-    var userVar
+    const signInModal = document.getElementById('signInModal')
 
     firebase.auth().onAuthStateChanged(function (user) {
-        console.log(user)
         if (user) {
+            if (justLoaded == true) {
+                location.reload()
+            }
             console.log("user")
+            // signInModal.classList.remove("in");
+            // signInModal.style.removeProperty("padding-right")
+            // if (document.getElementsByClassName('modal-backdrop')[0]) {
+            //     document.getElementsByClassName('modal-backdrop')[0].classList.remove("in");
+            //     document.body.removeChild(document.getElementsByClassName('modal-backdrop')[0]);
+            // }
+            // document.body.classList.remove("modal-open")
+            // document.body.style.removeProperty("padding-right")
             myStorage.style.opacity = "1"
             myStorage.style.display = "block"
             profilePic.removeAttribute("data-target");
             profilePic.removeAttribute("data-toggle");
+            contactButton.setAttribute("data-target", "#contactModal");
+            contactButton.setAttribute("data-toggle", "modal");
             userVar = user
             photourl = user.photoURL
             if (photourl != null) {
@@ -27,18 +43,27 @@ window.onload = () => {
                 profilePic.style.backgroundColor = "transparent"
                 profilePic.style.borderRadius = "0px"
             }
-        } else if(user == '') {
-            console.log("loading")
-        } else {
+         } else {
             console.log("no user")
             myStorage.style.opacity = "0"
             myStorage.style.display = "none"
             userVar = null
             profilePic.setAttribute("data-target", "#signInModal");
             profilePic.setAttribute("data-toggle", "modal");
+            contactButton.removeAttribute("data-target");
+            contactButton.removeAttribute("data-toggle");
             profilePic.style.removeProperty("background-color")
             profilePic.style.removeProperty("border-radius")
             profilePic.src = "Images/DefaultProfilePicture.png"
+        }
+    })
+
+    contactButton.addEventListener('click', (e) => {
+        if (!userVar) {
+            Swal.fire({
+                type: 'error',
+                title: 'Please sign in first.'
+              })
         }
     })
 
@@ -73,15 +98,23 @@ window.onload = () => {
         firebase.auth().signOut()
         profilePic.style.removeProperty("background-color")
         profilePic.style.removeProperty("border-radius")
+        location.reload()
     })
-
     
     myStorage.addEventListener('click', (e) => {
         if (userVar) {
-            window.location.href = "upload.html";
+            if (userVar.emailVerified) {
+                window.location.href = "upload.html";
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Please verify your email!',
+                    footer: '<a onmouseover="" style="cursor: pointer;" onclick="sendVerificationEmail()">Resend email verification</a>'
+                  })
+            }
         }
     })
-
+    
     //Login with Email and Password
     const signInEmail = document.getElementById("signInEmail")
     const signInPassword = document.getElementById("signInPassword")
@@ -89,14 +122,41 @@ window.onload = () => {
 
     loginButtonEmail.addEventListener('click', (e) => {
         if (signInPassword.value != "" && emailIsValid(signInEmail.value) == true) {
-            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value)
+            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value).then(function() {
+                Swal.fire({
+                    title: 'Signing in',
+                    html: 'Please wait',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                    }
+                })
+                justLoaded = true
+            }).catch(function(error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage + "\nError Code: " + errorCode)
+                if (errorCode == "auth/wrong-password" || errorCode == "auth/user-not-found") {
+                    Swal.fire({
+                        type: 'error',
+                        title: "Email or Password is incorrect."
+                    })
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: errorMessage
+                    })
+                }
+                
+            });
+            
         } else {
-            if(signInPassword.value != "") {
-                alert("Password's do not match.")
-            }
-
             if(emailIsValid(signInEmail.value) != true) {
-                alert("Please enter a valid email.")
+                Swal.fire({
+                    type: 'error',
+                    title: "Please enter a valid email."
+                })
             }
         }
     })
@@ -106,20 +166,41 @@ window.onload = () => {
     const signUpPassword = document.getElementsByClassName("signUpPassword")
     const signUpButtonEmail = document.getElementById("signUpButton")
 
+    signUpPassword[1].addEventListener('input', checkPasswordMatch)
+
+    function checkPasswordMatch(e) {
+        if(signUpPassword[1].value != signUpPassword[0].value) {
+            signUpPassword[1].style.borderColor = "red"
+        } else {
+            signUpPassword[1].style.borderColor = "green"
+            signUpPassword[1].style.borderColor = "green"
+        }
+    }
+
     signUpButtonEmail.addEventListener('click', (e) => {
         if(signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {
-            console.log("running")
+            sendVerificationEmail()
             firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
+                Swal.fire({
+                    type: 'error',
+                    title: errorMessage
+                })
             });
         } else {
             if(signUpPassword[0].value != signUpPassword[1].value) {
-                alert("Password's do not match.")
+                Swal.fire({
+                    type: 'error',
+                    title: "Passwords do not match."
+                })
             }
             if(emailIsValid(signUpEmail.value) != true) {
-                alert("Please enter a valid email.")
+                Swal.fire({
+                    type: 'error',
+                    title: "Please enter a valid email."
+                })
             }
         }
     })
@@ -129,7 +210,7 @@ window.onload = () => {
     }
 
 
-    var signInModal = document.getElementById("SignIncontainer")
+
 
     var signUpClick = document.getElementById("SignUpClick")
     
@@ -147,16 +228,35 @@ window.onload = () => {
 
 
     signUpClick.addEventListener('click', (e) => {
-    signUpClick.style.backgroundColor="#0b6eba";
-    signInClick.style.backgroundColor="grey";
-    signUpBox.style.display = "block";
-    signInBox.style.display = "none";
+        signUpClick.style.backgroundColor="#0b6eba";
+        signInClick.style.backgroundColor="grey";
+        signUpBox.style.display = "block";
+        signInBox.style.display = "none";
     })
 
     signInClick.addEventListener('click', (e) => {
-    signUpClick.style.backgroundColor="grey";
-    signInClick.style.backgroundColor="#0b6eba";
-    signUpBox.style.display = "none";
-    signInBox.style.display = "block";
+        signUpClick.style.backgroundColor="grey";
+        signInClick.style.backgroundColor="#0b6eba";
+        signUpBox.style.display = "none";
+        signInBox.style.display = "block";
     })
+}
+
+function sendVerificationEmail() {
+    if (userVar) {
+        userVar.sendEmailVerification().then(function() {
+            Swal.fire({
+                type: 'success',
+                title: 'Verfication email has been sent!'
+            })
+        }).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage + "\nError Code: " + errorCode)
+            Swal.fire({
+                type: 'error',
+                title: errorMessage
+            })
+        });
+    }
 }
