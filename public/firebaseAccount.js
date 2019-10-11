@@ -1,6 +1,8 @@
 var firebaseAuth = firebase.auth();
+var userVar
 
 window.onload = () => {
+    var justLoaded = false
 
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
@@ -13,18 +15,21 @@ window.onload = () => {
     const contactButton = document.getElementById('mail')
     const myStorage = document.getElementById('MyStorageButton')
     const signInModal = document.getElementById('signInModal')
-    var userVar
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            signInModal.classList.remove("in");
-            signInModal.style.removeProperty("padding-right")
-            if (document.getElementsByClassName('modal-backdrop')[0]) {
-                document.getElementsByClassName('modal-backdrop')[0].classList.remove("in");
-                document.body.removeChild(document.getElementsByClassName('modal-backdrop')[0]);
+            if (justLoaded == true) {
+                location.reload()
             }
-            document.body.classList.remove("modal-open")
-            document.body.style.removeProperty("padding-right")
+            console.log("user")
+            // signInModal.classList.remove("in");
+            // signInModal.style.removeProperty("padding-right")
+            // if (document.getElementsByClassName('modal-backdrop')[0]) {
+            //     document.getElementsByClassName('modal-backdrop')[0].classList.remove("in");
+            //     document.body.removeChild(document.getElementsByClassName('modal-backdrop')[0]);
+            // }
+            // document.body.classList.remove("modal-open")
+            // document.body.style.removeProperty("padding-right")
             myStorage.style.opacity = "1"
             myStorage.style.display = "block"
             profilePic.removeAttribute("data-target");
@@ -93,15 +98,23 @@ window.onload = () => {
         firebase.auth().signOut()
         profilePic.style.removeProperty("background-color")
         profilePic.style.removeProperty("border-radius")
+        location.reload()
     })
-
     
     myStorage.addEventListener('click', (e) => {
         if (userVar) {
-            window.location.href = "upload.html";
+            if (userVar.emailVerified) {
+                window.location.href = "upload.html";
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Please verify your email!',
+                    footer: '<a onmouseover="" style="cursor: pointer;" onclick="sendVerificationEmail()">Resend email verification</a>'
+                  })
+            }
         }
     })
-
+    
     //Login with Email and Password
     const signInEmail = document.getElementById("signInEmail")
     const signInPassword = document.getElementById("signInPassword")
@@ -110,6 +123,16 @@ window.onload = () => {
     loginButtonEmail.addEventListener('click', (e) => {
         if (signInPassword.value != "" && emailIsValid(signInEmail.value) == true) {
             firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value)
+            Swal.fire({
+                title: 'Signing in',
+                html: 'Please wait',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                }
+            })
+            justLoaded = true
         } else {
             if(signInPassword.value != "") {
                 alert("Password's do not match.")
@@ -139,12 +162,15 @@ window.onload = () => {
 
     signUpButtonEmail.addEventListener('click', (e) => {
         if(signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {
-            console.log("running")
+            checkEmailExists(signUpEmail.value)
             firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
+                
             });
+            
+            sendVerificationEmail()
         } else {
             if(signUpPassword[0].value != signUpPassword[1].value) {
                 alert("Password's do not match.")
@@ -191,3 +217,20 @@ window.onload = () => {
         signInBox.style.display = "block";
     })
 }
+
+function sendVerificationEmail() {
+    Swal.fire({
+        type: 'success',
+        title: 'Verfication email has been sent!'
+    })
+    userVar.sendEmailVerification().then(function() {
+        // Email sent.
+      }).catch(function(error) {
+        // An error happened.
+      });
+}
+
+function checkEmailExists(email) {
+    console.log(firebase.auth().fetchSignInMethodsForEmail(email))
+    
+    }
