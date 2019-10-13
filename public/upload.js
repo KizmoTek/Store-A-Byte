@@ -5,7 +5,7 @@ setStyles(anchorColor, "color", "var(--primary-color)")
 
 function setStyles(element, newStyle, styleInfo) {
     for (var i = 0; i < element.length; i++) {
-        element[i].newStyle = styleInfo
+        element[i].style.newStyle = styleInfo
     }
 }
 
@@ -162,24 +162,35 @@ chosenSlot.appendChild(elem);
 copy = document.createAttribute("ondrop");
 copy.value = "swapFile(event)";
 elem.setAttributeNode(copy);
-copy = document.createAttribute("id");       // Create an "id" attribute
-copy.value = "img"+(fileNum);                // Set the value of the id attribute.
-newElem.setAttributeNode(copy); 
-copy = document.createAttribute("id");       // Create an "id" attribute
-copy.value = "div"+(fileNum);                // Set the value of the id attribute.
-elem.setAttributeNode(copy);              // Add the id attribute to <img>
+
+copy = document.createAttribute("id");  // Create an "id" attribute
+copy.value = "img"+(fileNum);  // Set the value of the id attribute.
+newElem.setAttributeNode(copy); //Add the id attribute to <img>
+
+copy = document.createAttribute("class"); // Create a "class" attribute
+copy.value = "userFiles"; // Set the "class" attribute
+newElem.setAttributeNode(copy); // Add the class attribute to <img>
+
+copy = document.createAttribute("id");  // Create an "id" attribute
+copy.value = "div"+(fileNum); // Set the value of the id attribute.
+elem.setAttributeNode(copy);  // Add the id attribute to <img>
+
 copy = document.createAttribute("draggable");
 copy.value = "true";
 elem.setAttributeNode(copy);
+
 copy = document.createAttribute("draggable");
 copy.value = "false";
 newElem.setAttributeNode(copy);
+
 copy = document.createAttribute("ondragstart");
 copy.value = "drag(event)";
 elem.setAttributeNode(copy);
+
 copy = document.createAttribute("class");
 copy.value = "px180";
 elem.setAttributeNode(copy);
+
 copy = document.createAttribute("onhover");
 copy.value = "menuDropdown()";
 elem.setAttributeNode(copy);

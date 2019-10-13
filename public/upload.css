@@ -8,7 +8,7 @@
     [data-theme="light"] {
         --primary-color: #302AE6 !important;
         --secondary-color: #536390 !important;
-        --font-color: #424242 !important;
+        --font-color: black !important;
         --bg-color: #fff !important;
         --heading-color: #292922 !important;
         --bar-color:#1baecf !important;
@@ -18,7 +18,7 @@
     [data-theme="dark"] {
         --primary-color: #9A97F3 !important;
         --secondary-color: #818cab !important;
-        --font-color: #c5e8eb !important;
+        --font-color: white !important;
         --bg-color: #2b2b28 !important;
         --heading-color: #818cab !important;
         --bar-color:green !important;
@@ -115,13 +115,6 @@
     
     h1 {
         color: var(--font-color) !important;
-    
-        /*other styles*/
-        
-    }
-    
-    a {
-        color: var(--primary-color) !important;
     
         /*other styles*/
         
@@ -310,7 +303,7 @@
       color:white;
     }
     
-    img{
+    .userFiles{
       max-width:12vw;
       height:8vw;
       text-align:center;
