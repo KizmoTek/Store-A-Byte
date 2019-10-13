@@ -1,3 +1,14 @@
+document.body.style.backgroundColor = "var(--bg-color)";
+document.body.style.color = "var(--font-color)";
+var anchorColor = document.getElementsByClassName("anchorColor")
+setStyles(anchorColor, "color", "var(--primary-color)")
+
+function setStyles(element, newStyle, styleInfo) {
+    for (var i = 0; i < element.length; i++) {
+        element[i].newStyle = styleInfo
+    }
+}
+
 var maxStorage = 10;
 var storage = 3;
 var image
@@ -21,14 +32,12 @@ var random = 0;
 var randomSlot = document.getElementsByClassName('slot');
 
 
-window.onload = function() {
+
   move();
   modeHeading = document.getElementById("theme");
   displayMode();
   
   var test = document.getElementById('test');
-
-};
 
  
 function move() {
