@@ -30,8 +30,10 @@ window.onload = () => {
             // }
             // document.body.classList.remove("modal-open")
             // document.body.style.removeProperty("padding-right")
-            myStorage.style.opacity = "1"
-            myStorage.style.display = "block"
+            if (myStorage) {
+                myStorage.style.opacity = "1"
+                myStorage.style.display = "block"
+            }
             profilePic.removeAttribute("data-target");
             profilePic.removeAttribute("data-toggle");
             contactButton.setAttribute("data-target", "#contactModal");
@@ -45,8 +47,10 @@ window.onload = () => {
             }
         } else {
             console.log("no user")
-            myStorage.style.opacity = "0"
-            myStorage.style.display = "none"
+            if (myStorage) {
+                myStorage.style.opacity = "0"
+                myStorage.style.display = "none"
+            }
             userVar = null
             profilePic.setAttribute("data-target", "#signInModal");
             profilePic.setAttribute("data-toggle", "modal");
@@ -94,6 +98,7 @@ window.onload = () => {
 
 
     })
+
     signOutButton.addEventListener('click', (e) => {
         firebase.auth().signOut()
         profilePic.style.removeProperty("background-color")
@@ -101,19 +106,21 @@ window.onload = () => {
         location.reload()
     })
 
-    myStorage.addEventListener('click', (e) => {
-        if (userVar) {
-            if (userVar.emailVerified) {
-                window.location.href = "upload.html";
-            } else {
-                Swal.fire({
-                    type: 'error',
-                    title: 'Please verify your email!',
-                    footer: '<a onmouseover="" style="cursor: pointer;" onclick="sendVerificationEmail()">Resend email verification</a>'
-                })
+    if (myStorage) {
+        myStorage.addEventListener('click', (e) => {
+            if (userVar) {
+                if (userVar.emailVerified) {
+                    window.location.href = "upload.html";
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Please verify your email!',
+                        footer: '<a onmouseover="" style="cursor: pointer;" onclick="sendVerificationEmail()">Resend email verification</a>'
+                    })
+                }
             }
-        }
-    })
+        })
+    }
 
     //Login with Email and Password
     const signInEmail = document.getElementById("signInEmail")

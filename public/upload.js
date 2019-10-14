@@ -1,13 +1,5 @@
 document.body.style.backgroundColor = "var(--bg-color)";
 document.body.style.color = "var(--font-color)";
-var anchorColor = document.getElementsByClassName("anchorColor")
-setStyles(anchorColor, "color", "var(--primary-color)")
-
-function setStyles(element, newStyle, styleInfo) {
-  for (var i = 0; i < element.length; i++) {
-    element[i].style.newStyle = styleInfo
-  }
-}
 
 var maxStorage = 10;
 var storage = 3;
@@ -310,6 +302,7 @@ divider.appendChild(data2);
 }
 
 function trashCan(ev) {
+  console.log(ev)
   ev.preventDefault();
   target1 = ev.dataTransfer.getData("text");
   var target1Elem = document.getElementById(target1)
