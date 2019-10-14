@@ -43,7 +43,7 @@ window.onload = () => {
                 profilePic.style.backgroundColor = "transparent"
                 profilePic.style.borderRadius = "0px"
             }
-         } else {
+        } else {
             console.log("no user")
             myStorage.style.opacity = "0"
             myStorage.style.display = "none"
@@ -63,7 +63,7 @@ window.onload = () => {
             Swal.fire({
                 type: 'error',
                 title: 'Please sign in first.'
-              })
+            })
         }
     })
 
@@ -71,7 +71,7 @@ window.onload = () => {
     const accountDropdownList = document.getElementById('accountDropdownList')
 
     accountDropdown.addEventListener('mouseover', (e) => {
-        if(userVar) {
+        if (userVar) {
             accountDropdownList.style.display = 'block'
             accountDropdownList.style.height = '67px'
             accountDropdownList.style.opacity = '1'
@@ -85,14 +85,14 @@ window.onload = () => {
     })
 
     loginButton[0].addEventListener('click', (e) => {
-        firebase.auth().signInWithRedirect(provider).catch(function(error) {
+        firebase.auth().signInWithRedirect(provider).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorMessage + "\nError Code: " + errorCode)
         });
 
-        
+
     })
     signOutButton.addEventListener('click', (e) => {
         firebase.auth().signOut()
@@ -100,7 +100,7 @@ window.onload = () => {
         profilePic.style.removeProperty("border-radius")
         location.reload()
     })
-    
+
     myStorage.addEventListener('click', (e) => {
         if (userVar) {
             if (userVar.emailVerified) {
@@ -110,11 +110,11 @@ window.onload = () => {
                     type: 'error',
                     title: 'Please verify your email!',
                     footer: '<a onmouseover="" style="cursor: pointer;" onclick="sendVerificationEmail()">Resend email verification</a>'
-                  })
+                })
             }
         }
     })
-    
+
     //Login with Email and Password
     const signInEmail = document.getElementById("signInEmail")
     const signInPassword = document.getElementById("signInPassword")
@@ -122,7 +122,7 @@ window.onload = () => {
 
     loginButtonEmail.addEventListener('click', (e) => {
         if (signInPassword.value != "" && emailIsValid(signInEmail.value) == true) {
-            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value).then(function() {
+            firebase.auth().signInWithEmailAndPassword(signInEmail.value, signInPassword.value).then(function () {
                 Swal.fire({
                     title: 'Signing in',
                     html: 'Please wait',
@@ -133,7 +133,7 @@ window.onload = () => {
                     }
                 })
                 justLoaded = true
-            }).catch(function(error) {
+            }).catch(function (error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
@@ -148,11 +148,11 @@ window.onload = () => {
                         title: errorMessage
                     })
                 }
-                
+
             });
-            
+
         } else {
-            if(emailIsValid(signInEmail.value) != true) {
+            if (emailIsValid(signInEmail.value) != true) {
                 Swal.fire({
                     type: 'error',
                     title: "Please enter a valid email."
@@ -169,7 +169,7 @@ window.onload = () => {
     signUpPassword[1].addEventListener('input', checkPasswordMatch)
 
     function checkPasswordMatch(e) {
-        if(signUpPassword[1].value != signUpPassword[0].value) {
+        if (signUpPassword[1].value != signUpPassword[0].value) {
             signUpPassword[1].style.borderColor = "red"
         } else {
             signUpPassword[1].style.borderColor = "green"
@@ -178,9 +178,9 @@ window.onload = () => {
     }
 
     signUpButtonEmail.addEventListener('click', (e) => {
-        if(signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {
+        if (signUpPassword[0].value == signUpPassword[1].value && emailIsValid(signUpEmail.value) == true) {
             sendVerificationEmail()
-            firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function(error) {
+            firebase.auth().createUserWithEmailAndPassword(signUpEmail.value, signUpPassword[0].value).catch(function (error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage + "\nError Code: " + errorCode)
@@ -190,13 +190,13 @@ window.onload = () => {
                 })
             });
         } else {
-            if(signUpPassword[0].value != signUpPassword[1].value) {
+            if (signUpPassword[0].value != signUpPassword[1].value) {
                 Swal.fire({
                     type: 'error',
                     title: "Passwords do not match."
                 })
             }
-            if(emailIsValid(signUpEmail.value) != true) {
+            if (emailIsValid(signUpEmail.value) != true) {
                 Swal.fire({
                     type: 'error',
                     title: "Please enter a valid email."
@@ -204,7 +204,7 @@ window.onload = () => {
             }
         }
     })
-    
+
     function emailIsValid(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     }
@@ -213,7 +213,7 @@ window.onload = () => {
 
 
     var signUpClick = document.getElementById("SignUpClick")
-    
+
     var signInClick = document.getElementById("SignInClick")
 
     var signInBox = document.getElementById("signIn")
@@ -222,21 +222,21 @@ window.onload = () => {
 
 
 
-    signUpClick.style.backgroundColor="grey";
+    signUpClick.style.backgroundColor = "grey";
     signUpBox.style.display = "none";
     signInBox.style.display = "block";
 
 
     signUpClick.addEventListener('click', (e) => {
-        signUpClick.style.backgroundColor="#0b6eba";
-        signInClick.style.backgroundColor="grey";
+        signUpClick.style.backgroundColor = "#0b6eba";
+        signInClick.style.backgroundColor = "grey";
         signUpBox.style.display = "block";
         signInBox.style.display = "none";
     })
 
     signInClick.addEventListener('click', (e) => {
-        signUpClick.style.backgroundColor="grey";
-        signInClick.style.backgroundColor="#0b6eba";
+        signUpClick.style.backgroundColor = "grey";
+        signInClick.style.backgroundColor = "#0b6eba";
         signUpBox.style.display = "none";
         signInBox.style.display = "block";
     })
@@ -244,12 +244,12 @@ window.onload = () => {
 
 function sendVerificationEmail() {
     if (userVar) {
-        userVar.sendEmailVerification().then(function() {
+        userVar.sendEmailVerification().then(function () {
             Swal.fire({
                 type: 'success',
                 title: 'Verfication email has been sent!'
             })
-        }).catch(function(error) {
+        }).catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorMessage + "\nError Code: " + errorCode)
