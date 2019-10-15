@@ -1,83 +1,58 @@
-#profileTopDiv {
-    position: relative;
-    height: 0px;
-}
-
-#profileTopIMG {
+#signInClick {
+    background-color: rgb(0, 119, 155);
+    color: white;
     position: absolute;
-    width: 45px;
-    left:5px;
-    top:3px;
-    background-color: black;
-    border-radius: 100%;
-    opacity: 0;
-    animation: 0.8s ease-out 0s 1 opacityTransition;
-    animation-fill-mode: forwards;
-    animation-delay: 0.8s;
-    transform: scale(1);
-    transition: transform 0.5s;
+    top: 30px;
+    right: 224px;
+    margin-top: 10px;
 }
 
-#profileTopIMG:hover {
-    transform: scale(1.1);
-    cursor: pointer;
+.SignInInput {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px #ddd;
+    margin-top: 10px;
+    margin: 5px;
 }
 
-#signInClick{
-    background-color:rgb(0, 119, 155);
-    color:white;
-    position:absolute;
-    top:30px;
-    right:224px;
-    margin-top:10px;
-}
-
-.SignInInput{
-    border:1px solid #ccc;
-    padding:10px;
-    border-radius:4px;
-    box-shadow:inset 0 1px 3px #ddd;
-    margin-top:10px;
-    margin:5px;
-}
-
-#signIn{
+#signIn {
     width: 100%;
     clear: both;
 }
 
-.signInLabel{
-    display:block;
+.signInLabel {
+    display: block;
 }
 
-#signUpModal{
+#signUpModal {
     width: 100%;
     clear: both;
-    text-align:center;
+    text-align: center;
     height: 280px;
 }
 
-.modal-body{
-    background-color:lightgrey;
+.modal-body {
+    background-color: lightgrey;
     border-color: lightgrey;
 }
 
-.modal-header{
-    background-color:lightgrey;
+.modal-header {
+    background-color: lightgrey;
     border-color: lightgrey;
 }
 
-.submit{
+.submit {
     width: 100px;
-    clear: both; 
-    text-align:center;
-    border:1px solid,;
-    padding:1px;
-    border-radius:1px;
-    margin-top:1%;
+    clear: both;
+    text-align: center;
+    border: 1px solid, ;
+    padding: 1px;
+    border-radius: 1px;
+    margin-top: 1%;
     display: inline-block;
     border-radius: 4px;
-    background-color:#0b6eba;
+    background-color: #0b6eba;
     border: none;
     color: white;
     text-align: center;
@@ -88,11 +63,11 @@
     cursor: pointer;
 }
 
-.google{
-    margin-top:5px;
-    clear: both; 
-    text-align:center;
-    border:1px solid,;
+.google {
+    margin-top: 5px;
+    clear: both;
+    text-align: center;
+    border: 1px solid, ;
     display: inline-block;
     border-radius: 4px;
     border: none;
@@ -100,49 +75,50 @@
     font-size: 28px;
     width: 210px;
     transition: all 0.5s;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
-.signInOr{
-  text-align:center;
-  margin:0;
-  margin-top:7px;
+.signInOr {
+    text-align: center;
+    margin: 0;
+    margin-top: 7px;
 }
 
-#signUp{
-    display:none;
+#signUp {
+    display: none;
 }
-#signIn{
-    display:flex;
-    flex-direction:column;
-    text-align:center; 
+
+#signIn {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     height: 280px;
 }
 
 #centerTopModalButtons {
-  width:185px;
-  margin:auto;
+    width: 185px;
+    margin: auto;
 }
 
 #SignUpClick {
-  color: white;
-  background-color:#0b6eba;
-  padding: 10px;
-  margin: auto;
-  border: none;
-  cursor: pointer;
-  width:80px;
+    color: white;
+    background-color: #0b6eba;
+    padding: 10px;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    width: 80px;
 }
 
 #SignInClick {
-  color: white;
-  background-color:#0b6eba;
-  padding: 10px;
-  margin: auto;
-  border: none;
-  cursor: pointer;
-  width:80px;
-  margin-right:20px;
+    color: white;
+    background-color: #0b6eba;
+    padding: 10px;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    width: 80px;
+    margin-right: 20px;
 }
 
 #accountDropdown {
@@ -161,22 +137,23 @@
     transition: opacity 0.4s;
 }
 
-#accountDropdownList div{
+#accountDropdownList div {
     font-size: 16px;
-    padding:5px;
-    color:white;
+    padding: 5px;
+    color: white;
     transition: background-color 0.4s;
 }
 
 #accountButton:hover {
     cursor: pointer;
-    background-color:#0b6eba;
+    background-color: #0b6eba;
 }
 
 #logoutButton:hover {
     cursor: pointer;
-    background-color:#ba0b0b;
+    background-color: #ba0b0b;
 }
+
 /*
 #accountDropdown:hover #accountDropdownList {
     display: block;
@@ -191,5 +168,4 @@
 
 .signUpDiv div {
     margin: auto;
-    
 }
