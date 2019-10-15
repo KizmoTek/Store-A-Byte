@@ -435,7 +435,7 @@ footer {
 }
 
 .teamDiv {
-    width: 150px;
+    width: 160px;
     height: 160px;
     word-wrap: break-word;
 }
@@ -572,147 +572,149 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 #reviews {
-    display:flex;
-    justify-content:space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
 /* Roadmap */
 
 @import url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i|Saira+Extra+Condensed:100,200,300,400,500,600,700,800|Saira:100,200,300,400,500,600,700,800');
-
 /* Variables */
+
 :root {
     --background: #252827;
-
     --color-primary: gray;
-    --color-light: green;
+    --color-light: #383838;
     --color-dim: #6c6d6d;
     --spacing: 50px;
-    --radius: 4px;
-
-    --date: 120px;
+    --radius: 20px;
+    --date: 220px;
     --dotborder: 4px;
     --dot: 11px;
     --line: 4px;
-
     --font-title: 'Saira', sans-serif;
     --font-text: 'Chivo', sans-serif;
 }
+
 #timeline-content p {
-  font-weight: 300;
+    font-weight: 300;
 }
 
-#timeline-content a { 
-  color: var(--color-dim);
-  text-decoration: none;
-  text-transform: uppercase;
-  display: block;
-  letter-spacing: .3em;
-  font-size: .6em;
-  font-weight: 400;
-  background: #252727;
-  padding: .3rem 1rem;
-  margin: 1.9rem 0 0 0;
-  float: right;
+#timeline-content a {
+    color: white;
 }
 
-#timeline-content a:hover { 
-  color: var(--color-light);
-  background: var(--color-primary);
-  border-bottom: .35em solid black;
+#timeline-content #customlinks {
+    color: var(--color-dim);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: .3em;
+    font-size: .6em;
+    font-weight: 400;
+    background: #252727;
+    padding: .3rem 1rem;
+    margin: 1.9rem 0 0 0;
+    float: right;
+}
+
+#timeline-content #customlinks:hover {
+    color: var(--color-light);
+    background: var(--color-primary);
+    border-bottom: .35em solid black;
 }
 
 #timeline-content strong {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 #timeline-content h1 {
- font-family: var(--font-title);
- letter-spacing: 1.5px;
- color: var(--color-light);  
- font-weight: 400;
- font-size: 2.4em;
+    font-family: var(--font-title);
+    letter-spacing: 1.5px;
+    color: var(--color-light);
+    font-weight: 400;
+    font-size: 2.4em;
 }
 
 #timeline-content {
-  margin-top: var(--spacing);
-  text-align: center;  
+    margin-top: var(--spacing);
+    text-align: center;
 }
 
 /* Timeline */
 
 .timeline {
-  border-left: var(--line) solid var(--color-primary);
-  border-bottom-right-radius: var(--radius);
-  border-top-right-radius: var(--radius);    
-  background: var(--color-light);
-  color: white;
-  font-family: var(--font-text);  
-  margin: var(--spacing) auto;  
-  letter-spacing: 0.5px;   
-  position: relative;
-  line-height: 1.4em;
-  font-size: 1.03em;   
-  padding: var(--spacing);   
-  list-style: none;
-  text-align: left;  
-  font-weight: 100;  
-  max-width: 30%; 
-  margin-bottom: 0;
+    border-left: var(--line) solid var(--color-primary);
+    border-bottom-right-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    background: var(--color-light);
+    color: white;
+    font-family: var(--font-text);
+    margin: var(--spacing) auto;
+    letter-spacing: 0.5px;
+    position: relative;
+    line-height: 1.4em;
+    font-size: 1.03em;
+    padding: var(--spacing);
+    list-style: none;
+    text-align: left;
+    font-weight: 100;
+    max-width: 30%;
+    margin-bottom: 0;
+    box-shadow: grey 2px 2px 4px 2px;
 }
 
-  .timeline h1 {
-   font-family: var(--font-title);
-   letter-spacing: 1.5px;
-   font-weight: 100;
-   font-size: 1.4em;    
-  }
-  
-  .timeline h2, .timeline h3 {
-   font-family: var(--font-title);
-   letter-spacing: 1.5px;
-   font-weight: 400;
-   font-size: 1.4em;
-  }
-  
-  .timeline .event {
+.timeline h1 {
+    font-family: var(--font-title);
+    letter-spacing: 1.5px;
+    font-weight: 100;
+    font-size: 1.4em;
+}
+
+.timeline h2, .timeline h3 {
+    font-family: var(--font-title);
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    font-size: 1.4em;
+}
+
+.timeline .event {
     border-bottom: 1px dashed var(--color-light);
     padding-bottom: (var(--spacing) * 0.5);
-    margin-bottom: var(--spacing);  
+    margin-bottom: var(--spacing);
     position: relative;
-  }
+}
 
-  .timeline .event:last-of-type { 
-      padding-bottom: 0;
-      margin-bottom: 0; 
-      border: none;      
-    }
+.timeline .event:last-of-type {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border: none;
+}
 
-    .timeline .event:before, .timeline .event:after {
-      position: absolute;
-      display: block;
-      top: 0;
-    }
+.timeline .event:before, .timeline .event:after {
+    position: absolute;
+    display: block;
+    top: 0;
+}
 
-    .timeline .event:before {
-      left: calc((((var(--date) * 0.6) + var(--spacing) + var(--line) + var(--dot) + (var(--dotborder) * 2)) * 1.5) * -1);    
-      color: var(--color-light);    
-      content: attr(data-date);
-      text-align: right;
-      font-weight: 100;    
-      font-size: 0.9em;
-      min-width: var(--date);
-      font-family: var(--font-title);
-    }
+.timeline .event:before {
+    left: calc((((var(--date) * 0.6) + var(--spacing) + var(--line) + var(--dot) + (var(--dotborder) * 2)) * 1.5) * -1);
+    color: var(--color-light);
+    content: attr(data-date);
+    text-align: right;
+    font-weight: 100;
+    font-size: 20px;
+    min-width: var(--date);
+    font-family: var(--font-title);
+}
 
-    .timeline .event:after {
-      box-shadow: 0 0 0 var(--dotborder) var(--color-primary);    
-      left: calc((var(--spacing) + var(--line) + (var(--dot) * 0.35)) * -1);        
-      background: var(--background);    
-      border-radius: 50%;  
-      height: var(--dot);
-      width: var(--dot);
-      content: "";
-      top: 5px;
-    
-  }
+.timeline .event:after {
+    box-shadow: 0 0 0 var(--dotborder) var(--color-primary);
+    left: calc((var(--spacing) + var(--line) + (var(--dot) * 0.35)) * -1);
+    background: lightgray;
+    border-radius: 50%;
+    height: var(--dot);
+    width: var(--dot);
+    content: "";
+    top: 5px;
+}
