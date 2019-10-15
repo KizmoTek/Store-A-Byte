@@ -1,5 +1,5 @@
 
-
+// Top Image
 var lastMouseX = 0,
     lastMouseY = 0;
 var rotX = 0,
@@ -37,6 +37,53 @@ function mouseMoved(ev) {
     bannerIMG.style.transform = "rotateX( " + -rotX + "deg) rotateY(" + rotY + "deg)"
 }
 
+
+//Roadmap
+
+var lastMouseXRoadmap = 0,
+    lastMouseYRoadmap = 0;
+var rotXRoadmap = 0,
+    rotYRoadmap = 0;
+
+var timeline = document.getElementsByClassName("timeline")[0]
+timeline.addEventListener("mousemove", mouseMovedRoadmap)
+timeline.addEventListener("mouseleave", mouseLeaveRoadmap)
+
+function mouseMovedRoadmap(ev) {
+    timeline.style.transition = "all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s"
+
+    lastMouseXRoadmap = timeline.getBoundingClientRect().x + timeline.getBoundingClientRect().width / 2
+    lastMouseYRoadmap = timeline.getBoundingClientRect().y + timeline.getBoundingClientRect().height / 2
+    var deltaX = lastMouseXRoadmap - ev.clientX ;
+    var deltaY = lastMouseYRoadmap - ev.clientY;
+
+    console.log(deltaX)
+    rotYRoadmap = deltaX / 52.5; //525
+    rotXRoadmap = deltaY / 49.5; //495
+    if (rotYRoadmap > 10) {
+        rotYRoadmap = 10
+    }
+    if (rotYRoadmap < -10) {
+        rotYRoadmap = -10
+    }
+
+    if (rotXRoadmap > 10) {
+        rotXRoadmap = 10
+    }
+    if (rotXRoadmap < -10) {
+        rotXRoadmap = -10
+    }
+
+    
+    timeline.style.transform = "rotateX( " + -rotXRoadmap + "deg) rotateY(" + rotYRoadmap + "deg) perspective(900px) scale3d(1.05, 1.05, 1.05)"
+}
+
+function mouseLeaveRoadmap() {
+    timeline.style.transition = "all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s"
+    timeline.style.transform = "scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) perspective(900px)"
+    
+}
+
 document.getElementById("aboutAnchorLink").addEventListener("click", function () {
     var about = document.getElementById('aboutDiv');
     about.scrollIntoView({
@@ -47,6 +94,14 @@ document.getElementById("aboutAnchorLink").addEventListener("click", function ()
 
 document.getElementById("pricingAnchorLink").addEventListener("click", function () {
     var pricing = document.getElementById('pricingDiv');
+    pricing.scrollIntoView({
+        block: 'center',
+        behavior: 'smooth'
+    })
+})
+
+document.getElementById("roadmapAnchorLink").addEventListener("click", function () {
+    var pricing = document.getElementById('timeline-content');
     pricing.scrollIntoView({
         block: 'center',
         behavior: 'smooth'
