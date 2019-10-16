@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js"></script>
 </head>
 
 <body>
@@ -146,6 +148,11 @@
 
         </div>
     </header>
+        <div style="position: relative;">
+           <div id="canvasBackground" class="large-header">
+              <canvas id="animatedBackground"></canvas>
+           </div>
+        </div>
     <div id="topImgDiv">
         <div id="topImgTextDiv" class="noselect">
             <h1 id="topImgTextMain">Welcome to Store-A-Byte Cloud Storage!</h1>
@@ -157,6 +164,7 @@
             <img src="Images/backgroundTop.png" id="topImg" draggable="false">
         </div>
     </div>
+
     <div id="aboutDiv">
         <div id="aboutSpacing">
             <div>
@@ -325,6 +333,7 @@
             <a href="https://discord.gg/WQnAbPx" target="_blank"><img src="Images/discord-logo.png" id="discordLogo"></a>
         </div>
     </footer>
+    <script src="animatedBackground.js" type="text/javascript"></script>
     <script src="index.js" type="text/javascript"></script>
 </body>
 

@@ -221,7 +221,8 @@ header {
 #imgHandler {
     transform-style: preserve-3d;
     position: relative;
-    width: 500px;
+    width: 100%;
+    max-width: 70vh;
     margin: auto;
 }
 
@@ -715,3 +716,12 @@ input:focus, select:focus, textarea:focus, button:focus {
     content: "";
     top: 5px;
 }
+
+#canvasBackground {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    z-index: 0;
+ }
