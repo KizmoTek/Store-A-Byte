@@ -46,18 +46,17 @@ var rotXRoadmap = 0,
     rotYRoadmap = 0;
 
 var timeline = document.getElementsByClassName("timeline")[0]
-timeline.addEventListener("mousemove", mouseMovedRoadmap)
-timeline.addEventListener("mouseleave", mouseLeaveRoadmap)
+timeline.addEventListener("mousemove", function() { mouseMovedRoadmap(timeline, event); })
+timeline.addEventListener("mouseleave", function() { mouseLeaveRoadmap(timeline); })
 
-function mouseMovedRoadmap(ev) {
-    timeline.style.transition = "all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s"
+function mouseMovedRoadmap(element, ev) {
+    element.style.transition = "all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s"
 
-    lastMouseXRoadmap = timeline.getBoundingClientRect().x + timeline.getBoundingClientRect().width / 2
-    lastMouseYRoadmap = timeline.getBoundingClientRect().y + timeline.getBoundingClientRect().height / 2
+    lastMouseXRoadmap = element.getBoundingClientRect().x + element.getBoundingClientRect().width / 2
+    lastMouseYRoadmap = element.getBoundingClientRect().y + element.getBoundingClientRect().height / 2
     var deltaX = lastMouseXRoadmap - ev.clientX ;
     var deltaY = lastMouseYRoadmap - ev.clientY;
 
-    console.log(deltaX)
     rotYRoadmap = deltaX / 52.5; //525
     rotXRoadmap = deltaY / 49.5; //495
     if (rotYRoadmap > 10) {
@@ -75,13 +74,48 @@ function mouseMovedRoadmap(ev) {
     }
 
     
-    timeline.style.transform = "rotateX( " + -rotXRoadmap + "deg) rotateY(" + rotYRoadmap + "deg) perspective(900px) scale3d(1.05, 1.05, 1.05)"
+    element.style.transform = "rotateX( " + -rotXRoadmap + "deg) rotateY(" + rotYRoadmap + "deg) perspective(900px) scale3d(1.05, 1.05, 1.05)"
 }
 
-function mouseLeaveRoadmap() {
-    timeline.style.transition = "all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s"
-    timeline.style.transform = "scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) perspective(900px)"
+function mouseLeaveRoadmap(element) {
+    element.style.transform = "scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) perspective(900px)"
+}
+
+var lastMouseXDevs = 0,
+    lastMouseYDevs = 0;
+var rotXDevs = 0,
+    rotYDevs = 0;
+
+var devs = document.getElementsByClassName("teamDiv")
+devs[0].addEventListener("mousemove", function() { mouseMovedDev(devs[0], event); })
+devs[0].addEventListener("mouseleave", function() { mouseLeaveRoadmap(devs[0]); })
+
+function mouseMovedDev(element, ev) {
+    element.style.transition = "all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s"
+
+    lastMouseXDevs = element.getBoundingClientRect().x + element.getBoundingClientRect().width / 2
+    lastMouseYDevs = element.getBoundingClientRect().y + element.getBoundingClientRect().height / 2
+    var deltaX = lastMouseXDevs - ev.clientX ;
+    var deltaY = lastMouseYDevs - ev.clientY;
+
+    rotYDevs = deltaX / 6.1875; //175
+    rotXDevs = deltaY / 6.625; //180
+    if (rotYDevs > 15) {
+        rotYDevs = 15
+    }
+    if (rotYDevs < -15) {
+        rotYDevs = -15
+    }
+
+    if (rotXDevs > 15) {
+        rotXDevs = 15
+    }
+    if (rotXDevs < -15) {
+        rotXDevs = -15
+    }
+
     
+    element.style.transform = "rotateX( " + -rotXDevs + "deg) rotateY(" + rotYDevs + "deg) perspective(900px) scale3d(1.03, 1.03, 1.03)"
 }
 
 document.getElementById("aboutAnchorLink").addEventListener("click", function () {

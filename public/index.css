@@ -199,7 +199,7 @@ header {
 }
 
 #topImg {
-    width: 500px;
+    width: 100%;
     margin: auto;
     display: table;
     opacity: 0;
@@ -209,7 +209,7 @@ header {
 
 #topImg2 {
     position: absolute;
-    width: 500px;
+    width: 100%;
     filter: grayscale(1) invert(1);
     left: 0;
     top: 0;
@@ -227,6 +227,8 @@ header {
 
 #topImgDiv {
     width: 100%;
+    height: 100%;
+    min-height: 100vh;
     background-color: darkblue;
     padding-top: 20px;
     background: linear-gradient(0deg, #00008b, #5656ff);
@@ -321,6 +323,13 @@ footer {
     height: 200px;
 }
 
+#buildWithSiaIMG {
+    width:150px;
+    height: 132px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .why {
     text-align: center;
     border: 3px solid gray;
@@ -329,64 +338,12 @@ footer {
 }
 
 .video-container {
-    margin-right: 100px;
     display: flex;
     flex-direction: column;
-}
-
-#infoPopUpDiv {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    width: 300px;
-    text-align: center;
-    margin: auto;
-}
-
-#infoPopUpDiv #infoPopUpText {
-    opacity: 0;
-    width: 450px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 140%;
-    left: 0;
-    right: 0;
-    margin-left: -80px;
-    transition: opacity 1s;
-}
-
-#infoPopUpText:hover {
-    cursor: default;
-}
-
-#infoPopUpText p:hover {
-    cursor: text;
-}
-
-#infoPopUpDiv button {
-    background-color: purple;
-    border: none;
-    color: white;
-    margin: auto;
-    width: 140px;
-    padding: 5px;
-    border-radius: 10px;
-    transition: transform 0.1s;
-}
-
-#infoPopUpDiv button:active {
-    transform: scale(0.9);
+    margin:auto;
 }
 
 #aboutDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
     background-color: lightgray;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -394,13 +351,23 @@ footer {
     border-bottom: 5px solid grey;
 }
 
+#aboutSpacing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60%;
+    max-width: 1650px;
+    margin: auto;
+}
+
 #teamDiv {
     padding-top: 10px;
-    height: 350px;
+    height: 400px;
     background-color: lightgrey;
     display: flex;
     flex-direction: row;
-    width: 1500px;
+    width: 60%;
+    max-width: 1650px;
     margin: auto;
 }
 
@@ -416,6 +383,7 @@ footer {
 #teamContent {
     display: flex;
     flex-direction: column;
+    margin:auto;
 }
 
 #teamTopRow {
@@ -430,14 +398,26 @@ footer {
 
 .teamImg {
     width: 75px;
+    height: 75px;
     margin-left: 40px;
-    border-radius: 20%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .teamDiv {
-    width: 160px;
-    height: 160px;
+    width: 175px;
+    height: 180px;
     word-wrap: break-word;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10%;
+    padding:5px;
+    box-shadow: gray 4px 4px 3px;
+    transform: scale(1);
+    transition: 0.2s transform;
+}
+
+.teamDiv:hover {
+    transform: scale(1.05);
 }
 
 .teamDiv button {
@@ -457,10 +437,24 @@ footer {
     transform: scale(0.9);
 }
 
-#thomasImg {
-    width: 75px;
-    margin-left: 40px;
-    border-radius: 20%;
+.devSocialMedia {
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+    margin: auto;
+}
+
+.devSocialMedia img {
+    width: 34px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 50%;
+    transform: scale(1);
+    transition: 0.2s transform;
+}
+
+.devSocialMedia img:hover {
+    transform: scale(1.1);
 }
 
 #MyStorageButton {
@@ -574,6 +568,9 @@ input:focus, select:focus, textarea:focus, button:focus {
 #reviews {
     display: flex;
     justify-content: space-around;
+    width: 60%;
+    max-width: 1650px;
+    margin: auto;
 }
 
 /* Roadmap */
