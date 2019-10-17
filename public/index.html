@@ -3,7 +3,7 @@
 
 <head>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="account.css">
     <script src="jquery-3.4.1.js"></script>
@@ -23,148 +23,163 @@
 
 <body>
     <header class="noselect">
-        <div id="profileTopDiv">
-            <div id="accountDropdown">
-                <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#signInModal" data-toggle="modal">
-                <div id="accountDropdownList" aria-label="submenu">
-                    <div id="accountButton">Account</div>
-                    <div id="logoutButton">Logout</div>
+        <div id="topHeader">
+            <div id="profileTopDiv">
+                <div id="accountDropdown">
+                    <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#signInModal" data-toggle="modal">
+                    <div id="accountDropdownList" aria-label="submenu">
+                        <div id="accountButton">Account</div>
+                        <div id="logoutButton">Logout</div>
+                    </div>
                 </div>
-            </div>
-            <button id="MyStorageButton">My Storage</button>
-            <div id="SignIncontainer">
-                <!-- Modal -->
-                <div class="modal fade" id="signInModal" role="dialog">
-                    <div class="modal-dialog" style="width:700px;">
+                <button id="MyStorageButton">My Storage</button>
+                <div id="SignIncontainer">
+                    <!-- Modal -->
+                    <div class="modal fade" id="signInModal" role="dialog">
+                        <div class="modal-dialog" style="width:700px;">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <div id="centerTopModalButtons">
+                                        <input id="SignInClick" value="Sign In" type="button">
+                                        <input id="SignUpClick" value="Sign Up" type="button">
+                                    </div>
+                                </div>
+
+
+                                <!-- SIGN IN INFO HERE -->
+
+                                <div class="modal-body" id="signIn">
+                                    <form>
+                                        <label class="signInLabel">Email Address:</label>
+                                        <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" autocomplete="username" method="post"></label>
+                                        <label class="signInLabel">Password:</label>
+                                        <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" autocomplete="current-password" method="post"></label>
+                                        <input type="button" value="Sign In" class="submit" id="signInButton">
+                                        <label class="signInLabel">
+                                            <p class="signInOr">Or</p>
+                                            <img src="Images/google.png" class="google">
+                                        </label>
+                                    </form>
+                                </div>
+
+                                <div class="modal-body" id="signUpModal">
+                                    <form>
+                                        <div class="signUpDiv">
+                                            <div>
+                                                <label class="signInLabel" for="signUpFirstName">First Name:</label>
+                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
+                                            </div>
+                                            <div>
+                                                <label class="signInLabel" for="signUpLastName">Last Name:</label>
+                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
+                                            </div>
+                                        </div>
+                                        <div class="signUpDiv">
+                                            <div>
+                                                <label class="signInLabel" for="signUpUsername">Username:</label>
+                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
+                                            </div>
+                                            <div>
+                                                <label class="signInLabel" for="signUpEmail">Email Address:</label>
+                                                <label class="signInLabel"><input type="email" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
+                                            </div>
+                                        </div>
+                                        <div class="signUpDiv">
+                                            <div>
+                                                <label class="signInLabel" for="signUpPassword">Password:</label>
+                                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                            </div>
+                                            <div>
+                                                <label class="signInLabel" for="signUpPassword">Re-enter Password:</label>
+                                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                            </div>
+                                        </div>
+                                        <input type="button" value="Sign Up" class="submit" id="signUpButton">
+                                        <label class="signInLabel"></label>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="contactModal" role="dialog">
+                    <div class="modal-dialog">
+
 
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-header">
+
+                            <div class="modal-body">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <div id="centerTopModalButtons">
-                                    <input id="SignInClick" value="Sign In" type="button">
-                                    <input id="SignUpClick" value="Sign Up" type="button">
-                                </div>
+                                <label for="issue">What is your issue?</label>
+                                <select id="issue" name="issue">
+                                    <option value="loginAuthentification">Login authentification</option>
+                                    <option value="slowSpeed">Slow upload/download speed</option>
+                                    <option value="review">Files not appearing</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
-
-
-                            <!-- SIGN IN INFO HERE -->
-
-                            <div class="modal-body" id="signIn">
-                                <form>
-                                    <label class="signInLabel">Email Address:</label>
-                                    <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" autocomplete="username" method="post"></label>
-                                    <label class="signInLabel">Password:</label>
-                                    <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" autocomplete="current-password" method="post"></label>
-                                    <input type="button" value="Sign In" class="submit" id="signInButton">
-                                    <label class="signInLabel">
-                                        <p class="signInOr">Or</p>
-                                        <img src="Images/google.png" class="google">
-                                    </label>
-                                </form>
-                            </div>
-
-                            <div class="modal-body" id="signUpModal">
-                                <form>
-                                    <div class="signUpDiv">
-                                        <div>
-                                            <label class="signInLabel" for="signUpFirstName">First Name:</label>
-                                            <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
-                                        </div>
-                                        <div>
-                                            <label class="signInLabel" for="signUpLastName">Last Name:</label>
-                                            <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
-                                        </div>
-                                    </div>
-                                    <div class="signUpDiv">
-                                        <div>
-                                            <label class="signInLabel" for="signUpUsername">Username:</label>
-                                            <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
-                                        </div>
-                                        <div>
-                                            <label class="signInLabel" for="signUpEmail">Email Address:</label>
-                                            <label class="signInLabel"><input type="email" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
-                                        </div>
-                                    </div>
-                                    <div class="signUpDiv">
-                                        <div>
-                                            <label class="signInLabel" for="signUpPassword">Password:</label>
-                                            <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
-                                        </div>
-                                        <div>
-                                            <label class="signInLabel" for="signUpPassword">Re-enter Password:</label>
-                                            <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
-                                        </div>
-                                    </div>
-                                    <input type="button" value="Sign Up" class="submit" id="signUpButton">
-                                    <label class="signInLabel"></label>
+                            <div class="modal-footer">
+                                <label for="description" style="margin-right: 440px">Describe the issue</label>
+                                <textarea id="description" name="description" placeholder="Write something..." style="height:200px"></textarea>
+                                <button type="button" class="submit" data-dismiss="modal" style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
                                 </form>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade" id="contactModal" role="dialog">
-                <div class="modal-dialog">
+            <div id="logoTopDiv">
+                <a href="https://storeabyte.com/"><img src="Images/Logo.png" draggable="false" id="logoTopIMG"></a>
+                <h1 id="logoTopText"><a href="https://storeabyte.com/">Store-A-Byte</a></h1>
+            </div>
 
+            <div id="navBarDiv">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                        <div class="modal-body">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <label for="issue">What is your issue?</label>
-                            <select id="issue" name="issue">
-                                <option value="loginAuthentification">Login authentification</option>
-                                <option value="slowSpeed">Slow upload/download speed</option>
-                                <option value="review">Files not appearing</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <label for="description" style="margin-right: 440px">Describe the issue</label>
-                            <textarea id="description" name="description" placeholder="Write something..." style="height:200px"></textarea>
-                            <button type="button" class="submit" data-dismiss="modal" style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-
+                <div id="navTopDiv">
+                    <a id="aboutAnchorLink" style="margin-right: 10px;">About</a>
+                    <a id="pricingAnchorLink" style="margin-right: 10px;">Pricing</a>
+                    <a id="roadmapAnchorLink" style="margin-right: 0px;">Roadmap</a>
+                    <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
                 </div>
             </div>
         </div>
-        <div id="navBarDiv">
-            <div id="navTopDiv">
-                <a id="aboutAnchorLink" style="margin-right: 10px;">About</a>
-                <a id="pricingAnchorLink" style="margin-right: 10px;">Pricing</a>
-                <a id="roadmapAnchorLink" style="margin-right: 0px;">Roadmap</a>
-                <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
-            </div>
-        </div>
-        <div id="logoTopDiv">
-            <a href="https://storeabyte.com/"><img src="Images/Logo.png" draggable="false" id="logoTopIMG"></a>
-            <h1 id="logoTopText"><a href="https://storeabyte.com/">Store-A-Byte</a></h1>
         </div>
 
-        </div>
-    </header>
         <div style="position: relative;">
-           <div id="canvasBackground" class="large-header">
-              <canvas id="animatedBackground"></canvas>
-           </div>
+            <div id="canvasBackground" class="large-header">
+                <canvas id="animatedBackground"></canvas>
+            </div>
         </div>
-    <div id="topImgDiv">
-        <div id="topImgTextDiv" class="noselect">
-            <h1 id="topImgTextMain">Welcome to Store-A-Byte Cloud Storage!</h1>
-            <h2 id="topImgTextSecondary" style="font-size: 26px">Our goal is to provide inexpensive, safe, and
-                convenient data storage by using SiaCoins decentralized cloud network.</h2>
-        </div>
-        <div id="imgHandler" draggable="false">
+        <div id="topImgDiv">
+            <div id="topImgTextDiv" class="noselect">
+                <h1 id="topImgTextMain">Welcome to Store-A-Byte Cloud Storage!</h1>
+                <h2 id="topImgTextSecondary" style="font-size: 26px">Our goal is to provide inexpensive, safe, and
+                    convenient data storage by using SiaCoins decentralized cloud network.</h2>
+            </div>
+            <!-- <div id="imgHandler" draggable="false">
             <img src="Images/backgroundTop.png" id="topImg2" draggable="false">
             <img src="Images/backgroundTop.png" id="topImg" draggable="false">
+        </div> -->
+            <div class="waveWrapper waveAnimation">
+                <div class="waveWrapperInner bgTop">
+                    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgMiddle">
+                    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgBottom">
+                    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+                </div>
+            </div>
         </div>
-    </div>
-
+    </header>
     <div id="aboutDiv">
         <div id="aboutSpacing">
             <div>
@@ -225,7 +240,7 @@
             </div>
             <div id="teamContent">
                 <div id="teamTopRow">
-                    <div class="teamDiv noselect">
+                    <div class="teamDiv teamDivMain noselect">
                         <img src="Images/KizmoTek.png" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">KizmoTek</h5>
                         <h5 style="text-align: center;">Founder, Lead Developer</h5>
@@ -244,10 +259,13 @@
                         <img src="Images/sean.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">Sean Browne</h5>
                         <h5 style="text-align: center;">Backend Developer</h5>
+                        <span class="devSocialMedia">
+                            <a href="https://twitter.com/kablunkstudios" target="_blank"><img src="Images/twitter-logo-final.png" draggable="false"></a>
+                        </span>
                     </div>
                 </div>
                 <div id="teamTopRow">
-                    <div class="teamDiv noselect">
+                    <div class="teamDiv teamDivMain noselect">
                         <img src="Images/cj.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">CJ Baldamero</h5>
                         <h5 style="text-align: center;">Supervisor</h5>
@@ -299,7 +317,7 @@
                     <h3><strike>Implement Firebase</strike></h3>
                     <p>Firebase is used for email/password and Google login for the website. We also tested direct file uploads to firebase.</p>
                 </li>
-                <li class="event" data-date="Est. October 28, 2019">
+                <li class="event" style="border-bottom: none;" data-date="Est. October 28, 2019">
                     <h3>Currently being worked on</h3>
                     <p>Modifying splash page design.</p>
                     <p>Account settings popup.</p>

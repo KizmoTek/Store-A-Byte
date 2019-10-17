@@ -90,12 +90,21 @@ body {
 }
 
 header {
+    width: 100%;
+    height: 100vh;
+}
+
+#topHeader {
     background-color: gray;
     border-bottom: darkgray 5px solid;
     width: 100%;
     animation: 1s ease-out 0s 1 topToBottom;
     animation-fill-mode: forwards;
     display: flex;
+}
+
+#topHeader div {
+    z-index: 100;
 }
 
 #profileTopDiv {
@@ -229,7 +238,7 @@ header {
 #topImgDiv {
     width: 100%;
     height: 100%;
-    min-height: 100vh;
+    min-height: 92vh;
     background-color: darkblue;
     padding-top: 20px;
     background: linear-gradient(0deg, #00008b, #5656ff);
@@ -325,7 +334,7 @@ footer {
 }
 
 #buildWithSiaIMG {
-    width:150px;
+    width: 150px;
     height: 132px;
     margin-top: auto;
     margin-bottom: auto;
@@ -341,7 +350,7 @@ footer {
 .video-container {
     display: flex;
     flex-direction: column;
-    margin:auto;
+    margin: auto;
 }
 
 #aboutDiv {
@@ -367,7 +376,7 @@ footer {
     background-color: lightgrey;
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 100%;
     max-width: 1650px;
     margin: auto;
 }
@@ -384,7 +393,7 @@ footer {
 #teamContent {
     display: flex;
     flex-direction: column;
-    margin:auto;
+    margin: auto;
 }
 
 #teamTopRow {
@@ -411,7 +420,7 @@ footer {
     word-wrap: break-word;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 10%;
-    padding:5px;
+    padding: 5px;
     box-shadow: gray 4px 4px 3px;
     transform: scale(1);
     transition: 0.2s transform;
@@ -419,23 +428,6 @@ footer {
 
 .teamDiv:hover {
     transform: scale(1.05);
-}
-
-.teamDiv button {
-    background-color: purple;
-    border: none;
-    color: white;
-    margin: auto;
-    width: 80px;
-    font-size: 12px;
-    padding: 5px;
-    border-radius: 10px;
-    margin-left: 36px;
-    transition: transform 0.1s;
-}
-
-.teamDiv button:active {
-    transform: scale(0.9);
 }
 
 .devSocialMedia {
@@ -677,7 +669,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 .timeline .event {
-    border-bottom: 1px dashed var(--color-light);
+    border-bottom: 1px dashed var(--color-dim);
     padding-bottom: (var(--spacing) * 0.5);
     margin-bottom: var(--spacing);
     position: relative;
@@ -717,6 +709,10 @@ input:focus, select:focus, textarea:focus, button:focus {
     top: 5px;
 }
 
+/* Mouse animation canvas */
+
+/* fix height for canvas being too tall */
+
 #canvasBackground {
     position: absolute;
     width: 100%;
@@ -724,4 +720,110 @@ input:focus, select:focus, textarea:focus, button:focus {
     background-size: cover;
     background-position: center center;
     z-index: 0;
- }
+}
+
+/* Waves */
+
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+}
+
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+
+.bgBottom {
+    z-index: 5;
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+
+.waveTop {
+    background-size: 50% 100px;
+}
+
+.waveAnimation .waveTop {
+    animation: move-wave 10s;
+    -webkit-animation: move-wave 10s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+.waveMiddle {
+    background-size: 50% 120px;
+}
+
+.waveAnimation .waveMiddle {
+    animation: move_wave 25s linear infinite;
+}
+
+.waveBottom {
+    background-size: 50% 100px;
+}
+
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
+
+/* Small screen scaling */
+
+@media only screen and (max-width: 1300px) {
+    #teamDiv {
+        padding-top: 10px;
+        height: 800px;
+        background-color: lightgray;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1650px;
+        margin: auto;
+    }
+    #teamVid {
+        width: 500px;
+        height: 280px;
+        margin: auto;
+    }
+    .teamDivMain {
+        margin-left: 0 !important;
+    }
+}
