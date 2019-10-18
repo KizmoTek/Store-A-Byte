@@ -103,9 +103,7 @@ header {
     display: flex;
 }
 
-#topHeader div {
-    z-index: 100;
-}
+
 
 #profileTopDiv {
     position: relative;
@@ -115,6 +113,7 @@ header {
 #profileTopIMG {
     position: absolute;
     width: 45px;
+    z-index: 5;
     left: 5px;
     top: 3px;
     background-color: black;
@@ -137,6 +136,7 @@ header {
     flex-direction: row;
     margin: auto;
     width: 300px;
+    z-index: 5;
     opacity: 0;
     animation: 0.8s ease-out 0s 1 opacityTransition;
     animation-fill-mode: forwards;
@@ -167,6 +167,7 @@ header {
 #navBarDiv {
     position: relative;
     opacity: 0;
+    z-index: 5;
     animation: 0.8s ease-out 0s 1 opacityTransition;
     animation-fill-mode: forwards;
     animation-delay: 0.8s;
@@ -453,6 +454,7 @@ footer {
 #MyStorageButton {
     margin-left: 60px;
     margin-top: 8px;
+    z-index: 5;
     color: white;
     background-color: #0b6eba;
     padding: 6px;
@@ -759,17 +761,17 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 .bgTop {
-    z-index: 15;
+    z-index: 3;
     opacity: 0.5;
 }
 
 .bgMiddle {
-    z-index: 10;
+    z-index: 2;
     opacity: 0.75;
 }
 
 .bgBottom {
-    z-index: 5;
+    z-index: 1;
 }
 
 .wave {
