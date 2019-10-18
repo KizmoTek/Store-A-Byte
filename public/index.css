@@ -744,6 +744,10 @@ input:focus, select:focus, textarea:focus, button:focus {
     bottom: 0;
     top: 0;
     margin: auto;
+    opacity: 0;
+    animation: 0.8s ease-out 0s 1 opacityTransition;
+    animation-fill-mode: forwards;
+    animation-delay: 0.8s;
 }
 
 .waveWrapperInner {
@@ -783,10 +787,8 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 .waveAnimation .waveTop {
-    animation: move-wave 10s;
-    -webkit-animation: move-wave 10s;
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
+    animation: move-wave 1s linear infinite;
+    animation-delay: 0s;
 }
 
 .waveMiddle {

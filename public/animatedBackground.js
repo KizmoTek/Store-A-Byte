@@ -1,5 +1,4 @@
 (function () {
-    console.log("hi")
     var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
 
     // Main
@@ -9,10 +8,9 @@
 
     function initHeader() {
         width = window.innerWidth;
-        height = window.innerHeight;
+        height = document.getElementsByTagName('header')[0].clientHeight - 55; //55 is the height of Top Header
         
         target = { x: width / 2, y: height / 2 };
-        console.log(target)
         largeHeader = document.getElementById('canvasBackground');
         largeHeader.style.height = height + 'px';
 

@@ -81,6 +81,10 @@
 //     element.style.transform = "scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) perspective(900px)"
 // }
 
+document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+  
+
 document.getElementById("aboutAnchorLink").addEventListener("click", function () {
     var about = document.getElementById('aboutDiv');
     about.scrollIntoView({
@@ -98,9 +102,9 @@ document.getElementById("pricingAnchorLink").addEventListener("click", function 
 })
 
 document.getElementById("roadmapAnchorLink").addEventListener("click", function () {
-    var pricing = document.getElementById('timeline-content');
+    var pricing = document.getElementById('roadmap');
     pricing.scrollIntoView({
-        block: 'center',
+        block: 'start',
         behavior: 'smooth'
     })
 })
