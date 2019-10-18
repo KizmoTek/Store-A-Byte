@@ -28,11 +28,13 @@
                 <div id="accountDropdown">
                     <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#signInModal" data-toggle="modal">
                     <div id="accountDropdownList" aria-label="submenu">
-                        <div id="accountButton">Account</div>
+                        <div id="accountButton" data-target="#accountModal" data-toggle="modal">Account</div>
                         <div id="logoutButton">Logout</div>
                     </div>
                 </div>
                 <button id="MyStorageButton">My Storage</button>
+
+                <!-- Sign Up/Sign In Modal -->
                 <div id="SignIncontainer">
                     <!-- Modal -->
                     <div class="modal fade" id="signInModal" role="dialog">
@@ -49,8 +51,7 @@
                                 </div>
 
 
-                                <!-- SIGN IN INFO HERE -->
-
+                                <!-- Sign in -->
                                 <div class="modal-body" id="signIn">
                                     <form>
                                         <label class="signInLabel">Email Address:</label>
@@ -65,6 +66,7 @@
                                     </form>
                                 </div>
 
+                                <!-- Sign up -->
                                 <div class="modal-body" id="signUpModal">
                                     <form>
                                         <div class="signUpDiv">
@@ -106,13 +108,44 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="contactModal" role="dialog">
+                <!-- Account settings modal -->
+                <div class="modal fade" id="accountModal" role="dialog">
                     <div class="modal-dialog">
-
-
                         <!-- Modal content-->
                         <div class="modal-content">
+                            <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileUserIMG"> <!-- Set this to profile image from user, also if the user does not have profile image, set it to a default one on firebase. -->
+                                
+                                <!-- Programming comments for JS
+                                Resize the image before uploading it to firebase in order to lower disk usage.
+                                Rename the uploaded image to "profilePic.jpg".
+                                When uploading the image, upload it to the users folder then into a folder called "ProfilePic" in order to prevent accidental ovveriding.
+                                -->
 
+                                <!-- Things needed
+                                Profile picture customization
+                                change password
+                                change email address
+                                change/update billing information
+                                delete account
+                                -->
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <p>footer</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Contact Us Modal -->
+                <div class="modal fade" id="contactModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
                             <div class="modal-body">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <label for="issue">What is your issue?</label>

@@ -1,5 +1,7 @@
 var firebaseAuth = firebase.auth();
 var userVar
+var storage = firebase.storage();
+var storageRef = storage.ref();
 
 window.onload = () => {
     var justLoaded = false
@@ -21,6 +23,7 @@ window.onload = () => {
             if (justLoaded == true) {
                 location.reload()
             }
+            console.log(user)
             console.log("user")
             // signInModal.classList.remove("in");
             // signInModal.style.removeProperty("padding-right")
@@ -61,6 +64,7 @@ window.onload = () => {
             profilePic.src = "Images/DefaultProfilePicture.png"
         }
     })
+
 
     contactButton.addEventListener('click', (e) => {
         if (!userVar) {
@@ -266,4 +270,50 @@ function sendVerificationEmail() {
             })
         });
     }
+}
+
+
+function updateUserPic(newPic) {
+    // Creates metadata for image
+    var metadata = {
+        contentType: 'image/jpeg',
+    };
+    // Sets the image with metadata
+    var uploadTask = storageRef.child(newPic).put(file, metadata);
+
+    // Observe state change events such as progress, pause, and resume
+    uploadTask.on('state_changed', function (snapshot) {
+
+        // The progress of the upload
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+    }, function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage + "\nError Code: " + errorCode)
+        Swal.fire({
+            type: 'error',
+            title: errorMessage
+        })
+    }, function () {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log('File available at', downloadURL);
+        });
+    });
+    userVar.updateProfile({
+        photoURL: "/Images/alex.jpg"
+    }).then(function () {
+        // Update successful.
+    }).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage + "\nError Code: " + errorCode)
+        Swal.fire({
+            type: 'error',
+            title: errorMessage
+        })
+    });
+
 }
