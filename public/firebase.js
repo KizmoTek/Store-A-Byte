@@ -9,3 +9,6 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+var defaultStorage = firebase.storage();
+var database = firebase.database();
