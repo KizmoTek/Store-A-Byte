@@ -3,7 +3,7 @@
 
 <head>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="account.css">
     <script src="jquery-3.4.1.js"></script>
@@ -17,162 +17,221 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js"></script>
 </head>
 
 <body>
     <header class="noselect">
-        <div id="profileTopDiv">
-            <div id="accountDropdown">
-                <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#signInModal" data-toggle="modal">
-                <div id="accountDropdownList" aria-label="submenu">
-                    <div id="accountButton">Account</div>
-                    <div id="logoutButton">Logout</div>
+        <div id="topHeader">
+            <div id="profileTopDiv">
+                <div id="accountDropdown">
+                    <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#signInModal" data-toggle="modal">
+                    <div id="accountDropdownList" aria-label="submenu">
+                        <div id="accountButton" data-target="#accountModal" data-toggle="modal">Account</div>
+                        <div id="logoutButton">Logout</div>
+                    </div>
                 </div>
-            </div>
-            <button id="MyStorageButton">My Storage</button>
-            <div id="SignIncontainer">
-                <!-- Modal -->
-                <div class="modal fade" id="signInModal" role="dialog">
-                    <div class="modal-dialog" style="width:700px;">
+                <button id="MyStorageButton">My Storage</button>
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <div id="centerTopModalButtons">
-                                    <input id="SignInClick" value="Sign In" type="button">
-                                    <input id="SignUpClick" value="Sign Up" type="button">
+                <!-- Sign Up/Sign In Modal -->
+                <div id="SignIncontainer">
+                    <!-- Modal -->
+                    <div class="modal fade" id="signInModal" role="dialog">
+                        <div class="modal-dialog" style="width:700px;">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <div id="centerTopModalButtons">
+                                        <input id="SignInClick" value="Sign In" type="button">
+                                        <input id="SignUpClick" value="Sign Up" type="button">
+                                    </div>
+                                </div>
+
+
+                                <!-- Sign in -->
+                                <div class="modal-body" id="signIn">
+                                    <form>
+                                        <label class="signInLabel">Email Address:</label>
+                                        <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" autocomplete="username" method="post"></label>
+                                        <label class="signInLabel">Password:</label>
+                                        <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" autocomplete="current-password" method="post"></label>
+                                        <input type="button" value="Sign In" class="submit" id="signInButton">
+                                        <label class="signInLabel">
+                                            <p class="signInOr">Or</p>
+                                            <img src="Images/google.png" class="google">
+                                        </label>
+                                    </form>
+                                </div>
+
+                                <!-- Sign up -->
+                                <div class="modal-body" id="signUpModal">
+                                    <form>
+                                        <div class="signUpDiv">
+                                            <div>
+                                                <label class="signInLabel" for="signUpFirstName">First Name:</label>
+                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
+                                            </div>
+                                            <div>
+                                                <label class="signInLabel" for="signUpLastName">Last Name:</label>
+                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
+                                            </div>
+                                        </div>
+                                        <div class="signUpDiv">
+                                            <div>
+                                                <label class="signInLabel" for="signUpUsername">Username:</label>
+                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
+                                            </div>
+                                            <div>
+                                                <label class="signInLabel" for="signUpEmail">Email Address:</label>
+                                                <label class="signInLabel"><input type="email" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
+                                            </div>
+                                        </div>
+                                        <div class="signUpDiv">
+                                            <div>
+                                                <label class="signInLabel" for="signUpPassword">Password:</label>
+                                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                            </div>
+                                            <div>
+                                                <label class="signInLabel" for="signUpPassword">Re-enter Password:</label>
+                                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                            </div>
+                                        </div>
+                                        <input type="button" value="Sign Up" class="submit" id="signUpButton">
+                                        <label class="signInLabel"></label>
+                                    </form>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account settings modal -->
+                <div class="modal fade" id="accountModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileUserIMG"> <!-- Set this to profile image from user, also if the user does not have profile image, set it to a default one on firebase. -->
+                                
+                                <!-- Programming comments for JS
+                                Resize the image before uploading it to firebase in order to lower disk usage.
+                                Rename the uploaded image to "profilePic.jpg".
+                                When uploading the image, upload it to the users folder then into a folder called "ProfilePic" in order to prevent accidental ovveriding.
+                                -->
+
+                                <!-- Things needed
+                                Profile picture customization
+                                change password
+                                change email address
+                                change/update billing information
+                                delete account
+                                -->
 
 
-                            <!-- SIGN IN INFO HERE -->
-
-                            <div class="modal-body" id="signIn">
-                                <form>
-                                    <label class="signInLabel">Email Address:</label>
-                                    <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" autocomplete="username" method="post"></label>
-                                    <label class="signInLabel">Password:</label>
-                                    <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" autocomplete="current-password" method="post"></label>
-                                    <input type="button" value="Sign In" class="submit" id="signInButton">
-                                    <label class="signInLabel">
-                                        <p class="signInOr">Or</p>
-                                        <img src="Images/google.png" class="google">
-                                    </label>
-                                </form>
                             </div>
+                            <div class="modal-footer">
+                                <p>footer</p>
+                            </div>
+                        </div>
 
-                            <div class="modal-body" id="signUpModal">
-                                <form>
-                                    <div class="signUpDiv">
-                                        <div>
-                                            <label class="signInLabel" for="signUpFirstName">First Name:</label>
-                                            <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
-                                        </div>
-                                        <div>
-                                            <label class="signInLabel" for="signUpLastName">Last Name:</label>
-                                            <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
-                                        </div>
-                                    </div>
-                                    <div class="signUpDiv">
-                                        <div>
-                                            <label class="signInLabel" for="signUpUsername">Username:</label>
-                                            <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
-                                        </div>
-                                        <div>
-                                            <label class="signInLabel" for="signUpEmail">Email Address:</label>
-                                            <label class="signInLabel"><input type="email" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
-                                        </div>
-                                    </div>
-                                    <div class="signUpDiv">
-                                        <div>
-                                            <label class="signInLabel" for="signUpPassword">Password:</label>
-                                            <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
-                                        </div>
-                                        <div>
-                                            <label class="signInLabel" for="signUpPassword">Re-enter Password:</label>
-                                            <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
-                                        </div>
-                                    </div>
-                                    <input type="button" value="Sign Up" class="submit" id="signUpButton">
-                                    <label class="signInLabel"></label>
+                    </div>
+                </div>
+
+                <!-- Contact Us Modal -->
+                <div class="modal fade" id="contactModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <label for="issue">What is your issue?</label>
+                                <select id="issue" name="issue">
+                                    <option value="loginAuthentification">Login authentification</option>
+                                    <option value="slowSpeed">Slow upload/download speed</option>
+                                    <option value="review">Files not appearing</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <label for="description" style="margin-right: 440px">Describe the issue</label>
+                                <textarea id="description" name="description" placeholder="Write something..." style="height:200px"></textarea>
+                                <button type="button" class="submit" data-dismiss="modal" style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
                                 </form>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade" id="contactModal" role="dialog">
-                <div class="modal-dialog">
+            <div id="logoTopDiv">
+                <a href="https://storeabyte.com/"><img src="Images/Logo.png" draggable="false" id="logoTopIMG"></a>
+                <h1 id="logoTopText"><a href="https://storeabyte.com/">Store-A-Byte</a></h1>
+            </div>
 
+            <div id="navBarDiv">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                        <div class="modal-body">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <label for="issue">What is your issue?</label>
-                            <select id="issue" name="issue">
-                                <option value="loginAuthentification">Login authentification</option>
-                                <option value="slowSpeed">Slow upload/download speed</option>
-                                <option value="review">Files not appearing</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <label for="description" style="margin-right: 440px">Describe the issue</label>
-                            <textarea id="description" name="description" placeholder="Write something..." style="height:200px"></textarea>
-                            <button type="button" class="submit" data-dismiss="modal" style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-
+                <div id="navTopDiv">
+                    <a id="aboutAnchorLink" style="margin-right: 10px;">About</a>
+                    <a id="pricingAnchorLink" style="margin-right: 10px;">Pricing</a>
+                    <a id="roadmapAnchorLink" style="margin-right: 0px;">Roadmap</a>
+                    <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
                 </div>
             </div>
         </div>
-        <div id="navBarDiv">
-            <div id="navTopDiv">
-                <a id="aboutAnchorLink" style="margin-right: 10px;">About</a>
-                <a id="pricingAnchorLink" style="margin-right: 10px;">Pricing</a>
-                <a id="roadmapAnchorLink" style="margin-right: 0px;">Roadmap</a>
-                <a id="mail" data-toggle="modal" data-target="#contactModal">Contact Us</a>
-            </div>
-        </div>
-        <div id="logoTopDiv">
-            <a href="https://storeabyte.com/"><img src="Images/Logo.png" draggable="false" id="logoTopIMG"></a>
-            <h1 id="logoTopText"><a href="https://storeabyte.com/">Store-A-Byte</a></h1>
         </div>
 
+        <div style="position: relative;">
+            <div id="canvasBackground" class="large-header">
+                <canvas id="animatedBackground"></canvas>
+            </div>
         </div>
-    </header>
-    <div id="topImgDiv">
-        <div id="topImgTextDiv" class="noselect">
-            <h1 id="topImgTextMain">Welcome to Store-A-Byte Cloud Storage!</h1>
-            <h2 id="topImgTextSecondary" style="font-size: 26px">Our goal is to provide inexpensive, safe, and
-                convenient data storage by using SiaCoins decentralized cloud network.</h2>
-        </div>
-        <div id="imgHandler" draggable="false">
+        <div id="topImgDiv">
+            <div id="topImgTextDiv" class="noselect">
+                <h1 id="topImgTextMain">Welcome to Store-A-Byte Cloud Storage!</h1>
+                <h2 id="topImgTextSecondary" style="font-size: 26px">Our goal is to provide inexpensive, safe, and
+                    convenient data storage by using SiaCoins decentralized cloud network.</h2>
+            </div>
+            <!-- <div id="imgHandler" draggable="false">
             <img src="Images/backgroundTop.png" id="topImg2" draggable="false">
             <img src="Images/backgroundTop.png" id="topImg" draggable="false">
-        </div>
-    </div>
-    <div id="aboutDiv">
-        <div>
-            <div class="about">
-                <h1 style="margin-top: 1px;">About</h1>
-                <p style="margin-left: 5px; margin-right: 5px;">Store-A-Byte is a website that manages your data storage
-                    using the SiaCoin network. Directly uploading to the SiaCoin network takes a long time, so in order
-                    to make saving data quick and convenient for customers, we first upload the files to FireBase then
-                    transfer it to the SiaCoin network.</p>
+        </div> -->
+            <div class="waveWrapper waveAnimation">
+                <div class="waveWrapperInner bgTop">
+                    <div class="wave waveTop" style="background-image: url(Images/wave-top.png)"></div>
+                </div>
+                <div class="waveWrapperInner bgMiddle">
+                    <div class="wave waveMiddle" style="background-image: url('Images/wave-mid.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgBottom">
+                    <div class="wave waveBottom" style="background-image: url('Images/wave-bot.png')"></div>
+                </div>
             </div>
         </div>
-        <div>
-            <div class="why">
-                <h1 style="margin-top: 1px;">Why Us</h1>
-                <p style="margin-left: 5px; margin-right: 5px;">Our highest priorities are price, redundancy, and
-                    privacy, which we believe are the most important qualities to our customers. There are multiple
-                    storage plans to best meet your needs.</p>
+    </header>
+    <div id="aboutDiv">
+        <div id="aboutSpacing">
+            <div>
+                <div class="about">
+                    <h1 style="margin-top: 1px;">About</h1>
+                    <p style="margin-left: 5px; margin-right: 5px;">Store-A-Byte is a website that manages your data storage
+                        using the SiaCoin network. Directly uploading to the SiaCoin network takes a long time, so in order
+                        to make saving data quick and convenient for customers, we first upload the files to FireBase then
+                        transfer it to the SiaCoin network.</p>
+                </div>
+            </div>
+            <img src="Images/builtWithSia.png" id="buildWithSiaIMG" draggable="false">
+            <div>
+                <div class="why">
+                    <h1 style="margin-top: 1px;">Why Us</h1>
+                    <p style="margin-left: 5px; margin-right: 5px;">Our highest priorities are price, redundancy, and
+                        privacy, which we believe are the most important qualities to our customers. There are multiple
+                        storage plans to best meet your needs.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -211,57 +270,49 @@
         <div id="teamDiv">
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" id="teamVid"></iframe>
-                <div id="infoPopUpDiv">
-                    <button type="button" onclick="showPopup()">Quick Start Guide</button>
-                    <span id="infoPopUpText">
-                        <p style="margin-bottom: 0px"><button type="button" class="close" onclick="closePopup()" style="background-color: rgba(255, 255, 255, 0); width: 20px;">&times;</button>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </span>
-                </div>
             </div>
             <div id="teamContent">
                 <div id="teamTopRow">
-                    <div class="teamDiv">
-                        <img src="Images/KizmoTek.png" class="teamImg">
+                    <div class="teamDiv teamDivMain noselect">
+                        <img src="Images/KizmoTek.png" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">KizmoTek</h5>
                         <h5 style="text-align: center;">Founder, Lead Developer</h5>
-                        <!-- Place Social media links here -->
+                        <span class="devSocialMedia">
+                            <a href="https://twitter.com/KizmoTek" target="_blank"><img src="Images/twitter-logo-final.png" draggable="false"></a>
+                            <a href="https://www.instagram.com/kizmotek/" target="_blank"><img src="Images/instagram-logo.png" draggable="false"></a>
+                            <a href="https://discord.gg/WQnAbPx" target="_blank"><img src="Images/discord-logo.png" draggable="false"></a>
+                        </span>
                     </div>
-                    <div class="teamDiv">
-                        <img src="Images/thomas.jpg" id="thomasImg">
+                    <div class="teamDiv noselect">
+                        <img src="Images/thomas.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">Thomas Oghalai</h5>
                         <h5 style="text-align: center;">Web Developer</h5>
                     </div>
-                    
-                    <!--  <div class="teamDiv">
-                    <img src="Images/alex.jpg" class="teamImg">
-                    <h5 style="text-align: center;">Alex Klein</h5>
-                    <h5 style="text-align: center;">Web Developer</h5>
-                    <button>More Info</button>
-                </div> -->
-                    <div class="teamDiv">
-                        <img src="Images/sean.jpg" class="teamImg">
+                    <div class="teamDiv noselect">
+                        <img src="Images/sean.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">Sean Browne</h5>
                         <h5 style="text-align: center;">Backend Developer</h5>
+                        <span class="devSocialMedia">
+                            <a href="https://twitter.com/kablunkstudios" target="_blank"><img src="Images/twitter-logo-final.png" draggable="false"></a>
+                        </span>
                     </div>
                 </div>
                 <div id="teamTopRow">
-                    <div class="teamDiv">
-                        <img src="Images/cj.jpg" class="teamImg">
+                    <div class="teamDiv teamDivMain noselect">
+                        <img src="Images/cj.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">CJ Baldamero</h5>
                         <h5 style="text-align: center;">Supervisor</h5>
+                        <span class="devSocialMedia">
+                            <a href="https://twitter.com/Cir_Jeffers" target="_blank"><img src="Images/twitter-logo-final.png" draggable="false"></a>
+                        </span>
                     </div>
-                    <div class="teamDiv">
-                        <img src="Images/aikam.jpg" class="teamImg">
+                    <div class="teamDiv noselect">
+                        <img src="Images/aikam.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">Aikam Singh</h5>
                         <h5 style="text-align: center;">Contributer</h5>
                     </div>
-                    <!-- <div class="teamDiv">
-                        <img src="Images/arjun.jpg" class="teamImg">
-                        <h5 style="text-align: center;">Arjun Singh</h5>
-                        <h5 style="text-align: center;">Web Developer</h5>
-                    </div> -->
-                    <div class="teamDiv">
-                        <img src="Images/kevin.jpg" class="teamImg">
+                    <div class="teamDiv noselect">
+                        <img src="Images/kevin.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">Kevin Oghalai</h5>
                         <h5 style="text-align: center;">Research/Marketing</h5>
                     </div>
@@ -289,7 +340,7 @@
         </div>
 
         <div id="timeline-content">
-            <h2>Roadmap</h2>
+            <h2 id="roadmap">Roadmap</h2>
             <ul class="timeline">
                 <li class="event" data-date="July 16, 2019">
                     <h3><strike>Create the project</strike></h3>
@@ -299,7 +350,7 @@
                     <h3><strike>Implement Firebase</strike></h3>
                     <p>Firebase is used for email/password and Google login for the website. We also tested direct file uploads to firebase.</p>
                 </li>
-                <li class="event" data-date="Est. October 28, 2019">
+                <li class="event" style="border-bottom: none;" data-date="Est. October 28, 2019">
                     <h3>Currently being worked on</h3>
                     <p>Modifying splash page design.</p>
                     <p>Account settings popup.</p>
@@ -329,10 +380,11 @@
     <footer>
         <div id="socialMediaH1Div">
             <h1 id="socialMediaH1">Follow us on social media</h1>
-            <a href="https://twitter.com/StoreAByte"><img src="Images/twitter-logo-final.png" id="twitterLogo"></a>
-            <a href="https://discord.gg/WQnAbPx"><img src="https://cdn0.iconfinder.com/data/icons/free-social-media-set/24/discord-512.png" id="discordLogo"></a>
+            <a href="https://twitter.com/StoreAByte" target="_blank"><img src="Images/twitter-logo-final.png" id="twitterLogo"></a>
+            <a href="https://discord.gg/WQnAbPx" target="_blank"><img src="Images/discord-logo.png" id="discordLogo"></a>
         </div>
     </footer>
+    <script src="animatedBackground.js" type="text/javascript"></script>
     <script src="index.js" type="text/javascript"></script>
 </body>
 
