@@ -1,0 +1,26 @@
+/* Account Modal */
+
+#profileImageWrapper {
+    width: 100px;
+    margin:auto;
+    border-radius: 100%;
+    transform: scale(1);
+    transition: transform 0.5s;
+}
+
+#profileImageWrapper:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#profileUserIMG {
+    display: block;
+    width: 100px;
+    
+    z-index: 5;
+    background-color: black;
+    /* border-radius: 100%;
+    transform: scale(1);
+    transition: transform 0.5s; */
+}
+
