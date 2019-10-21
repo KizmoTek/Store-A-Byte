@@ -73,32 +73,31 @@
                                         <div class="signUpDiv">
                                             <div>
                                                 <label class="signInLabel" for="signUpFirstName">First Name:</label>
-                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
+                                                <label class="signInLabel"><input type="text" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
                                             </div>
                                             <div>
                                                 <label class="signInLabel" for="signUpLastName">Last Name:</label>
-                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
+                                                <label class="signInLabel"><input type="text" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
                                             </div>
                                         </div>
                                         <div class="signUpDiv">
                                             <div>
                                                 <label class="signInLabel" for="signUpUsername">Username:</label>
-                                                <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
+                                                <label class="signInLabel"><input type="text" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
                                             </div>
                                             <div>
                                                 <label class="signInLabel" for="signUpEmail">Email Address:</label>
-                                                <label class="signInLabel"><input type="email" name="FirstName" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
+                                                <label class="signInLabel"><input type="email" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
                                             </div>
                                         </div>
                                         <div class="signUpDiv">
                                             <div>
                                                 <label class="signInLabel" for="signUpPassword">Password:</label>
-                                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                                <label class="signInLabel"><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
                                             </div>
                                             <div>
-                                                <label class="signInLabel" for="signUpPassword">Re-enter
-                                                    Password:</label>
-                                                <label class="signInLabel"><input type="password" name="FirstName" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                                <label class="signInLabel" for="signUpPassword">Re-enter Password:</label>
+                                                <label class="signInLabel"><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
                                             </div>
                                         </div>
                                         <input type="button" value="Sign Up" class="submit" id="signUpButton">
@@ -116,12 +115,12 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <div id="profileImageWrapper">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileUserIMG">
+
                                     <!-- Set this to profile image from user, also if the user does not have profile image, set it to a default one on firebase. -->
                                     <div id="changeProfilePic">
-                                        <p>Click here to change your profile picture.</p>
+                                        <p>Change Profile Picture</p>
                                     </div>
                                 </div>
                                 <!-- Programming comments for JS
@@ -129,7 +128,24 @@
                                 Rename the uploaded image to "profilePic.jpg".
                                 When uploading the image, upload it to the users folder then into a folder called "ProfilePic" in order to prevent accidental ovveriding.
                                 -->
-
+                                <form>
+                                    <div>
+                                        <div>
+                                            <label for="signUpPassword">New Password:</label>
+                                            <label><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label> <!-- Dont show this option if person signed in with Google account -->
+                                        </div>
+                                        <div>
+                                            <label class="signInLabel" for="signUpPassword">Re-enter new Password:</label>
+                                            <label class="signInLabel"><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <label for="signUpPassword">New email address:</label>
+                                            <label><input type="email" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label> <!-- Dont show this option if person signed in with Google account -->
+                                        </div>
+                                    </div>
+                                </form>
                                 <!-- Things needed
                                 Profile picture customization
                                 change password
@@ -138,10 +154,7 @@
                                 delete account
                                 -->
 
-
-                            </div>
-                            <div class="modal-footer">
-                                <p>footer</p>
+                                <button>Save</button>
                             </div>
                         </div>
 
@@ -198,17 +211,17 @@
                                 </div>
                             </div>
                             <div id="teamTopRow" style="margin-right: 12px;">
-                                    <div class="teamDiv noselect" style="margin:auto">
-                                            <img src="Images/kevin.jpg" class="teamImg" draggable="false">
-                                            <h5 style="text-align: center;">Kevin Oghalai</h5>
-                                            <h5 style="text-align: center;">Research/Marketing</h5>
-                                        </div>
-                                    <div class="teamDiv noselect" style="margin:auto">
-                                        <img src="Images/alex.jpg" class="teamImg" draggable="false">
-                                        <h5 style="text-align: center;">Alex Klein</h5>
-                                        <h5 style="text-align: center;">Web Developer</h5>
-                                    </div>
+                                <div class="teamDiv noselect" style="margin:auto">
+                                    <img src="Images/kevin.jpg" class="teamImg" draggable="false">
+                                    <h5 style="text-align: center;">Kevin Oghalai</h5>
+                                    <h5 style="text-align: center;">Research/Marketing</h5>
                                 </div>
+                                <div class="teamDiv noselect" style="margin:auto">
+                                    <img src="Images/alex.jpg" class="teamImg" draggable="false">
+                                    <h5 style="text-align: center;">Alex Klein</h5>
+                                    <h5 style="text-align: center;">Web Developer</h5>
+                                </div>
+                            </div>
 
 
                         </div>
