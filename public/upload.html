@@ -1,259 +1,353 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncontextmenu="rightClick()">
+
 <head>
-    <title>Upload Your Files</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="upload.css">
-
-    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
-    <script src="jquery-3.4.1.js"></script>
-    <script src="firebase.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script>
-        
-        //upload files
-        $(function() {
-            var form = $('form');
-            form.submit( function(event){
-                event.preventDefault()
-                var timeStamp =  Number(new Date());
-
-                firebase.auth().onAuthStateChanged(function (user) {
-                    if (user) {
-                        
-                        var $ = jQuery;
-                        var file_data = $('#browseBtn').prop('files')[0];
-
-                        var filePath = '/users/'+user.uid+'/'+file_data.name;
-                        var storageRef = defaultStorage.ref(filePath);
-                        storageRef.put(file_data).then(function() {
-                            //get download url
-                            storageRef = defaultStorage.ref('/users/'+user.uid+'/')
-                            storageRef.child(file_data.name).getDownloadURL().then(function(url){
-                                //push data to a database under users/uid/file_url/file
-                                writeUserDataToDatabase(user.uid, url, removeExtension(file_data.name), file_data.name, file_data.lastModifiedDate, file_data.size);
-                            });
-                        });
-                    }
-                    else {
-                        alert("user not logged in");
-                    }
-                });
-                
-            });
-        });
-        
-        //custom object to hold data snapshot and table row
-        class fileObject {
-            
-            constructor(snap, tRow) {
-                this.dataSnapshot = snap;
-                this.tableRow = tRow;
-            }
-        }
-        
-        var totalStorageUsed = 0;
-        var maxStorageInGb = 1;
-
-
-        function updateStorageBar() {
-            var elem = document.getElementById("myBar");
-            var id = setInterval(frame, 1000);
-            function frame() {
-                var storageInGb = totalStorageUsed / 1000 / 1000;
-                storageInGb.toFixed(2);
-                var calcWidth = Number(Math.floor( (storageInGb / maxStorageInGb)* 10));
-                elem.style.width = calcWidth.toString() + "%";
-                elem.innerHTML = storageInGb + "MB"
-            }
-        }
-
-
-        //list of files
-        var filesList = [];
-        //count
-        var filesListCount = 0;
-
-        $(document).ready(function () { 
-            var userDataOnPageLoad = false;
-            
-
-            
-            //store user account in local variable
-            var localUserData;
-            firebase.auth().onAuthStateChanged(function (user) {
-                if (user) {
-                    localUserData = user;
-
-                    //grab data once when the page loads
-                    if(!userDataOnPageLoad) {
-                        var query = firebase.database().ref('/users/' + user.uid).orderByKey();
-                        query.once('value').then(function(snapshot) {
-
-                            snapshot.forEach(function(childSnapshot) {
-                                //key of snapshot is an element in users/uid/
-                               // var key = childSnapshot.key;
-                                //data under each key
-                                var childData = childSnapshot.val();
-                                
-
-                                for(var i=0; i < filesListCount; i++) {
-                                    if(childData.file_name == filesList[i].dataSnapshot.file_name &&
-                                    childData.file_size == filesList[i].dataSnapshot.file_size) return; 
-                                }
-                                var row = createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
-                                
-
-                                //custom object with refs to the snapshot and table row
-                                var file = new fileObject(childData,row);
-                                
-                                filesList.push(file);
-                                filesListCount++;
-                            });
-                            //only check the entire database on the inital load
-                            //could be resource intensive if there are lots of entries
-                            userDataOnPageLoad = true;
-                        }).catch(function(error){ console.log(error) });
-                    }
-
-                    //retrieve files when database is updated
-                    //IMPORTANT uses firebase database not firestore
-                    var filesRef = database.ref('users/' + user.uid +'/').orderByKey();
-                    filesRef.on('value', function(snapshot) {
-                        snapshot.forEach(function(childSnapshot) {
-                        //make sure we don't already have the same entry
-                        var childData = childSnapshot.val();
-                        for(var i=0; i < filesListCount; i++) {
-                            if(childData.file_name == filesList[i].dataSnapshot.file_name &&
-                            childData.file_size == filesList[i].dataSnapshot.file_size) return; 
-                        }
-
-                        //add entry to table
-                        var row = createFileEntry(filesListCount+1, childData.file_name, childData.file_size, childData.file_url, "DATE NOT FOUND");
-
-                        //custom object with refs to the snapshot and table row
-                        var file = new fileObject(childData,row);
-                        //push to list
-                        filesList.push(file);
-                        filesListCount++;
-                                
-                        });
-                    });
-                }else {
-                    console.log("user not logged in");
-                }
-            });
-        });
-
-
-        function removeExtension(filename){
-            var lastDotPosition = filename.lastIndexOf(".");
-            if (lastDotPosition === -1) return filename;
-            else return filename.substr(0, lastDotPosition);
-        }
-
-
-        function createFileEntry(id, name, size, url, date) {
-            var table = document.getElementById("fileTable")
-            var newFileRow = table.insertRow(id)
-            newFileRow.id = table.id + (id);
-            newFileRow.insertCell(0).innerHTML = "<span>"+name+"</span>";
-            newFileRow.insertCell(1).innerHTML = "<span>"+size+" bytes</span>";
-            newFileRow.insertCell(2).innerHTML = "<img src="+url+" style='width:50px;'>";
-            newFileRow.insertCell(3).innerHTML = "<span>"+date+"</span>";
-
-            totalStorageUsed += size;
-            updateStorageBar();
-
-            table.append(newFileRow);
-            return newFileRow;
-        }
-
-        function writeUserDataToDatabase(userId, fileURL, entryName, fileName, fileDateModified, fileSize) {
-            database.ref('users/' + userId+'/'+entryName).set({
-                file_name: fileName,
-                file_url: fileURL,
-                modified_date: fileDateModified,
-                file_size: fileSize
-            });
-        }
-
-        function getFileMetadataWithURL(storage, url) {
-            // Create a reference to the file whose metadata we want to retrieve
-            var fileRef = storage.refFromURL(url);
-            // Get metadata properties
-            return(fileRef.getMetadata())
-        }
-
-
-
-    </script>
-
+  <title>Upload Your Files</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="jquery-3.4.1.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+  <script src="firebase.js"></script>
+  <script src="firebaseAccount.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="upload.css">
+  <link rel="stylesheet" href="account.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-        <div class="modal fade" id="uploadModal" role="dialog">
-                <div class="modal-dialog">
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                        <table style="width:100%" id="fileTable" class="">
-                                <tr id="fileTableHeader">
-                                    <th>File Name</th>
-                                    <th colspan="2">Size</th>
-                                    <th colspan="2"><img src="" id="previewImage" style="width:50px;"></th>
-                                    <th colspan="2">Date Modified</th>
-                                </tr>
-                            </table>
-                  </div>
+  <header class="noselect">
+    <div id="profileTopDiv">
+      <div id="accountDropdown">
+        <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#signInModal"
+          data-toggle="modal">
+        <div id="accountDropdownList" aria-label="submenu">
+          <div id="accountButton">Account</div>
+          <div id="logoutButton">Logout</div>
+        </div>
+      </div>
+      <button id="UpgradeStorageButton">Upgrade</button>
+      <div id="SignIncontainer">
+        <!-- Modal -->
+        <div class="modal fade" id="signInModal" role="dialog">
+          <div class="modal-dialog" style="width:700px;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div id="centerTopModalButtons">
+                  <input id="SignInClick" value="Sign In" type="button">
+                  <input id="SignUpClick" value="Sign Up" type="button">
                 </div>
               </div>
-    <form action="">
-            <input type="file" id="browseBtn" name="avatar" accept="*, image/png, image/jpeg">
-            
-            <button type=”submit” id="submitFile">Upload File</button>
-            <button id="firebaseShowFilesTest">Get Files</button>
-            
-    </form>
 
 
-    
-    
+              <!-- SIGN IN INFO HERE -->
 
-    <button data-target="#uploadModal" data-toggle="modal">View Files</button>
+              <div class="modal-body" id="signIn">
+                <form>
+                  <label class="signInLabel">Email Address:</label>
+                  <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail"
+                      autocomplete="username" method="post"></label>
+                  <label class="signInLabel">Password:</label>
+                  <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword"
+                      autocomplete="current-password" method="post"></label>
+                  <input type="button" value="Sign In" class="submit" id="signInButton">
+                  <label class="signInLabel">
+                    <p class="signInOr">Or</p>
+                    <img src="Images/google.png" class="google">
+                  </label>
+                </form>
+              </div>
 
-    <div class="divider">
-
-
-        <h1 class="heading center">Store-A-Byte</h1>
-        <div id="absolute">
-
-
-            <h1>Dark Theme</h1>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label>
+              <div class="modal-body" id="signUpModal">
+                <form>
+                  <div class="signUpDiv">
+                    <div>
+                      <label class="signInLabel" for="signUpFirstName">First Name:</label>
+                      <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput"
+                          id="signUpFirstName" method="post" autocomplete="given-name" required></label>
+                    </div>
+                    <div>
+                      <label class="signInLabel" for="signUpLastName">Last Name:</label>
+                      <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput"
+                          id="signUpLastName" method="post" autocomplete="family-name" required></label>
+                    </div>
+                  </div>
+                  <div class="signUpDiv">
+                    <div>
+                      <label class="signInLabel" for="signUpUsername">Username:</label>
+                      <label class="signInLabel"><input type="text" name="FirstName" value="" class="signInInput"
+                          id="signUpUsername" method="post" autocomplete="given-name" required></label>
+                    </div>
+                    <div>
+                      <label class="signInLabel" for="signUpEmail">Email Address:</label>
+                      <label class="signInLabel"><input type="email" name="FirstName" value="" class="signInInput"
+                          id="signUpEmail" method="post" autocomplete="email" required></label>
+                    </div>
+                  </div>
+                  <div class="signUpDiv">
+                    <div>
+                      <label class="signInLabel" for="signUpPassword">Password:</label>
+                      <label class="signInLabel"><input type="password" name="FirstName" value=""
+                          class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                    </div>
+                    <div>
+                      <label class="signInLabel" for="signUpPassword">Re-enter Password:</label>
+                      <label class="signInLabel"><input type="password" name="FirstName" value=""
+                          class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                    </div>
+                  </div>
+                  <input type="button" value="Sign Up" class="submit" id="signUpButton">
+                  <label class="signInLabel"></label>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="modal fade" id="contactModal" role="dialog">
+        <div class="modal-dialog">
+
+
+          <!-- Modal content-->
+          <div class="modal-content">
+
+            <div class="modal-body">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <label for="issue">What is your issue?</label>
+              <select id="issue" name="issue">
+                <option value="loginAuthentification">Login authentification</option>
+                <option value="slowSpeed">Slow upload/download speed</option>
+                <option value="review">Files not appearing</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <label for="description" style="margin-right: 440px">Describe the issue</label>
+              <textarea id="description" name="description" placeholder="Write something..."
+                style="height:200px"></textarea>
+              <button type="button" class="submit" data-dismiss="modal"
+                style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-    <hr>
+    <div id="navBarDiv">
+      <div id="navTopDiv">
+        <a href="roadmap.html" style="margin-right: 0px;" class="anchorColor">Roadmap</a>
+        <a id="mail" data-toggle="modal" data-target="#contactModal" class="anchorColor">Contact Us</a>
+      </div>
+    </div>
+    <div id="logoTopDiv">
+      <a href="https://storeabyte.com/"><img src="Images/Logo.png" draggable="false" id="logoTopIMG"></a>
+      <h1 id="logoTopText"><a href="https://storeabyte.com/">Store-A-Byte</a></h1>
+    </div>
+
+    </div>
+  </header>
+  <div class="divider" id="divider">
+    
+    <div style="display:flex; flex-direction:column;" ondrop="trashCan(event)">
+      <img src="https://cdn.glitch.com/3bec56de-86c9-41f6-a395-92fdcf476675%2Ftrash%20button.png?v=1565289816563"
+        ondragover="allowDrop(event)" ondrop="trashCan()" id="trashcan">
+      <div style="margin:auto;" ondragover="allowDrop(event)" ondrop="trashCan()">
+        Delete
+      </div>
+    </div>
+
+    <div id="absolute">
+
+
+      <h1 id="theme"></h1>
+      <label class="switch">
+        <input id="switch" onclick="switchMode()" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+
+    </div>
+  </div>
+  <hr>
+
+  <div id="flex">
+
 
     <div id="myProgress">
-        <div id="myBar"></div>
+      <p id="progressP"></p>
+      <div id="myBar"></div>
     </div>
+    <form action="" id="uploadFile" class="dropfile" ondrop="dropFile(event)" ondragover="dragOverFile(event)">
+
+      <input type="file" id="browseBtn" name="avatar" onchange="readURL(this,event)" ondragover="allowDrop(event)" />
+    </form>
+  </div>
+  <hr>
+
+  <footer>
+
+  </footer>
 
 
-    <hr>
-    <button>
-        oppen Files/Folders
-    </button>
-    <footer>
-        <button id="TheFolder">Folder #1</button>
-    </footer>
-    <p id="demo"></p>
+
+
+
+  <div id="manage">
+
+
+    <table>
+      <tr>
+        <th>
+          <div id="firstSlot" class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+        <th>
+          <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </th>
+      </tr>
+    </table>
+  </div>
+
 </body>
+<script src="upload.js"></script>
+
 </html>

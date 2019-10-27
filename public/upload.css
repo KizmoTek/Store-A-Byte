@@ -1,181 +1,463 @@
-﻿/* The switch - the box around the slider */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+﻿:root {
+  --width: 14.05vw;
+  --height: 14.05vw;
+  --margin: auto;
 }
 
-    /* Hide default HTML checkbox */
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
+[data-theme="light"] {
+  --primary-color: #302AE6 !important;
+  --secondary-color: #536390 !important;
+  --font-color: black !important;
+  --bg-color: #fff !important;
+  --heading-color: #292922 !important;
+  --bar-color: #1baecf !important;
+  --border-color: #60696b !important;
+  --transparent: rgba(220, 220, 220, .1) !important;
+}
+
+[data-theme="dark"] {
+  --primary-color: #9A97F3 !important;
+  --secondary-color: #818cab !important;
+  --font-color: white !important;
+  --bg-color: #2b2b28 !important;
+  --heading-color: #818cab !important;
+  --bar-color: green !important;
+  --border-color: lightgrey !important;
+  --transparent: rgba(220, 220, 220, .1) !important;
+}
+
+body {
+  padding: none;
+  margin: 0;
+}
+
+header {
+  background-color: gray;
+  border-bottom: darkgray 5px solid;
+  width: 100%;
+  height: 55px;
+  display: flex;
+}
+
+#profileTopDiv {
+  position: relative;
+  height: 0px;
+}
+
+#profileTopIMG {
+  position: absolute;
+  width: 45px;
+  left: 5px;
+  top: 3px;
+  background-color: black;
+  border-radius: 100%;
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+#profileTopIMG:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#logoTopDiv {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 300px;
+}
+
+#logoTopIMG {
+  width: 40px;
+}
+
+#logoTopText {
+  color: white;
+  font-size: 40px;
+  margin: auto;
+  text-decoration: none;
+}
+
+#logoTopText a {
+  color: white;
+  text-decoration: none;
+}
+
+#logoTopText a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+#navBarDiv {
+  position: relative;
+  margin-top: 0px;
+}
+
+#navBarDiv a {
+  font-size: 20px;
+  transition: color 0.5s;
+  text-decoration: none;
+  color: white;
+}
+
+#navBarDiv a:hover {
+  cursor: pointer;
+}
+
+#navTopDiv {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 5px;
+  top: 16px;
+}
+
+#contactUsTopDiv a {
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+}
+
+#contactUsTopDiv a:hover {
+  text-decoration: underline;
+}
+
+#contactUsTopDiv {
+  margin: auto;
+  width: 60px;
+}
+
+#mail {
+  text-decoration: none;
+  color: white;
+  width: 110px;
+  margin: auto 0 auto 10px;
+}
+
+#UpgradeStorageButton {
+  margin-left: 60px;
+  margin-top: 8px;
+  color: white;
+  background-color: #0b6eba;
+  padding: 6px;
+  border: none;
+  width: 100px;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+}
+
+#flex {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+h1 {
+  color: var(--font-color) !important;
+  /*other styles*/
+}
+
+/* The switch - the box around the slider */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* Hide default HTML checkbox */
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
 /* The slider */
+
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-
-input:checked + .slider {
-    background-color: #2196F3;
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+input:checked+.slider {
+  background-color: #2196F3;
 }
 
-input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
 /* Rounded sliders */
+
 .slider.round {
-    border-radius: 34px;
+  border-radius: 34px;
 }
 
-    .slider.round:before {
-        border-radius: 50%;
-    }
+.slider.round:before {
+  border-radius: 50%;
+}
 
 .divider {
-    display: flex;
-    margin: auto;
-    padding: auto;
-    flex-direction: row;
-    position: relative;
+  display: flex;
+  margin: auto;
+  padding: auto;
+  flex-direction: row;
+  position: relative;
 }
 
 .center {
-    margin: auto;
-    padding: auto width:20%;
+  margin: auto;
+  padding: 0;
+  width: 20%;
 }
 
 #absolute {
-    display: flex;
-    position: absolute;
-    right: 10px;
+  display: flex;
+  position: absolute;
+  right: 10px;
 }
 
-    #absolute h1 {
-        margin: 0px
-    }
-
-
-
+#absolute h1 {
+  margin: 0px
+}
 
 #myProgress {
-    width: 100%;
-    background-color: grey;
+  width: 25%;
+  background-color: grey;
+  position: relative;
+  left: 37.5%;
+}
+
+#progressP {
+  position: absolute;
+  left: 47%;
+  top: 15%
 }
 
 #myBar {
-    width: 10%;
-    height: 30px;
-    background-color: #4CAF50;
-    text-align: center; /* To center it horizontally (if you want) */
-    line-height: 30px; /* To center it vertically */
-    color: white;
+  width: 10%;
+  height: 30px;
+  background-color: var(--bar-color);
+  text-align: center;
+  /* To center it horizontally (if you want) */
+  line-height: 30px;
+  /* To center it vertically */
+  color: white;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #drop-area {
-    border: 2px dashed #ccc;
-    border-radius: 20px;
-    width: 480px;
-    font-family: sans-serif;
-    margin: 100px auto;
-    padding: 20px;
+  border-radius: 20px;
+  width: 480px;
+  font-family: sans-serif;
+  margin: 100px;
+  padding: 20px;
 }
 
-    #drop-area.highlight {
-        border-color: purple;
-    }
-
-p {
-    margin-top: 0;
+#drop-area.highlight {
+  border-color: purple;
 }
 
 .my-form {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 #gallery {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-    #gallery img {
-        width: 150px;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        vertical-align: middle;
-    }
+#gallery img {
+  width: 150px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
 
 .button {
-    display: inline-block;
-    padding: 10px;
-    background: #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  display: inline-block;
+  padding: 10px;
+  background: #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-    .button:hover {
-        background: #ddd;
-    }
+.button:hover {
+  background: #ddd;
+}
 
 #fileElem {
-    display: none;
+  display: none;
 }
 
 #TheFolder {
-    display: block;
-    width: 100%;
-    border: none;
-    background-color: #4CAF50;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #4CAF50;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#uploadFile {
+  position: absolute;
+  top: 9.5%;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#submitFile {
+  height: 35px;
+  width: 300px;
+}
+
+#browseBtn {
+  height: 25px;
+  color: white;
+}
+
+.userFiles {
+  max-width: 12vw;
+  height: 8vw;
+  text-align: center;
+}
+
+#test {
+  padding: 0px;
+}
+
+.slot {
+  width: var(--width);
+  height: var(--height);
+  padding: 0;
+  margin: 0px;
+}
+
+tr {
+  padding: 0;
+  margin: 0px;
+}
+
+td {
+  padding: 0;
+  margin: 0px;
+}
+
+th {
+  padding: 0;
+  margin: 0px;
+  width: var(180px)
+}
+
+table {
+  padding: 0;
+  margin: 0px;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  margin: var(--margin);
+}
+
+.slot:hover {
+  background-color: var(--transparent);
+}
+
+#homebutton {
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+#trashcan {
+  height: 50px;
+  width: 50px;
+  margin-top: 12px;
+  margin-left: 15px;
+}
+
+.pElem {
+  vertical-align: text-bottom;
+  font-size: 1.25vw;
+}
+
+.px180 {
+  width: var(--width);
+  height: var(--height);
+  overflow: hidden;
+}
+
+p {
+  overflow: hidden;
+}
+
+.items {
+  list-style: none;
+  margin: 0px;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 3px;
+  font-size: 17px;
+  color: #333333;
+  display: none
+}
+
+hr {
+  width: 85%;
+  background-color: #E4E4E4;
+  border-color: #E4E4E4;
+  color: #E4E4E4;
+}
+
+#cntnr {
+  display: none;
+  position: fixed;
+  border: 1px solid #B2B2B2;
+  width: 150px;
+  background: #F9F9F9;
+  box-shadow: 3px 3px 2px #E9E9E9;
+  border-radius: 4px;
+}
+
+/* li {
+  padding: 3px;
+  padding-left: 10px;
+} */
+
+.items :hover {
+  color: white;
+  background: #284570;
+  border-radius: 2px;
 }
