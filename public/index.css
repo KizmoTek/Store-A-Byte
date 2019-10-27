@@ -830,6 +830,28 @@ input:focus, select:focus, textarea:focus, button:focus {
     animation: move_wave 15s linear infinite;
 }
 
+.starRating{
+    position:absolute;
+    top:50%;
+    left:50%; 
+    display:flex;
+}
+
+.starRating input{
+    /* display:none; */
+}
+
+.starRating label{
+    display: block;
+    cursor:pointer;
+    width: 50px;
+    background: #ccc;
+}
+
+.starRating label:before{
+    content: '\f005'
+}
+
 /* Small screen scaling */
 
 @media only screen and (max-width: 1300px) {
