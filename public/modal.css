@@ -1,0 +1,28 @@
+/* Account Modal */
+
+#profileImageWrapper {
+    width: 125px;
+    height: 125px;
+    margin:auto;
+    border-radius: 100%;
+    background-image: url("Images/DefaultProfilePicture.png");
+    background-color: black;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.5s;
+}
+
+#profileImageWrapper:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#changeProfilePic {
+    text-align: center;
+    background-color: rgba(186, 186, 186, 0.8);
+    margin-top: 80px;
+}
+

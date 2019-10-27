@@ -1,58 +1,4 @@
-﻿
-[data-theme="light"] {
-    --primary-color: #302AE6;
-    --secondary-color: #536390;
-    --font-color: #424242;
-    --bg-color: #fff;
-    --heading-color: #292922;
-    --bar-color: #1baecf;
-    --border-color: #60696b;
-    --transparent: rgba(220,220,220,.1);
-}
-
-[data-theme="dark"] {
-    --primary-color: #9A97F3;
-    --secondary-color: #818cab;
-    --font-color: #c5e8eb;
-    --bg-color: #2b2b28;
-    --heading-color: #818cab;
-    --bar-color: green;
-    --border-color: lightgrey;
-    --transparent: rgba(220,220,220,.1);
-}
-
-body {
-    padding: 0;
-    margin: 0;
-}
-
-#flex {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-}
-
-
-html {
-    background-color: var(--bg-color);
-    color: var(--font-color);
-    /*other styles*/
-    
-}
-
-h1 {
-    color: var(--font-color);
-    /*other styles*/
-    
-}
-
-a {
-    color: var(--primary-color);
-    /*other styles*/
-    
-}
-
-/* The switch - the box around the slider */
+﻿/* The switch - the box around the slider */
 .switch {
     position: relative;
     display: inline-block;
@@ -118,15 +64,14 @@ input:checked + .slider:before {
 .divider {
     display: flex;
     margin: auto;
-    padding: 0;
+    padding: auto;
     flex-direction: row;
     position: relative;
 }
 
 .center {
     margin: auto;
-    padding: 0;
-    width:20%;
+    padding: auto width:20%;
 }
 
 #absolute {
@@ -141,30 +86,42 @@ input:checked + .slider:before {
 
 
 
-#myProgress {
-    width: 25%;
-    background-color: grey;
-    position: relative;
-    left: 37.5%;
-}
 
-#progressP {
-    position: absolute;
-    left: 47%;
-    top: 15%
+#myProgress {
+    width: 100%;
+    background-color: grey;
 }
 
 #myBar {
     width: 10%;
     height: 30px;
-    background-color: var(--bar-color);
+    background-color: #4CAF50;
     text-align: center; /* To center it horizontally (if you want) */
     line-height: 30px; /* To center it vertically */
     color: white;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #drop-area {
+    border: 2px dashed #ccc;
     border-radius: 20px;
     width: 480px;
     font-family: sans-serif;
@@ -221,64 +178,4 @@ p {
     font-size: 16px;
     cursor: pointer;
     text-align: center;
-}
-
-#uploadFile {
-    position: absolute;
-    top: 9.5%;
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-#submitFile {
-    height: 35px;
-    width: 300px;
-}
-
-#browseBtn {
-    height: 25px;
-}
-
-img {
-    width: 180px;
-}
-
-#test {
-    padding: 0px;
-}
-
-
-.slot {
-    width: 180px;
-    height: 180px;
-    padding: 0;
-    margin: 0px;
-}
-
-tr {
-    padding: 0;
-    margin: 0px;
-}
-
-td {
-    padding: 0;
-    margin: 0px;
-}
-
-th {
-    padding: 0;
-    margin: 0px;
-}
-
-table {
-    padding: 0;
-    margin: 0px;
-    border-spacing: 0px;
-    border-collapse: collapse;
-    margin: auto;
-}
-
-.slot:hover {
-    background-color: var(--transparent);
 }
