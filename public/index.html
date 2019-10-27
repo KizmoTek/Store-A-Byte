@@ -27,8 +27,7 @@
         <div id="topHeader">
             <div id="profileTopDiv">
                 <div id="accountDropdown">
-                    <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG"
-                        data-target="#signInModal" data-toggle="modal">
+                    <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileTopIMG" data-target="#signInModal" data-toggle="modal">
                     <div id="accountDropdownList" aria-label="submenu">
                         <div id="accountButton" data-target="#accountModal" data-toggle="modal">Account</div>
                         <div id="logoutButton">Logout</div>
@@ -57,12 +56,9 @@
                                 <div class="modal-body" id="signIn">
                                     <form>
                                         <label class="signInLabel">Email Address:</label>
-                                        <label class="signInLabel"> <input type="email" value="" class="signInInput"
-                                                id="signInEmail" autocomplete="username" method="post"></label>
+                                        <label class="signInLabel"> <input type="email" value="" class="signInInput" id="signInEmail" autocomplete="username" method="post"></label>
                                         <label class="signInLabel">Password:</label>
-                                        <label class="signInLabel"><input type="password" value="" class="signInInput"
-                                                id="signInPassword" autocomplete="current-password"
-                                                method="post"></label>
+                                        <label class="signInLabel"><input type="password" value="" class="signInInput" id="signInPassword" autocomplete="current-password" method="post"></label>
                                         <input type="button" value="Sign In" class="submit" id="signInButton">
                                         <label class="signInLabel">
                                             <p class="signInOr">Or</p>
@@ -77,44 +73,31 @@
                                         <div class="signUpDiv">
                                             <div>
                                                 <label class="signInLabel" for="signUpFirstName">First Name:</label>
-                                                <label class="signInLabel"><input type="text" name="FirstName" value=""
-                                                        class="signInInput" id="signUpFirstName" method="post"
-                                                        autocomplete="given-name" required></label>
+                                                <label class="signInLabel"><input type="text" value="" class="signInInput" id="signUpFirstName" method="post" autocomplete="given-name" required></label>
                                             </div>
                                             <div>
                                                 <label class="signInLabel" for="signUpLastName">Last Name:</label>
-                                                <label class="signInLabel"><input type="text" name="FirstName" value=""
-                                                        class="signInInput" id="signUpLastName" method="post"
-                                                        autocomplete="family-name" required></label>
+                                                <label class="signInLabel"><input type="text" value="" class="signInInput" id="signUpLastName" method="post" autocomplete="family-name" required></label>
                                             </div>
                                         </div>
                                         <div class="signUpDiv">
                                             <div>
                                                 <label class="signInLabel" for="signUpUsername">Username:</label>
-                                                <label class="signInLabel"><input type="text" name="FirstName" value=""
-                                                        class="signInInput" id="signUpUsername" method="post"
-                                                        autocomplete="given-name" required></label>
+                                                <label class="signInLabel"><input type="text" value="" class="signInInput" id="signUpUsername" method="post" autocomplete="given-name" required></label>
                                             </div>
                                             <div>
                                                 <label class="signInLabel" for="signUpEmail">Email Address:</label>
-                                                <label class="signInLabel"><input type="email" name="FirstName" value=""
-                                                        class="signInInput" id="signUpEmail" method="post"
-                                                        autocomplete="email" required></label>
+                                                <label class="signInLabel"><input type="email" value="" class="signInInput" id="signUpEmail" method="post" autocomplete="email" required></label>
                                             </div>
                                         </div>
                                         <div class="signUpDiv">
                                             <div>
                                                 <label class="signInLabel" for="signUpPassword">Password:</label>
-                                                <label class="signInLabel"><input type="password" name="FirstName"
-                                                        value="" class="signInInput signUpPassword" method="post"
-                                                        autocomplete="new-password" required></label>
+                                                <label class="signInLabel"><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
                                             </div>
                                             <div>
-                                                <label class="signInLabel" for="signUpPassword">Re-enter
-                                                    Password:</label>
-                                                <label class="signInLabel"><input type="password" name="FirstName"
-                                                        value="" class="signInInput signUpPassword" method="post"
-                                                        autocomplete="new-password" required></label>
+                                                <label class="signInLabel" for="signUpPassword">Re-enter Password:</label>
+                                                <label class="signInLabel"><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
                                             </div>
                                         </div>
                                         <input type="button" value="Sign Up" class="submit" id="signUpButton">
@@ -132,12 +115,12 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <div id="profileImageWrapper">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <img src="Images/DefaultProfilePicture.png" draggable="false" id="profileUserIMG">
+
                                     <!-- Set this to profile image from user, also if the user does not have profile image, set it to a default one on firebase. -->
                                     <div id="changeProfilePic">
-                                        <p>Click here to change your profile picture.</p>
+                                        <p>Change Profile Picture</p>
                                     </div>
                                 </div>
                                 <!-- Programming comments for JS
@@ -145,7 +128,24 @@
                                 Rename the uploaded image to "profilePic.jpg".
                                 When uploading the image, upload it to the users folder then into a folder called "ProfilePic" in order to prevent accidental ovveriding.
                                 -->
-
+                                <form>
+                                    <div>
+                                        <div>
+                                            <label for="signUpPassword">New Password:</label>
+                                            <label><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label> <!-- Dont show this option if person signed in with Google account -->
+                                        </div>
+                                        <div>
+                                            <label class="signInLabel" for="signUpPassword">Re-enter new Password:</label>
+                                            <label class="signInLabel"><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <label for="signUpPassword">New email address:</label>
+                                            <label><input type="email" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label> <!-- Dont show this option if person signed in with Google account -->
+                                        </div>
+                                    </div>
+                                </form>
                                 <!-- Things needed
                                 Profile picture customization
                                 change password
@@ -154,10 +154,7 @@
                                 delete account
                                 -->
 
-
-                            </div>
-                            <div class="modal-footer">
-                                <p>footer</p>
+                                <button>Save</button>
                             </div>
                         </div>
 
@@ -181,15 +178,55 @@
                             </div>
                             <div class="modal-footer">
                                 <label for="description" style="margin-right: 440px">Describe the issue</label>
-                                <textarea id="description" name="description" placeholder="Write something..."
-                                    style="height:200px"></textarea>
-                                <button type="button" class="submit" data-dismiss="modal"
-                                    style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
+                                <textarea id="description" name="description" placeholder="Write something..." style="height:200px"></textarea>
+                                <button type="button" class="submit" data-dismiss="modal" style="margin-right: 235px; font-size: 18px; width: 100px; margin-top: 0px;">Submit</button>
                                 </form>
                             </div>
                         </div>
 
                     </div>
+                </div>
+            </div>
+
+            <!-- Contributer modal -->
+            <div class="modal fade" id="contributerModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="teamTopRow" style="margin-right: 12px;">
+                                <div class="teamDiv noselect" style="margin:auto">
+                                    <img src="Images/sean.jpg" class="teamImg" draggable="false">
+                                    <h5 style="text-align: center;">Sean Browne</h5>
+                                    <h5 style="text-align: center;">Backend Developer</h5>
+                                    <span class="devSocialMedia">
+                                        <a href="https://twitter.com/kablunkstudios" target="_blank"><img src="Images/twitter-logo-final.png" draggable="false"></a>
+                                    </span>
+                                </div>
+                                <div class="teamDiv noselect" style="margin:auto">
+                                    <img src="Images/arjun.jpg" class="teamImg" draggable="false">
+                                    <h5 style="text-align: center;">Arjun Singh</h5>
+                                    <h5 style="text-align: center;">Web Developer</h5>
+                                </div>
+                            </div>
+                            <div id="teamTopRow" style="margin-right: 12px;">
+                                <div class="teamDiv noselect" style="margin:auto">
+                                    <img src="Images/kevin.jpg" class="teamImg" draggable="false">
+                                    <h5 style="text-align: center;">Kevin Oghalai</h5>
+                                    <h5 style="text-align: center;">Research/Marketing</h5>
+                                </div>
+                                <div class="teamDiv noselect" style="margin:auto">
+                                    <img src="Images/alex.jpg" class="teamImg" draggable="false">
+                                    <h5 style="text-align: center;">Alex Klein</h5>
+                                    <h5 style="text-align: center;">Web Developer</h5>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -294,26 +331,21 @@
         </div>
     </div>
 
-    <div style="width: 100%; background-color: lightgrey;">
+    <div style="width: 100%; padding-bottom: 100px; background-color: lightgrey;">
         <div id="teamDiv">
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    id="teamVid"></iframe>
+                <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" id="teamVid"></iframe>
             </div>
             <div id="teamContent">
                 <div id="teamTopRow">
-                    <div class="teamDiv teamDivMain noselect">
+                    <div class="teamDiv teamDivMain noselect" style="">
                         <img src="Images/KizmoTek.png" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">KizmoTek</h5>
                         <h5 style="text-align: center;">Founder, Lead Developer</h5>
                         <span class="devSocialMedia">
-                            <a href="https://twitter.com/KizmoTek" target="_blank"><img
-                                    src="Images/twitter-logo-final.png" draggable="false"></a>
-                            <a href="https://www.instagram.com/kizmotek/" target="_blank"><img
-                                    src="Images/instagram-logo.png" draggable="false"></a>
-                            <a href="https://discord.gg/WQnAbPx" target="_blank"><img src="Images/discord-logo.png"
-                                    draggable="false"></a>
+                            <a href="https://twitter.com/KizmoTek" target="_blank"><img src="Images/twitter-logo-final.png" draggable="false"></a>
+                            <a href="https://www.instagram.com/kizmotek/" target="_blank"><img src="Images/instagram-logo.png" draggable="false"></a>
+                            <a href="https://discord.gg/WQnAbPx" target="_blank"><img src="Images/discord-logo.png" draggable="false"></a>
                         </span>
                     </div>
                     <div class="teamDiv noselect">
@@ -321,37 +353,23 @@
                         <h5 style="text-align: center;">Thomas Oghalai</h5>
                         <h5 style="text-align: center;">Web Developer</h5>
                     </div>
-                    <div class="teamDiv noselect">
-                        <img src="Images/sean.jpg" class="teamImg" draggable="false">
-                        <h5 style="text-align: center;">Sean Browne</h5>
-                        <h5 style="text-align: center;">Backend Developer</h5>
-                        <span class="devSocialMedia">
-                            <a href="https://twitter.com/kablunkstudios" target="_blank"><img
-                                    src="Images/twitter-logo-final.png" draggable="false"></a>
-                        </span>
-                    </div>
                 </div>
                 <div id="teamTopRow">
+                    <div class="teamDiv noselect">
+                        <img src="Images/aikam.jpg" class="teamImg" draggable="false">
+                        <h5 style="text-align: center;">Aikam Singh</h5>
+                        <h5 style="text-align: center;">Front and Back End Developer</h5>
+                    </div>
                     <div class="teamDiv teamDivMain noselect">
                         <img src="Images/cj.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">CJ Baldamero</h5>
                         <h5 style="text-align: center;">Supervisor</h5>
                         <span class="devSocialMedia">
-                            <a href="https://twitter.com/Cir_Jeffers" target="_blank"><img
-                                    src="Images/twitter-logo-final.png" draggable="false"></a>
+                            <a href="https://twitter.com/Cir_Jeffers" target="_blank"><img src="Images/twitter-logo-final.png" draggable="false"></a>
                         </span>
                     </div>
-                    <div class="teamDiv noselect">
-                        <img src="Images/aikam.jpg" class="teamImg" draggable="false">
-                        <h5 style="text-align: center;">Aikam Singh</h5>
-                        <h5 style="text-align: center;">Contributer</h5>
-                    </div>
-                    <div class="teamDiv noselect">
-                        <img src="Images/kevin.jpg" class="teamImg" draggable="false">
-                        <h5 style="text-align: center;">Kevin Oghalai</h5>
-                        <h5 style="text-align: center;">Research/Marketing</h5>
-                    </div>
                 </div>
+                <button id="contributersButton" data-target="#contributerModal" data-toggle="modal">View All Contributers</button>
             </div>
         </div>
     </div>
@@ -417,10 +435,8 @@
     <footer>
         <div id="socialMediaH1Div">
             <h1 id="socialMediaH1">Follow us on social media</h1>
-            <a href="https://twitter.com/StoreAByte" target="_blank"><img src="Images/twitter-logo-final.png"
-                    id="twitterLogo"></a>
-            <a href="https://discord.gg/WQnAbPx" target="_blank"><img src="Images/discord-logo.png"
-                    id="discordLogo"></a>
+            <a href="https://twitter.com/StoreAByte" target="_blank"><img src="Images/twitter-logo-final.png" id="twitterLogo"></a>
+            <a href="https://discord.gg/WQnAbPx" target="_blank"><img src="Images/discord-logo.png" id="discordLogo"></a>
         </div>
     </footer>
     <script src="animatedBackground.js" type="text/javascript"></script>
