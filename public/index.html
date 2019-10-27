@@ -128,33 +128,31 @@
                                 Rename the uploaded image to "profilePic.jpg".
                                 When uploading the image, upload it to the users folder then into a folder called "ProfilePic" in order to prevent accidental ovveriding.
                                 -->
-                                <form>
-                                    <div>
+                                <form id="accountSettingsForm">
+                                    <div > <!-- Dont show this option if person signed in with Google account -->
+                                        <div id="accountSettingsEmailDiv">
+                                            <label for="signUpPassword">New email address:</label>
+                                            <label><input type="email" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password"></label> 
+                                        </div>
+                                    </div>
+                                    <div id="accountSettingsPasswordDiv">
                                         <div>
                                             <label for="signUpPassword">New Password:</label>
-                                            <label><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label> <!-- Dont show this option if person signed in with Google account -->
+                                            <label><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password"></label> <!-- Dont show this option if person signed in with Google account -->
                                         </div>
                                         <div>
                                             <label class="signInLabel" for="signUpPassword">Re-enter new Password:</label>
-                                            <label class="signInLabel"><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div>
-                                            <label for="signUpPassword">New email address:</label>
-                                            <label><input type="email" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password" required></label> <!-- Dont show this option if person signed in with Google account -->
+                                            <label class="signInLabel"><input type="password" value="" class="signInInput signUpPassword" method="post" autocomplete="new-password"></label>
                                         </div>
                                     </div>
                                 </form>
+                                <button id="deleteAccountButton">Delete account</button>
                                 <!-- Things needed
-                                Profile picture customization
-                                change password
-                                change email address
                                 change/update billing information
-                                delete account
+                                delete account option
                                 -->
 
-                                <button>Save</button>
+                                <button id="saveAccountSettingsButton">Save</button>
                             </div>
                         </div>
 
@@ -338,7 +336,7 @@
             </div>
             <div id="teamContent">
                 <div id="teamTopRow">
-                    <div class="teamDiv teamDivMain noselect" style="">
+                    <div class="teamDiv teamDivMain noselect">
                         <img src="Images/KizmoTek.png" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">KizmoTek</h5>
                         <h5 style="text-align: center;">Founder, Lead Developer</h5>
@@ -355,12 +353,12 @@
                     </div>
                 </div>
                 <div id="teamTopRow">
-                    <div class="teamDiv noselect">
+                    <div class="teamDiv teamDivMain noselect">
                         <img src="Images/aikam.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">Aikam Singh</h5>
                         <h5 style="text-align: center;">Front and Back End Developer</h5>
                     </div>
-                    <div class="teamDiv teamDivMain noselect">
+                    <div class="teamDiv noselect">
                         <img src="Images/cj.jpg" class="teamImg" draggable="false">
                         <h5 style="text-align: center;">CJ Baldamero</h5>
                         <h5 style="text-align: center;">Supervisor</h5>
