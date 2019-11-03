@@ -177,7 +177,7 @@ window.onload = () => {
 
     signUpPassword[1].addEventListener('input', checkPasswordMatch)
 
-    function checkPasswordMatch(e) {
+    function checkPasswordMatch() {
         if (signUpPassword[1].value != signUpPassword[0].value) {
             signUpPassword[1].style.borderColor = "red"
         } else {
@@ -249,6 +249,33 @@ window.onload = () => {
         signUpBox.style.display = "none";
         signInBox.style.display = "block";
     })
+
+    const deleteAccountButton = document.getElementById("deleteAccountButton")
+    deleteAccountButton.addEventListener('click', (e) => {
+        Swal.fire({
+            title: 'Are you sure you want to delete your account?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                userVar.delete().then(function () {
+                    // User deleted.
+                    location.reload();
+                }).catch(function (error) {
+                    // An error happened.
+                    Swal.fire({
+                        type: 'error',
+                        title: error
+                    })
+                    console.log(error)
+                });
+            }
+        })
+    })
 }
 
 function sendVerificationEmail() {
@@ -313,5 +340,4 @@ function updateUserPic(newPic) {
             title: errorMessage
         })
     });
-
 }

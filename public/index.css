@@ -851,4 +851,16 @@ input:focus, select:focus, textarea:focus, button:focus {
     .teamDivMain {
         margin-left: 0 !important;
     }
+
+    #contributersButton {
+        background-color: purple;
+        border: none;
+        color: white;
+        margin: auto;
+        width: 160px;
+        font-size: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        transition: transform 0.1s;
+    }
 }
