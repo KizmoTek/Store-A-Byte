@@ -834,11 +834,12 @@ input:focus, select:focus, textarea:focus, button:focus {
     position:absolute;
     top:50%;
     left:50%; 
+    transform: translate(-50%, -50%) rotateY(180deg);
     display:flex;
 }
 
 .starRating input{
-    /* display:none; */
+    display:none;
 }
 
 .starRating label{
@@ -849,8 +850,55 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 .starRating label:before{
-    content: '\f005'
+    content: '\f005';
+    font-family:fontAwesome;
+    position: relative;
+    display: block;
+    font-size:50px;
+    color: #101010;
 }
+
+.starRating label:after{
+    content: '\f005';
+    font-family:fontAwesome;
+    position: absolute;
+    display: block;
+    font-size:50px;
+    color: #ffd414;
+    top: 0;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+.starRating label:hover:after,
+.starRating label:hover ~ label:after,
+.starRating input:checked ~ label:after{
+    opacity: 1;
+}
+
+#reviewContent{
+    height:300px;
+}
+
+#starText{
+    position:absolute;
+    top:25%;
+    left:30%;
+}
+
+#starTitle{
+    color: #0b6eba;
+}
+
+#reviewBox{
+    width: 250px;
+    height:100px;
+    position:absolute;
+    top: 70%;
+    left:25%;
+    resize: none; 
+}
+
 
 /* Small screen scaling */
 
