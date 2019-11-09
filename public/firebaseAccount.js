@@ -45,8 +45,6 @@ window.onload = () => {
             photourl = user.photoURL
             if (photourl != null) {
                 profilePic.src = photourl
-                profilePic.style.backgroundColor = "transparent"
-                profilePic.style.borderRadius = "0px"
             }
         } else {
             console.log("no user")
