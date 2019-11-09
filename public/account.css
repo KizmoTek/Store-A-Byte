@@ -130,12 +130,18 @@
 #accountDropdownList {
     position: absolute;
     top: 50px;
-    display: none;
+    display: block;
     opacity: 0;
     z-index: 10;
     background-color: gray;
-    transition: height 10s;
-    transition: opacity 0.4s;
+    height: 0px;
+    overflow:hidden;
+    transition: opacity 0.2s ease-out, height 0.4s ease;
+}
+
+.dropdownAnimate:hover #accountDropdownList {
+    height: 95px;
+    opacity: 1;
 }
 
 #accountDropdownList div {

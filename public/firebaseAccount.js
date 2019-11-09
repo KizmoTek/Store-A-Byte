@@ -16,6 +16,7 @@ window.onload = () => {
     const profilePic = document.getElementById('profileTopIMG')
     const contactButton = document.getElementById('mail')
     const myStorage = document.getElementById('MyStorageButton')
+    const accountDropdown = document.getElementById('accountDropdown')
     const signInModal = document.getElementById('signInModal')
 
     firebase.auth().onAuthStateChanged(function (user) {
@@ -37,6 +38,7 @@ window.onload = () => {
                 myStorage.style.opacity = "1"
                 myStorage.style.display = "block"
             }
+            accountDropdown.classList.add("dropdownAnimate")
             profilePic.removeAttribute("data-target");
             profilePic.removeAttribute("data-toggle");
             contactButton.setAttribute("data-target", "#contactModal");
@@ -71,23 +73,6 @@ window.onload = () => {
                 title: 'Please sign in first.'
             })
         }
-    })
-
-    const accountDropdown = document.getElementById('accountDropdown')
-    const accountDropdownList = document.getElementById('accountDropdownList')
-
-    accountDropdown.addEventListener('mouseover', (e) => {
-        if (userVar) {
-            accountDropdownList.style.display = 'block'
-            accountDropdownList.style.height = '67px'
-            accountDropdownList.style.opacity = '1'
-        }
-    })
-
-    accountDropdown.addEventListener('mouseout', (e) => {
-        accountDropdownList.style.removeProperty('display')
-        accountDropdownList.style.removeProperty('height')
-        accountDropdownList.style.removeProperty('opacity')
     })
 
     loginButton[0].addEventListener('click', (e) => {
@@ -177,7 +162,7 @@ window.onload = () => {
 
     signUpPassword[1].addEventListener('input', checkPasswordMatch)
 
-    function checkPasswordMatch(e) {
+    function checkPasswordMatch() {
         if (signUpPassword[1].value != signUpPassword[0].value) {
             signUpPassword[1].style.borderColor = "red"
         } else {
@@ -249,6 +234,33 @@ window.onload = () => {
         signUpBox.style.display = "none";
         signInBox.style.display = "block";
     })
+
+    const deleteAccountButton = document.getElementById("deleteAccountButton")
+    deleteAccountButton.addEventListener('click', (e) => {
+        Swal.fire({
+            title: 'Are you sure you want to delete your account?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                userVar.delete().then(function () {
+                    // User deleted.
+                    location.reload();
+                }).catch(function (error) {
+                    // An error happened.
+                    Swal.fire({
+                        type: 'error',
+                        title: error
+                    })
+                    console.log(error)
+                });
+            }
+        })
+    })
 }
 
 function sendVerificationEmail() {
@@ -313,5 +325,4 @@ function updateUserPic(newPic) {
             title: errorMessage
         })
     });
-
 }

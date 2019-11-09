@@ -26,3 +26,71 @@
     margin-top: 80px;
 }
 
+#accountSettingsForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+#accountSettingsEmailDiv {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: auto;
+}
+
+#accountSettingsPasswordDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#accountSettingsPasswordDiv div{
+    display: flex;
+    flex-direction: column;
+}
+
+#deleteAccountButton {
+    width: 100px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    background-color:red;
+    border: none;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 10px;
+    transition: transform 0.1s;
+}
+
+#deleteAccountButton:hover {
+    cursor: pointer;
+}
+
+#deleteAccountButton:active {
+    transform: scale(0.9);
+}
+
+#saveAccountSettingsButton {
+    width:70px;
+    display: block;
+    margin:auto;
+    margin-top: 10px;
+    background-color:purple;
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.1s;
+}
+
+#saveAccountSettingsButton:hover {
+    cursor: pointer;
+}
+
+#saveAccountSettingsButton:active {
+    transform: scale(0.9);
+}
+
