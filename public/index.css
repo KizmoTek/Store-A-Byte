@@ -485,7 +485,12 @@ footer {
     position: absolute;
     top: 0;
     opacity: 0;
-    transition: opacity 0.8s ease-out;
+    transform:scale(1);
+    transition: opacity 0.8s ease-out, transform 0.4s;
+}
+
+#MyStorageButton:hover { 
+    transform:scale(1.1);
 }
 
 #pricingDiv {

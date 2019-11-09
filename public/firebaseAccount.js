@@ -16,6 +16,7 @@ window.onload = () => {
     const profilePic = document.getElementById('profileTopIMG')
     const contactButton = document.getElementById('mail')
     const myStorage = document.getElementById('MyStorageButton')
+    const accountDropdown = document.getElementById('accountDropdown')
     const signInModal = document.getElementById('signInModal')
 
     firebase.auth().onAuthStateChanged(function (user) {
@@ -37,6 +38,7 @@ window.onload = () => {
                 myStorage.style.opacity = "1"
                 myStorage.style.display = "block"
             }
+            accountDropdown.classList.add("dropdownAnimate")
             profilePic.removeAttribute("data-target");
             profilePic.removeAttribute("data-toggle");
             contactButton.setAttribute("data-target", "#contactModal");
@@ -71,23 +73,6 @@ window.onload = () => {
                 title: 'Please sign in first.'
             })
         }
-    })
-
-    const accountDropdown = document.getElementById('accountDropdown')
-    const accountDropdownList = document.getElementById('accountDropdownList')
-
-    accountDropdown.addEventListener('mouseover', (e) => {
-        if (userVar) {
-            accountDropdownList.style.display = 'block'
-            accountDropdownList.style.height = '67px'
-            accountDropdownList.style.opacity = '1'
-        }
-    })
-
-    accountDropdown.addEventListener('mouseout', (e) => {
-        accountDropdownList.style.removeProperty('display')
-        accountDropdownList.style.removeProperty('height')
-        accountDropdownList.style.removeProperty('opacity')
     })
 
     loginButton[0].addEventListener('click', (e) => {
