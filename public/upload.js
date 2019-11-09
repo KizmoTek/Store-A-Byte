@@ -203,22 +203,45 @@ elem.setAttributeNode(copy);
 
       reader.onload = function (e) {
         fileNumId = ('#img' + fileNum)
-        $('' + fileNumId)
-          .attr('src', e.target.result);
-        var inputFile = $('#browseBtn')[0].files[0].name;
-        var inputFileName = '' + inputFile.split('.')[1];
-        if (inputFileName != "png" && inputFileName != "heif" && inputFileName != "jpeg" && inputFileName != "jpg") {
+          $("" + fileNumId).attr("src", e.target.result);
+          var inputFile = $("#browseBtn")[0].files[0].name;
+          var inputFileName = "" + inputFile.split(".")[1];
+          if (
+              inputFileName != "png" &&
+              inputFileName != "heif" &&
+              inputFileName != "jpeg" &&
+              inputFileName != "jpg" &&
+              inputFileName != "gif" &&
+              inputFileName != "zip" &&
+              inputFileName != "exe"
+          ) {
+              //$('#img'+fileNum).prop('src', 'https://www.pngkey.com/png/full/129-1298626_upload-file-icon-png-new-file-small-icon.png')
+              document.getElementById("img" + fileNum).src =
+                  "https://www.pngkey.com/png/full/129-1298626_upload-file-icon-png-new-file-small-icon.png";
+              document.getElementById("img" + fileNum).style.width = "7vw";
+              console.log(inputFileName);
+              if (inputFileName == "docx" || inputFileName == "doc") {
+                  document.getElementById("img" + fileNum).src =
+                      "https://cdn.windowsfileviewer.com/images/types/docx.png";
 
-          //$('#img'+fileNum).prop('src', 'https://www.pngkey.com/png/full/129-1298626_upload-file-icon-png-new-file-small-icon.png')  
-          document.getElementById('img' + fileNum).src = "https://www.pngkey.com/png/full/129-1298626_upload-file-icon-png-new-file-small-icon.png";
-          document.getElementById('img' + fileNum).style.width = "7vw"
-          console.log(inputFileName)
-          if (inputFileName == "DOCX" || inputFileName == "DOC") {
-            document.getElementById('img' + fileNum).src = "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjf_Ob7sPTkAhVHFjQIHaj5BV0QjRx6BAgBEAQ&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3A.doc_icon.svg&psig=AOvVaw3sOzU230blR5rqOkfbxK8N&ust=1569789829353033";
-
+                  console.log(fileNum);
+              } else if (inputFileName == "py") {
+                  document.getElementById("img" + fileNum).src =
+                      "data:image/png;base64,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";
+              } else if (inputFileName == "wav") {
+                  document.getElementById("img" + fileNum).src =
+                      "https://image.flaticon.com/icons/svg/29/29101.svg";
+              } else if (inputFileName == "") {
+                  document.getElementById("img" + fileNum).src = "";
+              } else if (inputFileName == "") {
+                  document.getElementById("img" + fileNum).src = "";
+              } else if (inputFileName == "") {
+                  document.getElementById("img" + fileNum).src = "";
+              } else if (inputFileName == "") {
+                  document.getElementById("img" + fileNum).src = "";
+              }
           }
-        }
-        fileNum += 1;
+          fileNum += 1;
       };
 
       reader.readAsDataURL(input.files[0]);
